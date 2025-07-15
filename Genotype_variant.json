@@ -1,0 +1,67 @@
+{
+  "genotypes": {
+    "genotyping_coverage": {
+      "patients_with_at_least_one_variant": 99.3,
+      "patients_with_both_variants": 97.1
+    },
+    "f508del_status": {
+      "homozygous": 47.4,
+      "heterozygous": 41.6
+    },
+    "most_common_variant_combinations": {
+      "F508del/F508del": 47.5,
+      "F508del/G551D": 4.0,
+      "F508del/R117H": 5.1,
+      "F508del/G542X": 2.5,
+      "F508del/621+1G->T": 1.7,
+      "Other combinations": 35.2,
+      "Unknown": 2.9
+    },
+    "variant_prevalence": {
+      "F508del": 89.0,
+      "R117H": 6.3,
+      "G551D": 5.7,
+      "G542X": 3.7,
+      "621+1G->T": 2.6,
+      "N1303K": 1.6,
+      "1717-1G->A": 1.6,
+      "D1152H": 1.4,
+      "1898+1G->A": 1.4,
+      "P67L": 1.4
+    },
+    "variant_prevalence_by_nation": {
+      "England": {
+        "F508del": 89.1,
+        "R117H": 5.8,
+        "G551D": 5.1
+      },
+      "Scotland": {
+        "F508del": 90.1,
+        "R117H": 8.1,
+        "G551D": 9.8
+      },
+      "Wales": {
+        "F508del": 89.6,
+        "R117H": 3.8,
+        "G551D": 3.8
+      },
+      "Northern Ireland": {
+        "F508del": 83.7,
+        "R117H": 14.1,
+        "G551D": 9.2
+      }
+    },
+    "modulator_eligibility_groups": {
+      "group_1": "F508del homozygous",
+      "group_2": "F508del heterozygous",
+      "group_3": "No F508del, but ETI-responsive variant (FDA/French list)",
+      "group_4": "No F508del or ETI variant, but responsive to ivacaftor/tezacaftor",
+      "group_5": "No known responsive variant"
+    },
+    "modulator_eligibility_lists": {
+      "FDA_ETI_responsive": ["G1244E", "R117H", "S945L", "G551D", "F508C", "R334W", "R347H", "R1070W", "D1152H", "S1251N", "S549N", "S549R", "..."],
+      "French_compassionate_use": ["R334W", "3849+10kbC->T", "R1066C", "3272-26A->G", "2789+5G->A", "N1303K"],
+      "Ivacaftor_responsive": ["G551D", "G1244E", "S1251N", "S549N", "R117H", "G1349D", "G178R", "R347H", "R347P", "R117C", "R117L", "..."]
+    }
+  }
+}

@@ -1,0 +1,51 @@
+(function ($) {
+  // All your code here
+  Drupal.behaviors.cftr2 = {
+    attach: function(context, settings) {
+        $('input', context).once('disable-input-enter', function() {
+          $(this).keypress(function(e) {
+            var ac = $('.form-item-mutation1 .dropdown, .form-item-mutation2 .dropdown');
+            if (e.keyCode == 13 && typeof ac[0] !== "undefined") {
+              console.log(ac[0]);
+              e.preventDefault();
+            }
+          });
+        });
+      
+        $('.go_science', context).click('general_cookie', function() {
+          // Build the expiration date string:
+            var expiration_date = new Date();
+            var cookie_string = '';
+            expiration_date.setFullYear(expiration_date.getFullYear() + 1);
+            // Build the set-cookie string:
+            cookie_string = "cftr2_science_search=true; path=/; expires=" + expiration_date.toGMTString();
+            // Create/update the cookie:
+            document.cookie = cookie_string;
+        });
+        $('.go_general', context).click('science-cookie', function() {
+          var expiration_date = new Date();
+            var cookie_string = '';
+            expiration_date.setFullYear(expiration_date.getFullYear() + 1);
+            // Build the set-cookie string:
+            cookie_string = "cftr2_science_search=false; path=/; expires=" + expiration_date.toGMTString();
+            // Create/update the cookie:
+            document.cookie = cookie_string;
+        });
+        
+        $('.hide_mutation_legal', context).click('hide-legal', function() {
+          $(this).parent().hide('fast');
+          var expiration_date = new Date();
+            var cookie_string = '';
+            expiration_date.setFullYear(expiration_date.getFullYear() + 1);
+            // Build the set-cookie string:
+            cookie_string = "cftr2_hide_legal=true; path=/; expires=" + expiration_date.toGMTString();
+            // Create/update the cookie:
+            document.cookie = cookie_string;
+        });
+        
+      }
+      
+  };
+  
+})(jQuery);
+;
