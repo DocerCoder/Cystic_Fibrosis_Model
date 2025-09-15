@@ -1,0 +1,23 @@
+G314E	Uncertain class (missense, intermediate or low quantity)	Quantity: 10.00	Function: 0.20
+D1152H	Uncertain class (missense, intermediate or low quantity)	Quantity: 58.05	Function: 39.00
+2789+5G->A	Uncertain class (missense, intermediate or low quantity)	Quantity: 47.00	Function: 18.20
+3849+10kbC->T	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+E831X	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+D579G	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+G970R	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+R117H	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+V520F	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+S549R	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+G1244E	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+G1349D	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+R347H	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+S549N	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+G178E	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+G1349S	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+S549I	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+3272-26A->G	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+G542X	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+W1282X	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+R117H	Uncertain class (does not match known patterns)	Quantity: 52.65	Function: 17.60
+F508del	Uncertain class (no functional data)	Quantity: 0.00	Function: 0.00
+R560S	Uncertain class (missense, intermediate or low quantity)	Quantity: 0.00	Function: 0.00

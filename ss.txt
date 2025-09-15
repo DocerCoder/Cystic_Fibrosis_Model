@@ -1,0 +1,660 @@
+#NEED TO WORK ON CLASS V CLASSIFICATION THEN DONE.
+%pip install selenium beautifulsoup4
+
+import os
+import time
+import re
+import json
+import math
+import urllib.parse
+from bs4 import BeautifulSoup
+from datetime import datetime
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Step 1: Scrape CFTR2 Scientific Page
+def encode_variant(variant):
+    return urllib.parse.quote(urllib.parse.quote(variant))
+
+# Bonus step for logging uncertain variants
+def log_uncertain_variant(variant_name, predicted_class, quantity, function):
+    entry = f"{variant_name}\t{predicted_class}\tQuantity: {quantity:.2f}\tFunction: {function:.2f}\n"
+    path_txt = "uncertain_variants.txt"
+
+    # Avoid duplicates in TXT
+    if os.path.exists(path_txt):
+        with open(path_txt, "r") as f:
+            if entry in f.read():
+                return  # Skip duplicate
+
+    with open(path_txt, "a") as f:
+        f.write(entry)
+
+    # Also log to JSON
+    log_uncertain_variant_json(variant_name, predicted_class, quantity, function)
+
+def log_uncertain_variant_json(variant_name, predicted_class, quantity, function):
+    entry = {
+        "variant": variant_name,
+        "predicted_class": predicted_class,
+        "quantity": round(quantity, 2),
+        "function": round(function, 2)
+    }
+    path_json = "uncertain_variants.json"
+    data = []
+
+    if os.path.exists(path_json):
+        try:
+            with open(path_json, "r") as f:
+                data = json.load(f)
+        except json.JSONDecodeError:
+            data = []
+
+    # Avoid duplicates in JSON
+    if entry not in data:
+        data.append(entry)
+        with open(path_json, "w") as f:
+            json.dump(data, f, indent=2)
+
+def scrape_cftr2_page(variant="F508del", headless=False):
+    options = Options()
+    if headless:
+        options.add_argument("--headless=new")
+    driver = webdriver.Chrome(options=options)
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        driver.get("https://cftr2.org")
+        time.sleep(2)
+
+        # Accept terms
+        for box_id in ["edit-education", "edit-individual", "edit-discuss", "edit-privacy"]:
+            checkbox = wait.until(EC.presence_of_element_located((By.ID, box_id)))
+            driver.execute_script("arguments[0].scrollIntoView(true);", checkbox)
+            time.sleep(0.5)
+            if not checkbox.is_selected():
+                driver.execute_script("arguments[0].click();", checkbox)
+
+        # Submit terms
+        wait.until(EC.element_to_be_clickable((By.ID, "edit-submit-terms"))).click()
+
+        # Give the site a moment to set the session cookie
+        time.sleep(1)
+
+        # ✅ Go straight to the variant page instead of letting it redirect to /welcome
+        encoded_variant = encode_variant(variant)
+        mutation_url = f"https://cftr2.org/mutation/scientific/{encoded_variant}"
+        print(f"🌐 Navigating directly to: {mutation_url}")
+
+        # Retry loop for variant page
+        for attempt in range(3):
+            driver.get(mutation_url)
+            time.sleep(3)
+            if "scientific" in driver.current_url:
+                print(f"✅ Reached variant page on attempt {attempt+1}")
+                break
+            print(f"🔁 Retry {attempt+1}: Still not on variant page")
+        else:
+            print("❌ Failed to reach variant page after retries")
+            return None
+
+        # Try activating Functional Testing tab
+        try:
+            func_tab = wait.until(EC.element_to_be_clickable(
+                (By.XPATH, "//a[contains(text(), 'Functional Testing')]")
+            ))
+            driver.execute_script("arguments[0].scrollIntoView(true);", func_tab)
+            time.sleep(0.5)
+            driver.execute_script("arguments[0].click();", func_tab)
+            time.sleep(5)
+            print("✅ Activated Functional Testing tab")
+        except Exception as e:
+            print(f"⚠️ First attempt failed: {e}")
+            try:
+                func_tab = driver.find_element(By.XPATH, "//a[contains(text(), 'Functional Testing')]")
+                driver.execute_script("arguments[0].scrollIntoView(true);", func_tab)
+                time.sleep(0.5)
+                func_tab.click()
+                time.sleep(5)
+                print("✅ Activated Functional Testing tab on retry")
+            except Exception as e2:
+                print(f"❌ Retry failed: {e2}")
+
+        # Save HTML
+        os.makedirs("cftr2_scientific_pages", exist_ok=True)
+        save_path = os.path.join("cftr2_scientific_pages", f"{variant}_scientific.html")
+        with open(save_path, "w", encoding="utf-8") as f:
+            f.write(driver.page_source)
+
+        return save_path
+
+    finally:
+        driver.quit()
+
+
+# Step 2: Parse HTML
+def parse_cftr2_html(file_path):
+    from bs4 import BeautifulSoup
+    import re
+
+    with open(file_path, "r", encoding="utf-8") as f:
+        soup = BeautifulSoup(f.read(), "html.parser")
+
+    # Variant type
+    variant_type_text = ""
+    for h4 in soup.find_all("h4"):
+        if "functional testing for" in h4.text.lower():
+            next_p = h4.find_next_sibling("p")
+            if next_p and len(next_p.text.strip()) < 500:
+                variant_type_text = next_p.text.strip()
+            break
+
+    # Backup variant type
+    if not variant_type_text:
+        for tag in soup.find_all(["p", "li", "div", "td"]):
+            if any(term in tag.text.lower() for term in [
+                "splice", "splicing", "splice site", "splice donor", "splice acceptor",
+                "splice junction", "splice variant", "aberrant splicing"
+            ]):
+                candidate = tag.text.strip()
+                if len(candidate) < 500:
+                    variant_type_text = candidate
+                    break
+
+    # Functional data
+    function_data = []
+    for table in soup.find_all("table", class_="missense_table"):
+        for row in table.find_all("tr")[1:]:
+            cols = row.find_all("td")
+            if len(cols) >= 4:
+                cell_line = cols[1].text.strip()
+                quantity_text = cols[2].text.strip()
+                function_text = cols[3].text.strip()
+
+                def try_float(text):
+                    m = re.search(r"\d+\.?\d*", text)
+                    return float(m.group()) if m else None
+
+                function_data.append({
+                    "cell_line": cell_line,
+                    "quantity": try_float(quantity_text),
+                    "function": try_float(function_text)
+                })
+
+    # Clinical data 
+    clinical_data = {}
+    variant_col_name = None
+    clinical_table = soup.find("table", class_="clinical")
+    if clinical_table:
+        rows = clinical_table.find_all("tr")
+        if rows:
+            headers = [h.get_text(strip=True) for h in rows[0].find_all(["th", "td"])]
+            # Expect headers: ["Clinical Feature", "<Variant label>", "CF Combo"]
+            if len(headers) >= 3:
+                variant_col_name = headers[1] or "Variant"
+            for row in rows[1:]:
+                cells = row.find_all("td")
+                if len(cells) >= 3:
+                    key = cells[0].get_text(strip=True)
+                    clinical_data[key] = {
+                        variant_col_name or "Variant": cells[1].get_text(strip=True),
+                        "CF Combo": cells[2].get_text(strip=True)
+                 }
+
+    # FEV1 data
+    fev1_data = []
+    for div in soup.find_all("div", attrs={"aria-label": re.compile("tabular.*chart", re.I)}):
+        table = div.find("table")
+        if table:
+            for row in table.find_all("tr")[1:]:
+                cols = row.find_all("td")
+                if len(cols) >= 2:
+                    label = cols[0].text.strip()
+                    try:
+                        value = float(cols[1].text.strip())
+                    except:
+                        value = None
+                    fev1_data.append((label, value))
+
+    return function_data, clinical_data, fev1_data, variant_type_text
+
+def _to_float_safe(x):
+    if x is None:
+        return None
+    x = str(x).strip()
+    # strip % and non-numeric cruft
+    x = x.replace('%', '').replace(',', '').strip()
+    # handle ranges like "74.169" or "<10"
+    if x.startswith('<'):
+        x = x[1:]
+    if x.startswith('>'):
+        x = x[1:]
+    # keep only first float in the string
+    m = re.search(r"\d+\.?\d*", x)
+    if not m:
+        return None
+    try:
+        return float(m.group())
+    except:
+        return None
+
+def assess_clinical_severity(clinical_data, variant_name=None):
+    """
+    Returns:
+      score: 0–7 severity score (higher = more severe)
+      details: dict of parsed metrics
+      flags: set of human-readable flags
+    Heuristics prioritize the variant column; fall back to any numeric cell, then CF Combo.
+    """
+    def pick_value(row_dict):
+        if not row_dict:
+            return None
+        # 1) Variant-specific column if present
+        if variant_name and variant_name in row_dict:
+            return _to_float_safe(row_dict.get(variant_name))
+        # 2) Any non-CF Combo numeric-looking cell
+        for k, v in row_dict.items():
+            if k != "CF Combo":
+                val = _to_float_safe(v)
+                if val is not None:
+                    return val
+        # 3) Fall back to CF Combo
+        return _to_float_safe(row_dict.get("CF Combo"))
+
+    details = {}
+    flags = set()
+    score = 0
+
+    # Sweat chloride (mEq/L)
+    sweat = pick_value(clinical_data.get("Sweat Chloride (non-CF is less than 30 mEq/L)", {}))
+    details["sweat_chloride_cf_combo"] = sweat
+    if sweat is not None:
+        if sweat > 90:
+            score += 2; flags.add("sweat_high")
+        elif sweat > 60:
+            score += 1; flags.add("sweat_moderate")
+
+    # Pancreatic insufficiency (%)
+    pi = pick_value(clinical_data.get("Pancreatic Insufficiency (less than 1% of non-CF expected to be PI)", {}))
+    details["pi_cf_combo_pct"] = pi
+    if pi is not None:
+        if pi >= 80:
+            score += 2; flags.add("pi_high")
+        elif pi >= 50:
+            score += 1; flags.add("pi_moderate")
+
+    # Pseudomonas (%)
+    pseudo = pick_value(clinical_data.get("Pseudomonas (less than 1% of non-CF expected to have Pseudomonas)", {}))
+    details["pseudomonas_cf_combo_pct"] = pseudo
+    if pseudo is not None and pseudo >= 40:
+        score += 1; flags.add("pseudomonas_common")
+
+    # FEV1 by age bins (% predicted, smaller = worse)
+    fev_bins = ["<10", "10-20", ">20"]
+    fev_vals = []
+    for b in fev_bins:
+        val = pick_value(clinical_data.get(b, {}))
+        if val is not None:
+            fev_vals.append(val)
+            details[f"fev1_{b}_cf_combo_pct"] = val
+    if fev_vals:
+        fev_mean = sum(fev_vals) / len(fev_vals)
+        details["fev1_mean_cf_combo_pct"] = fev_mean
+        if fev_mean < 40:
+            score += 2; flags.add("fev1_severely_reduced")
+        elif fev_mean < 60:
+            score += 1; flags.add("fev1_reduced")
+
+    # Average age (context only)
+    age = pick_value(clinical_data.get("Average Age", {}))
+    details["avg_age_cf_combo"] = age
+
+    return score, details, flags
+
+def describe_clinical_support(score, flags):
+    """
+    Returns a short label summarizing clinical alignment.
+    """
+    if score >= 5:
+        return "clinical_severe"
+    if score >= 3:
+        return "clinical_moderate"
+    return "clinical_mild"
+
+def log_clinical_discrepancy(variant_name, predicted_class, avg_quantity, avg_function, clinical_score, flags, details):
+    rec = {
+        "variant": variant_name,
+        "predicted_class": predicted_class,
+        "avg_quantity": round(avg_quantity, 2),
+        "avg_function": round(avg_function, 2),
+        "clinical_score": clinical_score,
+        "clinical_flags": sorted(list(flags)),
+        "clinical_details": details,
+        "timestamp": datetime.utcnow().isoformat() + "Z"
+    }
+    path = "clinical_discrepancies.json"
+    data = []
+    if os.path.exists(path):
+        try:
+            with open(path, "r") as f:
+                data = json.load(f)
+        except json.JSONDecodeError:
+            data = []
+    data.append(rec)
+    with open(path, "w") as f:
+        json.dump(data, f, indent=2)
+
+
+# Step 3: Classify Mutation
+def classify_variant(function_data, clinical_data, fev1_data, variant_type, variant_name=None):
+    variant_type = (variant_type or "").strip()
+    variant_type_lower = variant_type.lower()
+    predicted_class = None
+
+    conductance_hotspots = {"R117", "R334", "R347", "R352"}
+    known_class5_splice = {"3849+10kbC->T", "2789+5G->A", "3272-26A->G"}
+    borderline_iv_v = {"R117C", "R347H"}
+
+    # -------- Fail-safe: no functional data --------
+    if not function_data or all(d.get("quantity") is None and d.get("function") is None for d in function_data):
+        print("🛡️ Fail-safe triggered: No functional data, checking variant type...")
+        avg_quantity = 0.0
+        avg_function = 0.0
+
+        if variant_name in known_class5_splice:
+            return "Class V (Residual function - splice variant)", avg_quantity, avg_function, {
+                "clinical_reconciliation": None,
+                "clinical_score": None,
+                "clinical_flags": [],
+                "explanation": "Known Class V splice override without functional data."
+            }
+
+        soup = BeautifulSoup(variant_type, 'html.parser')
+        bold_elements = soup.find_all('b')
+        bold_texts = [b.get_text().lower() for b in bold_elements]
+        has_functional_bold = any("quantity" in text or "function" in text for text in bold_texts)
+
+        splice_keywords = [
+            "splice donor", "splice acceptor", "splicing defect",
+            "disrupts mrna processing", "variant to the splice", "splice site",
+            "affects splicing", "splice junction", "splice variant", "aberrant splicing"
+        ]
+        processing_keywords = [
+            "processing defect", "misfolded", "misprocessing", "trafficking defect",
+            "class ii", "defective processing", "protein folding"
+        ]
+        nonsense_keywords = ["nonsense", "stop gain", "premature termination", "stop-gain", "stop codon"]
+
+        if any(keyword in variant_type_lower for keyword in nonsense_keywords):
+            predicted_class = "Class I (No synthesis - inferred from text)"
+        elif any(keyword in variant_type_lower for keyword in splice_keywords):
+            predicted_class = "Class V (Residual function - splice variant)"
+        elif any(keyword in variant_type_lower for keyword in processing_keywords):
+            predicted_class = "Class II (Defective processing - inferred)"
+        elif not has_functional_bold:
+            predicted_class = "Uncertain class (no functional data)"
+        else:
+            predicted_class = "Uncertain class (bolded parameters present but no structured data)"
+
+        c_score, c_details, c_flags = assess_clinical_severity(clinical_data or {})
+        return predicted_class, avg_quantity, avg_function, {
+            "clinical_reconciliation": describe_clinical_support(c_score, c_flags),
+            "clinical_score": c_score,
+            "clinical_flags": sorted(list(c_flags)),
+            "explanation": "Predicted from text; functional data unavailable."
+        }
+
+    # -------- Structured functional data --------
+    filtered_data = [
+        d for d in function_data
+        if d["cell_line"].lower() not in ["all cell lines", "cell lines"]
+        and d["quantity"] is not None
+        and d["function"] is not None
+    ]
+
+    cell_line_map = {}
+    for d in filtered_data:
+        key = d["cell_line"]
+        cell_line_map.setdefault(key, []).append((d["quantity"], d["function"]))
+
+    averaged_data = []
+    for cell_line, values in cell_line_map.items():
+        q_avg = sum(v[0] for v in values) / len(values)
+        f_avg = sum(v[1] for v in values) / len(values)
+        averaged_data.append({"cell_line": cell_line, "quantity": q_avg, "function": f_avg})
+
+    avg_quantity = sum(d["quantity"] for d in averaged_data) / len(averaged_data) if averaged_data else 0.0
+    avg_function = sum(d["function"] for d in averaged_data) / len(averaged_data) if averaged_data else 0.0
+
+    print(f"🔬 Refined Avg Quantity: {avg_quantity:.2f}, Avg Function: {avg_function:.2f}")
+
+    # -------- Clinical severity --------
+    c_score, c_details, c_flags = assess_clinical_severity(clinical_data or {})
+    c_label = describe_clinical_support(c_score, c_flags)
+    explanation_parts = [
+        f"functional_avg=({avg_quantity:.1f} qty, {avg_function:.1f} func)",
+        f"clinical={c_label} (score={c_score})"
+    ]
+
+    # Convenience flags for functional profiles
+    low_qty = avg_quantity < 20
+    very_low_func = avg_function < 5
+    high_qty = avg_quantity >= 40
+    high_func = avg_function >= 60
+    mid_func_iv = (10 < avg_function < 60)
+    borderline_iv = (5 < avg_function <= 10)
+    gating_like = (avg_function < 10 and avg_quantity >= 40)
+
+    # -------- Primary functional classification (data-driven) --------
+    # Prioritize mechanism-consistent patterns:
+    # 1) Nonsense signature: if variant_type suggests nonsense AND functional is extremely low -> Class I
+    if "nonsense" in variant_type_lower and avg_quantity < 5 and avg_function < 5:
+        predicted_class = "Class I (No synthesis)"
+
+    # 2) Processing defect signature: low quantity + very low function -> Class II
+    if predicted_class is None and low_qty and very_low_func:
+        predicted_class = "Class II (Defective processing)"
+
+    # 3) High quantity with low function suggests gating (Class III)
+    if predicted_class is None and gating_like:
+        predicted_class = "Class III (Defective regulation)"
+
+    # 4) High quantity with mid-range function suggests conductance (Class IV)
+    if predicted_class is None and high_qty and mid_func_iv:
+        predicted_class = "Class IV (Reduced conductance)"
+
+    # 5) High quantity with borderline low function -> borderline conductance
+    if predicted_class is None and high_qty and borderline_iv:
+        predicted_class = "Class IV (Reduced conductance - borderline)"
+
+    # 6) High quantity with high function -> residual function (Class V)
+    if predicted_class is None and high_qty and high_func:
+        predicted_class = "Class V (Residual function)"
+
+    # 7) Low quantity but high function (rare data artifact/partial rescue) -> Class V low-quantity phenotype
+    if predicted_class is None and avg_quantity < 40 and avg_function >= 40:
+        predicted_class = "Class V (Residual function - low quantity)"
+
+    # Replace the uncertain-missense fallback to avoid Class IV for low-qty + low-func
+    if predicted_class.startswith("Uncertain") and "missense" in variant_type_lower:
+        if high_qty and 0.5 <= avg_function <= 10:
+            predicted_class = "Class IV (Reduced conductance - fallback rule)"
+        elif low_qty and avg_function < 10:
+            predicted_class = "Class II (Defective processing - fallback rule)"
+
+    # 9) Non-missense fallback if still None
+    if predicted_class is None:
+        if avg_quantity < 5 and avg_function < 5:
+            predicted_class = "Class I (No synthesis)"
+        elif low_qty and very_low_func:
+            predicted_class = "Class II (Defective processing)"
+        elif high_qty and mid_func_iv:
+            predicted_class = "Class IV (Reduced conductance)"
+        elif high_qty and high_func:
+            predicted_class = "Class V (Residual function)"
+        else:
+            predicted_class = "Uncertain class (does not match known patterns)"
+
+    # 10) Splice-associated hint if still uncertain and splice keywords present with decent function
+    splice_keywords = [
+        "splice", "splicing", "splice site", "splice donor", "splice acceptor",
+        "splice junction", "splice variant", "aberrant splicing"
+    ]
+    if predicted_class.startswith("Uncertain") and any(keyword in variant_type_lower for keyword in splice_keywords):
+        if avg_quantity >= 20 and avg_function >= 10:
+            predicted_class = "Class V (Residual function - splice-associated)"
+
+    # 11) Known borderline loci
+    if variant_name in borderline_iv_v:
+        predicted_class = "Class IV/V borderline"
+
+    # -------- Clinical-informed reconciliation (make clinical data count) --------
+    reconciled_class = predicted_class
+
+    # A) If phenotype is severe, and the functional profile is processing-like or uncertain,
+    #    allow clinical severity to reinforce toward Class II (key fix for mislabels).
+    # A) Severe phenotype reinforces Class II when profile is processing-like or uncertain
+    if c_score >= 5:
+        if low_qty and very_low_func and not reconciled_class.startswith("Class II"):
+            reconciled_class = "Class II (Defective processing - clinical reinforced)"
+            explanation_parts.append("clinical severity escalated to Class II")
+
+        processing_hints = any(k in variant_type_lower for k in ["processing defect", "misfold", "traffick", "class ii", "defective processing", "protein folding"])
+        if processing_hints and very_low_func and not reconciled_class.startswith("Class II"):
+            reconciled_class = "Class II (Defective processing - clinical reinforced)"
+            explanation_parts.append("processing text + severe clinical -> Class II")
+
+
+    # B) Severe functional label but mild clinical -> discordant
+    severe_functional = (
+        predicted_class.startswith(("Class I", "Class II", "Class III")) or
+        ("Class IV" in predicted_class and avg_function < 5)
+    )
+    if severe_functional and c_score <= 1:
+        reconciled_class = predicted_class + " [clinical-discordant]"
+        log_clinical_discrepancy(variant_name, reconciled_class, avg_quantity, avg_function, c_score, c_flags, c_details)
+        explanation_parts.append("discordant: severe functional vs mild clinical")
+
+    # C) If still borderline/uncertain and clinical moderate-to-severe, push to a CF-causing class using function range
+    if (predicted_class.startswith("Uncertain") or "borderline" in predicted_class.lower() or "Class IV/V" in predicted_class) and c_score >= 3:
+        if avg_function < 10 and not low_qty:
+            reconciled_class = "Class III (Defective regulation - clinical reinforced)"
+        elif 10 <= avg_function < 60 and high_qty:
+            reconciled_class = "Class IV (Reduced conductance - clinical reinforced)"
+        elif low_qty and very_low_func:
+            reconciled_class = "Class II (Defective processing - clinical reinforced)"
+        else:
+            reconciled_class = "Class II/III (borderline function, clinical severe)"
+        log_clinical_discrepancy(variant_name, reconciled_class, avg_quantity, avg_function, c_score, c_flags, c_details)
+        explanation_parts.append("reinforced: clinical severity raised class")
+
+    # D) If functional says Class V yet clinical is severe, keep your original annotation
+    if predicted_class.startswith("Class V") and c_score >= 5:
+        reconciled_class = "Class IV/V borderline (clinical severe)"
+        log_clinical_discrepancy(variant_name, reconciled_class, avg_quantity, avg_function, c_score, c_flags, c_details)
+        explanation_parts.append("relabel: V vs severe clinical -> IV/V borderline")
+
+    # E) If functional says Class IV but clinical is mild, annotate
+    if predicted_class.startswith("Class IV") and c_score <= 1:
+        reconciled_class = predicted_class + " (clinically mild)"
+        explanation_parts.append("annotation: Class IV but mild clinical")
+
+    # -------- Final return --------
+    return reconciled_class, avg_quantity, avg_function, {
+        "clinical_reconciliation": c_label,
+        "clinical_score": c_score,
+        "clinical_flags": sorted(list(c_flags)),
+        "explanation": "; ".join(explanation_parts),
+        "clinical_details": c_details
+    }
+
+#  Step 4: Run Pipeline
+def run_pipeline(variant="F508del"):
+    import json
+    try:
+        html_path = scrape_cftr2_page(variant)
+        function_data, clinical_data, fev1_data, variant_type = parse_cftr2_html(html_path)
+        predicted_tuple = classify_variant(function_data, clinical_data, fev1_data, variant_type, variant_name=variant)
+
+        if isinstance(predicted_tuple, tuple) and len(predicted_tuple) == 4:
+            predicted_class, avg_quantity, avg_function, clinical_ctx = predicted_tuple
+        else:
+            # backward compatibility if older signature is returned
+            predicted_class, avg_quantity, avg_function = predicted_tuple
+            clinical_ctx = {}
+
+        output = {
+            "variant": variant,
+            "variant_type": variant_type,
+            "predicted_class": predicted_class,
+            "functional_summary": {
+                "avg_quantity": round(avg_quantity, 2),
+                "avg_function": round(avg_function, 2)
+            },
+            "function_data": function_data,
+            "clinical_data": clinical_data,
+            "fev1_data": fev1_data,
+            "clinical_context": clinical_ctx
+        }
+
+        print(json.dumps(output, indent=2))
+        with open(f"{variant}_output.json", "w") as f:
+            json.dump(output, f, indent=2)
+
+        return output  # ✅ This is essential
+
+    except Exception as e:
+        print(f"🚨 Pipeline failed for {variant}: {e}")
+        return {"variant": variant, "error": str(e)}
+
+class CFTRBatchRunner:
+    def __init__(self, variants, delay=1.0):
+        self.variants = variants
+        self.delay = delay
+        self.results = []
+        self.errors = []
+
+    def run_variant(self, variant):
+        print(f"🔬 Processing: {variant}")
+        result = run_pipeline(variant)
+        if "error" in result:
+            self.errors.append(result)
+        else:
+            self.results.append(result)
+        time.sleep(self.delay)
+
+    def run_all(self):
+        for variant in self.variants:
+            self.run_variant(variant)
+
+    def save_results(self, path="cftr_batch_results.json"):
+        with open(path, "w") as f:
+            json.dump({
+                "completed": self.results,
+                "errors": self.errors,
+                "run_timestamp": datetime.utcnow().isoformat() + "Z"
+            }, f, indent=2)
+        print(f"✅ Results saved to {path}")
+
+
+# 🧬 Define your Class II variants
+cftr2_variants = [
+    # Class I
+    "G1249X", "Q220X", "W846X", "E60X", "Y122X",
+    # Class II
+    "M1101K", "R560G", "R560Q", "A455V", "H199R",
+    # Class III
+    "V520F", "G1349S", "G1244V", "S549T", "G178R",
+    # Class IV
+    "R117G", "R334Q", "R352Q", "D1152H", "R347P",
+    # Class V
+    "E193K", "L206W", "R1070W", "A120T", "F1052V"
+]
+
+runner = CFTRBatchRunner(cftr2_variants)
+runner.run_all()
+runner.save_results()
+

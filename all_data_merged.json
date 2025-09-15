@@ -1,0 +1,258 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Data loading and preprocessing\n",
+    "\n",
+    "This notebook ingests your provided JSON references, builds standardization/mapping utilities for CFTR variants, and prepares features for the rule-based and ML models. It also includes defensive fallbacks so the notebook runs even if some large files are unavailable.\n",
+    "\n",
+    "What you get:\n",
+    "- Standardize CFTR protein variant names via your ncbi_protein_legacy_map.json\n",
+    "- Minimal CFTR2-like pathogenicity map for common variants you provided (extendable later)\n",
+    "- Modulator eligibility grouping features (Groups 1–5)\n",
+    "- Utility functions: standardize_variant, get_pathogenicity, get_modulator_group, featurize\n",
+    "\n",
+    "Save the processed helpers to disk for use in training and inference."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# Environment checks (optional)\n",
+    "import sys, json, os, pathlib\n",
+    "from pprint import pprint\n",
+    "print(\"Python:\", sys.version)\n",
+    "BASE = pathlib.Path.cwd()\n",
+    "DATA = BASE / \"data\"\n",
+    "DATA.mkdir(exist_ok=True)\n",
+    "\n",
+    "# Helper: safe JSON load\n",
+    "def load_json_safe(path):\n",
+    "    p = pathlib.Path(path)\n",
+    "    if not p.exists():\n",
+    "        print(f\"[warn] Missing file: {p}\")\n",
+    "        return None\n",
+    "    try:\n",
+    "        return json.loads(p.read_text())\n",
+    "    except Exception as e:\n",
+    "        print(f\"[warn] Could not parse {p}: {e}\")\n",
+    "        return None"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Load your provided datasets\n",
+    "\n",
+    "Place your files in a `data/` folder next to this notebook with these names:\n",
+    "- ncbi_protein_legacy_map.json\n",
+    "- Genotype_variant.json\n",
+    "- Lung_Function_stuff.json\n",
+    "- Nutrition_BMI.json\n",
+    "- Psuedomonas_UK.json\n",
+    "- Survival_pred_UK.json\n",
+    "- Treatment_Burden_Antibiotics.json\n",
+    "- Comorbidities_Complications.json\n",
+    "\n",
+    "Some of your large CFTR2 tables couldn’t be processed here; we’ll stub a minimal classification and keep it extendable."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "legacy_map = load_json_safe(DATA / \"ncbi_protein_legacy_map.json\")\n",
+    "genotype = load_json_safe(DATA / \"Genotype_variant.json\")\n",
+    "lung_fn = load_json_safe(DATA / \"Lung_Function_stuff.json\")\n",
+    "nutrition = load_json_safe(DATA / \"Nutrition_BMI.json\")\n",
+    "infections = load_json_safe(DATA / \"Psuedomonas_UK.json\")\n",
+    "survival = load_json_safe(DATA / \"Survival_pred_UK.json\")\n",
+    "treatments = load_json_safe(DATA / \"Treatment_Burden_Antibiotics.json\")\n",
+    "comorb = load_json_safe(DATA / \"Comorbidities_Complications.json\")\n",
+    "\n", 
+    "print(\"Loaded keys:\")\n",
+    "print(\"legacy_map:\", len(legacy_map) if legacy_map else None)\n",
+    "print(\"genotype keys:\", list(genotype[\"genotypes\"].keys()) if genotype else None)\n",
+    "print(\"lung_fn keys:\", list(lung_fn[\"lung_function\"].keys()) if lung_fn else None)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Minimal CFTR2-like pathogenicity map\n",
+    "\n",
+    "We’ll seed a minimal map for the common variants you included. You can replace/extend this with a full CFTR2 classification later.\n",
+    "\n",
+    "Classes used:\n",
+    "- pathogenic (CF-causing)\n",
+    "- responsive_ivacaftor (gating/other with strong response data)\n",
+    "- responsive_ETI (ETI-responsive variant list)\n",
+    "- uncertain (VUS/unknown)\n",
+    "- benign (non-CF causing)\n",
+    "\n",
+    "Note: for risk classification, both pathogenic variants imply CF. “Responsive” still counts as CF-causing disease biology but helps modulator guidance."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Seeded classification for common variants from your prevalence lists\n",
+    "seed_classification = {\n",
+    "    # Classic CF-causing\n",
+    "    \"F508del\": \"pathogenic\",\n",
+    "    \"G542X\": \"pathogenic\",\n",
+    "    \"621+1G->T\": \"pathogenic\",\n",
+    "    \"N1303K\": \"pathogenic\",\n",
+    "    # Gating / responsive (ivacaftor)\n",
+    "    \"G551D\": \"responsive_ivacaftor\",\n",
+    "    \"R117H\": \"responsive_ivacaftor\",  # context dependent (poly-T), simplify here\n",
+    "    # Add more as needed...\n",
+    "}\n",
+    "\n",
+    "# Collate ETI-responsive and ivacaftor lists from your genotype file if present\n",
+    "eti_list = set()\n",
+    "ivacaftor_list = set()\n",
+    "if genotype and \"modulator_eligibility_lists\" in genotype[\"genotypes\"]:\n",
+    "    lists = genotype[\"genotypes\"][\"modulator_eligibility_lists\"]\n",
+    "    for v in lists.get(\"FDA_ETI_responsive\", []):\n",
+    "        eti_list.add(v)\n",
+    "    for v in lists.get(\"Ivacaftor_responsive\", []):\n",
+    "        ivacaftor_list.add(v)\n",
+    "\n",
+    "def standardize_variant(v):\n",
+    "    if not v:\n",
+    "        return None\n",
+    "    if legacy_map and v in legacy_map:\n",
+    "        return legacy_map[v]\n",
+    "    return v\n",
+    "\n",
+    "def get_pathogenicity(v):\n",
+    "    v = standardize_variant(v)\n",
+    "    if not v:\n",
+    "        return \"uncertain\"\n",
+    "    # seeded labels\n",
+    "    if v in seed_classification:\n",
+    "        return seed_classification[v]\n",
+    "    # extend by lists\n",
+    "    if v in ivacaftor_list:\n",
+    "        return \"responsive_ivacaftor\"\n",
+    "    if v in eti_list:\n",
+    "        return \"responsive_ETI\"\n",
+    "    # default unknown\n",
+    "    return \"uncertain\"\n",
+    "\n",
+    "def pathogenic_count(v1, v2):\n",
+    "    cls = [get_pathogenicity(v1), get_pathogenicity(v2)]\n",
+    "    # Count any category that implies CF-causing biology for risk: treat responsive_* as pathogenic\n",
+    "    def is_path(c):\n",
+    "        return c in (\"pathogenic\", \"responsive_ivacaftor\", \"responsive_ETI\")\n",
+    "    return sum(int(is_path(c)) for c in cls)\n",
+    "\n",
+    "def get_modulator_group(v1, v2):\n",
+    "    # Grouping logic per your 1–5 scheme\n",
+    "    v1s, v2s = standardize_variant(v1), standardize_variant(v2)\n",
+    "    vs = {v1s, v2s}\n",
+    "    if \"F508del\" in vs and len(vs) == 1:\n",
+    "        return 1  # F508del homozygous\n",
+    "    if \"F508del\" in vs and len(vs) >= 1:\n",
+    "        return 2  # F508del heterozygous\n",
+    "    # if either is ETI responsive\n",
+    "    if (v1s in eti_list) or (v2s in eti_list):\n",
+    "        return 3\n",
+    "    # if ivacaftor/tezacaftor responsive but not ETI\n",
+    "    if (v1s in ivacaftor_list) or (v2s in ivacaftor_list):\n",
+    "        return 4\n",
+    "    return 5\n",
+    "\n",
+    "def featurize(v1, v2, age=None, sex=None):\n",
+    "    pc = pathogenic_count(v1, v2)\n",
+    "    grp = get_modulator_group(v1, v2)\n",
+    "    sex_male = 1 if str(sex).upper().startswith('M') else 0\n",
+    "    return {\n",
+    "        \"variant1\": standardize_variant(v1),\n",
+    "        \"variant2\": standardize_variant(v2),\n",
+    "        \"pathogenic_count\": pc,\n",
+    "        \"mod_group\": grp,\n",
+    "        \"age\": -1 if age is None else age,\n",
+    "        \"sex_male\": sex_male\n",
+    "    }"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Quick sanity checks"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "examples = [\n",
+    "    (\"F508del\", \"F508del\", 15, \"F\"),\n",
+    "    (\"F508del\", \"G542X\", 12, \"M\"),\n",
+    "    (\"G551D\", \"R117H\", 20, \"F\"),\n",
+    "    (\"R117H\", \"unknown\", 10, \"M\"),\n",
+    "]\n",
+    "for v1, v2, age, sex in examples:\n",
+    "    print(v1, v2, featurize(v1, v2, age, sex))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Persist utilities for training/inference"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "UTILS_DIR = BASE / \"artifacts\"\n",
+    "UTILS_DIR.mkdir(exist_ok=True)\n",
+    "\n",
+    "with open(UTILS_DIR / \"seed_classification.json\", \"w\") as f:\n",
+    "    json.dump(seed_classification, f, indent=2)\n",
+    "with open(UTILS_DIR / \"eti_list.json\", \"w\") as f:\n",
+    "    json.dump(sorted(list(eti_list)), f, indent=2)\n",
+    "with open(UTILS_DIR / \"ivacaftor_list.json\", \"w\") as f:\n",
+    "    json.dump(sorted(list(ivacaftor_list)), f, indent=2)\n",
+    "\n",
+    "print(\"Saved utility artifacts to:\", UTILS_DIR)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "name": "python",
+   "version": ""
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

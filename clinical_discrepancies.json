@@ -1,0 +1,490 @@
+[
+  {
+    "variant": "G85E",
+    "predicted_class": "Class III (Defective regulation - clinical reinforced)",
+    "avg_quantity": 5.0,
+    "avg_function": 1.3,
+    "clinical_score": 7,
+    "clinical_flags": [
+      "fev1_severely_reduced",
+      "pi_high",
+      "pseudomonas_common",
+      "sweat_high"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 95.0,
+      "pi_cf_combo_pct": 81.0,
+      "pseudomonas_cf_combo_pct": 47.0,
+      "fev1_<10_cf_combo_pct": 19.47,
+      "fev1_10-20_cf_combo_pct": 24.931,
+      "fev1_>20_cf_combo_pct": 38.4,
+      "fev1_mean_cf_combo_pct": 27.600333333333328,
+      "avg_age_cf_combo": 22.0
+    },
+    "timestamp": "2025-09-07T21:30:40.959813Z"
+  },
+  {
+    "variant": "G85E",
+    "predicted_class": "Class III (Defective regulation - clinical reinforced)",
+    "avg_quantity": 5.0,
+    "avg_function": 1.3,
+    "clinical_score": 7,
+    "clinical_flags": [
+      "fev1_severely_reduced",
+      "pi_high",
+      "pseudomonas_common",
+      "sweat_high"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 95.0,
+      "pi_cf_combo_pct": 81.0,
+      "pseudomonas_cf_combo_pct": 47.0,
+      "fev1_<10_cf_combo_pct": 19.47,
+      "fev1_10-20_cf_combo_pct": 24.931,
+      "fev1_>20_cf_combo_pct": 38.4,
+      "fev1_mean_cf_combo_pct": 27.600333333333328,
+      "avg_age_cf_combo": 22.0
+    },
+    "timestamp": "2025-09-07T22:02:05.258013Z"
+  },
+  {
+    "variant": "G85E",
+    "predicted_class": "Class III (Defective regulation - clinical reinforced)",
+    "avg_quantity": 5.0,
+    "avg_function": 1.3,
+    "clinical_score": 7,
+    "clinical_flags": [
+      "fev1_severely_reduced",
+      "pi_high",
+      "pseudomonas_common",
+      "sweat_high"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 95.0,
+      "pi_cf_combo_pct": 81.0,
+      "pseudomonas_cf_combo_pct": 47.0,
+      "fev1_<10_cf_combo_pct": 19.47,
+      "fev1_10-20_cf_combo_pct": 24.931,
+      "fev1_>20_cf_combo_pct": 38.4,
+      "fev1_mean_cf_combo_pct": 27.600333333333328,
+      "avg_age_cf_combo": 22.0
+    },
+    "timestamp": "2025-09-07T22:13:11.062282Z"
+  },
+  {
+    "variant": "G85E",
+    "predicted_class": "Class III (Defective regulation - clinical reinforced)",
+    "avg_quantity": 5.0,
+    "avg_function": 1.3,
+    "clinical_score": 7,
+    "clinical_flags": [
+      "fev1_severely_reduced",
+      "pi_high",
+      "pseudomonas_common",
+      "sweat_high"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 95.0,
+      "pi_cf_combo_pct": 81.0,
+      "pseudomonas_cf_combo_pct": 47.0,
+      "fev1_<10_cf_combo_pct": 19.47,
+      "fev1_10-20_cf_combo_pct": 24.931,
+      "fev1_>20_cf_combo_pct": 38.4,
+      "fev1_mean_cf_combo_pct": 27.600333333333328,
+      "avg_age_cf_combo": 22.0
+    },
+    "timestamp": "2025-09-07T22:16:42.683781Z"
+  },
+  {
+    "variant": "G85E",
+    "predicted_class": "Class III (Defective regulation - clinical reinforced)",
+    "avg_quantity": 5.0,
+    "avg_function": 1.3,
+    "clinical_score": 7,
+    "clinical_flags": [
+      "fev1_severely_reduced",
+      "pi_high",
+      "pseudomonas_common",
+      "sweat_high"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 95.0,
+      "pi_cf_combo_pct": 81.0,
+      "pseudomonas_cf_combo_pct": 47.0,
+      "fev1_<10_cf_combo_pct": 19.47,
+      "fev1_10-20_cf_combo_pct": 24.931,
+      "fev1_>20_cf_combo_pct": 38.4,
+      "fev1_mean_cf_combo_pct": 27.600333333333328,
+      "avg_age_cf_combo": 22.0
+    },
+    "timestamp": "2025-09-07T22:29:37.778747Z"
+  },
+  {
+    "variant": "G85E",
+    "predicted_class": "Class III (Defective regulation - clinical reinforced)",
+    "avg_quantity": 5.0,
+    "avg_function": 1.3,
+    "clinical_score": 7,
+    "clinical_flags": [
+      "fev1_severely_reduced",
+      "pi_high",
+      "pseudomonas_common",
+      "sweat_high"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 95.0,
+      "pi_cf_combo_pct": 81.0,
+      "pseudomonas_cf_combo_pct": 47.0,
+      "fev1_<10_cf_combo_pct": 19.47,
+      "fev1_10-20_cf_combo_pct": 24.931,
+      "fev1_>20_cf_combo_pct": 38.4,
+      "fev1_mean_cf_combo_pct": 27.600333333333328,
+      "avg_age_cf_combo": 22.0
+    },
+    "timestamp": "2025-09-09T00:06:25.060337Z"
+  },
+  {
+    "variant": "G85E",
+    "predicted_class": "Class III (Defective regulation - clinical reinforced)",
+    "avg_quantity": 5.0,
+    "avg_function": 1.3,
+    "clinical_score": 7,
+    "clinical_flags": [
+      "fev1_severely_reduced",
+      "pi_high",
+      "pseudomonas_common",
+      "sweat_high"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 95.0,
+      "pi_cf_combo_pct": 81.0,
+      "pseudomonas_cf_combo_pct": 47.0,
+      "fev1_<10_cf_combo_pct": 19.47,
+      "fev1_10-20_cf_combo_pct": 24.931,
+      "fev1_>20_cf_combo_pct": 38.4,
+      "fev1_mean_cf_combo_pct": 27.600333333333328,
+      "avg_age_cf_combo": 22.0
+    },
+    "timestamp": "2025-09-09T00:09:45.793083Z"
+  },
+  {
+    "variant": "G85E",
+    "predicted_class": "Class III (Defective regulation - clinical reinforced)",
+    "avg_quantity": 5.0,
+    "avg_function": 1.3,
+    "clinical_score": 7,
+    "clinical_flags": [
+      "fev1_severely_reduced",
+      "pi_high",
+      "pseudomonas_common",
+      "sweat_high"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 95.0,
+      "pi_cf_combo_pct": 81.0,
+      "pseudomonas_cf_combo_pct": 47.0,
+      "fev1_<10_cf_combo_pct": 19.47,
+      "fev1_10-20_cf_combo_pct": 24.931,
+      "fev1_>20_cf_combo_pct": 38.4,
+      "fev1_mean_cf_combo_pct": 27.600333333333328,
+      "avg_age_cf_combo": 22.0
+    },
+    "timestamp": "2025-09-09T00:13:48.034098Z"
+  },
+  {
+    "variant": "G85E",
+    "predicted_class": "Class III (Defective regulation - clinical reinforced)",
+    "avg_quantity": 5.0,
+    "avg_function": 1.3,
+    "clinical_score": 7,
+    "clinical_flags": [
+      "fev1_severely_reduced",
+      "pi_high",
+      "pseudomonas_common",
+      "sweat_high"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 95.0,
+      "pi_cf_combo_pct": 81.0,
+      "pseudomonas_cf_combo_pct": 47.0,
+      "fev1_<10_cf_combo_pct": 19.47,
+      "fev1_10-20_cf_combo_pct": 24.931,
+      "fev1_>20_cf_combo_pct": 38.4,
+      "fev1_mean_cf_combo_pct": 27.600333333333328,
+      "avg_age_cf_combo": 22.0
+    },
+    "timestamp": "2025-09-09T00:21:16.081675Z"
+  },
+  {
+    "variant": "P67L",
+    "predicted_class": "Class III (Defective regulation - clinical reinforced)",
+    "avg_quantity": 29.7,
+    "avg_function": 3.1,
+    "clinical_score": 7,
+    "clinical_flags": [
+      "fev1_severely_reduced",
+      "pi_high",
+      "pseudomonas_common",
+      "sweat_high"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 95.0,
+      "pi_cf_combo_pct": 81.0,
+      "pseudomonas_cf_combo_pct": 47.0,
+      "fev1_<10_cf_combo_pct": 19.47,
+      "fev1_10-20_cf_combo_pct": 24.931,
+      "fev1_>20_cf_combo_pct": 38.4,
+      "fev1_mean_cf_combo_pct": 27.600333333333328,
+      "avg_age_cf_combo": 22.0
+    },
+    "timestamp": "2025-09-09T01:57:29.883825Z"
+  },
+  {
+    "variant": "L206W",
+    "predicted_class": "Class III (Defective regulation - clinical reinforced)",
+    "avg_quantity": 25.35,
+    "avg_function": 2.95,
+    "clinical_score": 7,
+    "clinical_flags": [
+      "fev1_severely_reduced",
+      "pi_high",
+      "pseudomonas_common",
+      "sweat_high"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 95.0,
+      "pi_cf_combo_pct": 81.0,
+      "pseudomonas_cf_combo_pct": 47.0,
+      "fev1_<10_cf_combo_pct": 19.47,
+      "fev1_10-20_cf_combo_pct": 24.931,
+      "fev1_>20_cf_combo_pct": 38.4,
+      "fev1_mean_cf_combo_pct": 27.600333333333328,
+      "avg_age_cf_combo": 22.0
+    },
+    "timestamp": "2025-09-09T02:01:34.639896Z"
+  },
+  {
+    "variant": "R1070W",
+    "predicted_class": "Class III (Defective regulation - clinical reinforced)",
+    "avg_quantity": 39.0,
+    "avg_function": 4.55,
+    "clinical_score": 7,
+    "clinical_flags": [
+      "fev1_severely_reduced",
+      "pi_high",
+      "pseudomonas_common",
+      "sweat_high"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 95.0,
+      "pi_cf_combo_pct": 81.0,
+      "pseudomonas_cf_combo_pct": 47.0,
+      "fev1_<10_cf_combo_pct": 19.47,
+      "fev1_10-20_cf_combo_pct": 24.931,
+      "fev1_>20_cf_combo_pct": 38.4,
+      "fev1_mean_cf_combo_pct": 27.600333333333328,
+      "avg_age_cf_combo": 22.0
+    },
+    "timestamp": "2025-09-09T02:02:12.614289Z"
+  },
+  {
+    "variant": "R334Q",
+    "predicted_class": "Class II (Defective processing) [clinical-discordant]",
+    "avg_quantity": 10.0,
+    "avg_function": 0.2,
+    "clinical_score": 0,
+    "clinical_flags": [],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 49.0,
+      "pi_cf_combo_pct": 14.0,
+      "pseudomonas_cf_combo_pct": 0.0,
+      "fev1_<10_cf_combo_pct": 87.21,
+      "fev1_10-20_cf_combo_pct": 74.169,
+      "fev1_>20_cf_combo_pct": 48.0,
+      "fev1_mean_cf_combo_pct": 69.79299999999999,
+      "avg_age_cf_combo": 13.0
+    },
+    "timestamp": "2025-09-09T02:43:19.295438Z"
+  },
+  {
+    "variant": "R117L",
+    "predicted_class": "Class II (Defective processing) [clinical-discordant]",
+    "avg_quantity": 10.0,
+    "avg_function": 0.2,
+    "clinical_score": 1,
+    "clinical_flags": [
+      "sweat_moderate"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 73.0,
+      "pi_cf_combo_pct": 18.0,
+      "pseudomonas_cf_combo_pct": 31.0,
+      "fev1_<10_cf_combo_pct": 87.21,
+      "fev1_10-20_cf_combo_pct": 74.169,
+      "fev1_>20_cf_combo_pct": 48.0,
+      "fev1_mean_cf_combo_pct": 69.79299999999999,
+      "avg_age_cf_combo": 28.0
+    },
+    "timestamp": "2025-09-09T02:43:37.332001Z"
+  },
+  {
+    "variant": "R352Q",
+    "predicted_class": "Class III (Defective regulation) [clinical-discordant]",
+    "avg_quantity": 60.2,
+    "avg_function": 1.65,
+    "clinical_score": 1,
+    "clinical_flags": [
+      "sweat_moderate"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 80.0,
+      "pi_cf_combo_pct": 35.0,
+      "pseudomonas_cf_combo_pct": 35.0,
+      "fev1_<10_cf_combo_pct": 87.21,
+      "fev1_10-20_cf_combo_pct": 74.169,
+      "fev1_>20_cf_combo_pct": 48.0,
+      "fev1_mean_cf_combo_pct": 69.79299999999999,
+      "avg_age_cf_combo": 26.0
+    },
+    "timestamp": "2025-09-09T02:43:55.084731Z"
+  },
+  {
+    "variant": "A120T",
+    "predicted_class": "Class II (Defective processing) [clinical-discordant]",
+    "avg_quantity": 10.0,
+    "avg_function": 0.2,
+    "clinical_score": 1,
+    "clinical_flags": [
+      "pi_moderate"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 51.0,
+      "pi_cf_combo_pct": 57.0,
+      "pseudomonas_cf_combo_pct": 20.0,
+      "fev1_<10_cf_combo_pct": 87.21,
+      "fev1_10-20_cf_combo_pct": 74.169,
+      "fev1_>20_cf_combo_pct": 48.0,
+      "fev1_mean_cf_combo_pct": 69.79299999999999,
+      "avg_age_cf_combo": 12.0
+    },
+    "timestamp": "2025-09-09T02:44:34.719801Z"
+  },
+  {
+    "variant": "R117G",
+    "predicted_class": "Class II (Defective processing) [clinical-discordant]",
+    "avg_quantity": 10.0,
+    "avg_function": 0.2,
+    "clinical_score": 0,
+    "clinical_flags": [],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 50.0,
+      "pi_cf_combo_pct": 10.0,
+      "pseudomonas_cf_combo_pct": 0.0,
+      "fev1_<10_cf_combo_pct": 87.21,
+      "fev1_10-20_cf_combo_pct": 74.169,
+      "fev1_>20_cf_combo_pct": 48.0,
+      "fev1_mean_cf_combo_pct": 69.79299999999999,
+      "avg_age_cf_combo": 32.0
+    },
+    "timestamp": "2025-09-09T22:24:05.334505Z"
+  },
+  {
+    "variant": "R334Q",
+    "predicted_class": "Class II (Defective processing) [clinical-discordant]",
+    "avg_quantity": 10.0,
+    "avg_function": 0.2,
+    "clinical_score": 0,
+    "clinical_flags": [],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 49.0,
+      "pi_cf_combo_pct": 14.0,
+      "pseudomonas_cf_combo_pct": 0.0,
+      "fev1_<10_cf_combo_pct": 87.21,
+      "fev1_10-20_cf_combo_pct": 74.169,
+      "fev1_>20_cf_combo_pct": 48.0,
+      "fev1_mean_cf_combo_pct": 69.79299999999999,
+      "avg_age_cf_combo": 13.0
+    },
+    "timestamp": "2025-09-09T22:24:23.682066Z"
+  },
+  {
+    "variant": "R352Q",
+    "predicted_class": "Class III (Defective regulation) [clinical-discordant]",
+    "avg_quantity": 60.2,
+    "avg_function": 1.65,
+    "clinical_score": 1,
+    "clinical_flags": [
+      "sweat_moderate"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 80.0,
+      "pi_cf_combo_pct": 35.0,
+      "pseudomonas_cf_combo_pct": 35.0,
+      "fev1_<10_cf_combo_pct": 87.21,
+      "fev1_10-20_cf_combo_pct": 74.169,
+      "fev1_>20_cf_combo_pct": 48.0,
+      "fev1_mean_cf_combo_pct": 69.79299999999999,
+      "avg_age_cf_combo": 26.0
+    },
+    "timestamp": "2025-09-09T22:24:42.061707Z"
+  },
+  {
+    "variant": "D1152H",
+    "predicted_class": "Class IV (Reduced conductance) [clinical-discordant]",
+    "avg_quantity": 58.05,
+    "avg_function": 39.0,
+    "clinical_score": 0,
+    "clinical_flags": [],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 45.0,
+      "pi_cf_combo_pct": 25.0,
+      "pseudomonas_cf_combo_pct": 22.0,
+      "fev1_<10_cf_combo_pct": 87.21,
+      "fev1_10-20_cf_combo_pct": 74.169,
+      "fev1_>20_cf_combo_pct": 48.0,
+      "fev1_mean_cf_combo_pct": 69.79299999999999,
+      "avg_age_cf_combo": 30.0
+    },
+    "timestamp": "2025-09-09T22:24:59.774085Z"
+  },
+  {
+    "variant": "A120T",
+    "predicted_class": "Class II (Defective processing) [clinical-discordant]",
+    "avg_quantity": 10.0,
+    "avg_function": 0.2,
+    "clinical_score": 1,
+    "clinical_flags": [
+      "pi_moderate"
+    ],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 51.0,
+      "pi_cf_combo_pct": 57.0,
+      "pseudomonas_cf_combo_pct": 20.0,
+      "fev1_<10_cf_combo_pct": 87.21,
+      "fev1_10-20_cf_combo_pct": 74.169,
+      "fev1_>20_cf_combo_pct": 48.0,
+      "fev1_mean_cf_combo_pct": 69.79299999999999,
+      "avg_age_cf_combo": 12.0
+    },
+    "timestamp": "2025-09-09T22:26:28.593396Z"
+  },
+  {
+    "variant": "F1052V",
+    "predicted_class": "Class IV (Reduced conductance) [clinical-discordant]",
+    "avg_quantity": 55.2,
+    "avg_function": 43.6,
+    "clinical_score": 0,
+    "clinical_flags": [],
+    "clinical_details": {
+      "sweat_chloride_cf_combo": 45.0,
+      "pi_cf_combo_pct": 21.0,
+      "pseudomonas_cf_combo_pct": 8.0,
+      "fev1_<10_cf_combo_pct": 87.21,
+      "fev1_10-20_cf_combo_pct": 74.169,
+      "fev1_>20_cf_combo_pct": 48.0,
+      "fev1_mean_cf_combo_pct": 69.79299999999999,
+      "avg_age_cf_combo": 20.0
+    },
+    "timestamp": "2025-09-09T22:26:46.708806Z"
+  }
+]
