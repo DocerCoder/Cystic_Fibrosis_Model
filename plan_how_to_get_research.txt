@@ -1,0 +1,64 @@
+🧠 PART 1: AI-Driven Research Workflow for Stratacyst
+🔧 Step 1: Define Your Core Research Questions
+Before you query any AI tool, clarify what you want to learn. These are your anchor questions:
+What are the latest findings on CFTR mutation classes and their correlation with phenotype?
+How do sweat chloride, BMI, lung function, infections, and comorbidities predict CF severity?
+What are the limitations of genotype-only diagnostics, and how can phenotype-first modeling improve accuracy?
+What machine learning models have been used to infer genotype or predict CF risk?
+What are the modulator eligibility criteria, and how can phenotype data guide treatment decisions?
+You’ll use these questions across multiple tools.
+🔧 Step 2: Use Consensus for Evidence-Based Answers
+Tool: Consensus
+Go to the site and enter one question at a time (e.g., “Do sweat chloride levels correlate with CFTR mutation class?”)
+Review the summary, then click into the source papers
+Copy key findings and note the citation info (author, journal, year)
+💡 Use Consensus to validate your app’s logic and get peer-reviewed support for your modeling assumptions.
+🔧 Step 3: Use Elicit for Structured Paper Extraction
+Tool: Elicit
+Enter: “Phenotype-first modeling in Cystic Fibrosis”
+Use filters: 2022–2025, clinical trials, machine learning, CFTR
+For each paper, extract:
+Abstract
+Methods
+Results
+Limitations
+Save the structured data—it’s perfect for your Methods and Results sections
+💡 Elicit helps you build your report’s backbone without reading full papers.
+🔧 Step 4: Use SciSpace for Deep Literature Search
+Tool: SciSpace
+Search: “CFTR genotype-phenotype correlation”
+Use the PDF reader to highlight key graphs, tables, and citations
+Save visualizations for your report (e.g., mutation class vs. severity)
+💡 SciSpace is ideal for finding figures and tables to include in your ISEF presentation.
+🔧 Step 5: Use Research Rabbit to Map Citation Networks
+Tool: Research Rabbit
+Create a project: “Stratacyst CF Inference”
+Add key papers from Consensus or SciSpace
+Explore related papers, co-authors, and citation clusters
+Identify emerging research trends or gaps Stratacyst can fill
+💡 This helps you show judges how your app fits into the broader research ecosystem.
+🔧 Step 6: Use Claude or Copilot to Draft Your Report
+Once you’ve gathered findings:
+Ask: “Write a research report introduction explaining phenotype-first CF modeling and Stratacyst’s innovation”
+Then: “Summarize the methods used in recent CF risk modeling papers”
+Then: “Compare Stratacyst to CFTR2 and PROMISE tools in a table”
+Then: “Generate MLA citations for these 20 sources”
+💡 I can help you write and polish every section—just drop the findings here.
+🔧 Step 7: Use Wordvice.ai  to Polish Academic Tone
+Tool: Wordvice AI
+Paste your draft
+Select: Academic Writing
+Choose: Scientific Report
+Review suggestions for clarity, tone, and formatting
+💡 This ensures your writing meets ISEF and university-level standards.
+🔧 Step 8: Use Zotero + Elephas to Organize Citations
+Use Zotero to store all your sources
+Use Elephas to annotate and tag findings by category (e.g., “modulator eligibility,” “phenotype modeling”)
+💡 This makes it easy to build your Works Cited section and defend your research.
+✅ Final Output
+By the end of this workflow, you’ll have:
+A full research report with citations, graphs, and structured findings
+A clear narrative showing how Stratacyst fills diagnostic and educational gaps
+Evidence-backed claims that judges and CF experts will respect
+A ready-to-present demo and research package for UW collaboration
+Want me to help you start building the actual report now? I can generate the intro, methods, and results sections based on this workflow.
