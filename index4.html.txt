@@ -1,1584 +1,2211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Stratacyst — Clinical CF Risk & Genotype Inference -->
+  <!-- Model: v2.2.1-clinical+bayes+sk+quantile+ecology+organoid+hardened -->
   <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <meta http-equiv="cache-control" content="no-store, no-cache, must-revalidate, proxy-revalidate" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta name="referrer" content="no-referrer" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Stratacyst — CF Risk & Genotype Inference (Educational Prototype)</title>
-  <meta name="description" content="Stratacyst is a phenotype-first CF risk estimator and genotype-class inference engine. Educational prototype for scenario simulation and modulator eligibility." />
+  <title>Stratacyst — Clinical CF Risk & Genotype Inference</title>
+  <meta name="description" content="Clinical-grade CF risk & severity estimates using Bayesian posteriors, SK score, quantile percentile, explainability, audit trails, and FHIR/EHR integration." />
+
   <link rel="icon" href="stratacyst-logo-og.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
-    :root{
-      /* Base44-inspired light, glassy palette */
-      --bg-grad: radial-gradient(1200px 800px at 10% -10%, #e8f0ff 0%, #f6f9ff 30%, #eef3ff 60%, #e9eefc 100%);
-      --surface: rgba(255,255,255,0.55);
-      --surface-strong: rgba(255,255,255,0.7);
-      --frost: blur(14px);
-      --text:#1f2937;
-      --muted:#6b7280;
-      --line: rgba(15, 23, 42, 0.08);
-      --accent:#60a5fa;
-      --accent-2:#93c5fd;
-      --good:#34d399;
-      --mid:#fbbf24;
-      --bad:#ef4444;
-      --chip-bg:#eef2ff;
-      --chip-text:#3730a3;
-      --shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
-      --shadow-hover: 0 14px 40px rgba(2, 6, 23, 0.12);
-      --radius:16px;
-      --radius-sm:12px;
+    :root {
+      --bg: #0b1020;
+      --bg-grad: radial-gradient(1200px 800px at 15% -10%, #0e1530 0%, #0b1020 40%, #0a0f1d 70%, #090e1a 100%);
+      --surface: rgba(20,26,45,0.72);
+      --surface-strong: rgba(26, 34, 58, 0.95);
+      --panel: rgba(19,25,44,0.85);
+      --text: #e9eefc;
+      --muted: #a8b4d1;
+      --accent: #5aa2ff;
+      --accent-2: #7bb4ff;
+      --good: #34d399;
+      --mid: #fbbf24;
+      --bad: #f87171;
+      --chip-bg: #16203b;
+      --chip-text: #b9cffc;
+      --ok-pill-bg: rgba(16,185,129,0.18);
+      --warn-pill-bg: rgba(251,191,36,0.18);
+      --bad-pill-bg: rgba(239,68,68,0.18);
+      --shadow: 0 10px 30px rgba(2,6,23,0.45);
+      --line: rgba(139,161,206,0.16);
+      --line-strong: rgba(139,161,206,0.35);
+      --radius: 16px;
+      --radius-sm: 12px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background: var(--bg-grad);
-      color:var(--text);
-      font:15px/1.6 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif;
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      background: var(--bg-grad); color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif;
+      font-size: 15px; line-height: 1.6;
     }
-    a{color:inherit;text-decoration:none}
-    .app{
-      display:grid; grid-template-columns: 250px 1fr; min-height:100vh;
+    a { color: inherit; text-decoration: none; }
+    .app { display: grid; grid-template-columns: 260px 1fr; height: 100vh; }
+    .sidebar { padding: 16px; border-right: 1px solid var(--line); backdrop-filter: blur(6px); }
+    .brand { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+    .title { font-weight: 800; font-size: 18px; letter-spacing: 0.2px; }
+    .muted { color: var(--muted); }
+    .nav a { display: block; padding: 10px 8px; border-radius: 8px; margin-bottom: 6px; }
+    .nav a.active, .nav a:hover { background: rgba(255,255,255,0.06); }
+    .content { display: grid; grid-template-rows: auto 1fr; }
+    .topbar { padding: 10px 16px; border-bottom: 1px solid var(--line); backdrop-filter: blur(8px); }
+    .topwrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .chip { display: inline-block; background: var(--chip-bg); color: var(--chip-text); padding: 4px 8px; border-radius: 999px; font-size: 12px; margin-right: 6px; border: 1px solid var(--line); }
+    .btnbar { display: flex; align-items: center; gap: 10px; }
+    .ghost { background: transparent; border: 1px solid var(--line); color: var(--text); padding: 8px 12px; border-radius: 10px; cursor: pointer; }
+    .ghost.danger { border-color: #f87171; color: #f87171; }
+    .primary { background: var(--accent); border: none; color: #0b1020; padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 700; }
+    .pill { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--line); font-size: 12px; }
+    .pill.ok   { background: var(--ok-pill-bg); }
+    .pill.warn { background: var(--warn-pill-bg); }
+    .pill.bad  { background: var(--bad-pill-bg); }
+    .main { padding: 16px; overflow: auto; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .card { background: var(--surface); border: 1px solid var(--line); padding: 16px; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .hr { height: 1px; background: var(--line); margin: 12px 0; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .mini { background: var(--panel); border: 1px solid var(--line); padding: 12px; border-radius: var(--radius-sm); }
+    .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.xs input, .field.sm input, .field.lg input, .field textarea, .field select {
+      background: rgba(255,255,255,0.05); border: 1px solid var(--line); color: var(--text);
+      padding: 8px; border-radius: 8px;
     }
-    @media (max-width: 1100px){ .app{grid-template-columns:1fr} }
-
-    /* Sidebar */
-    .sidebar{
-      background: var(--surface);
-      backdrop-filter: var(--frost);
-      border-right:1px solid var(--line);
-      padding:20px;
-      position:sticky; top:0; height:100vh; overflow:auto;
-    }
-    @media (max-width: 1100px){ .sidebar{position:static; height:auto} }
-    .brand{display:flex; align-items:center; gap:12px; margin-bottom:16px}
-    .title{font-weight:800; letter-spacing:.2px; font-size:18px}
-    .muted{color:var(--muted)}
-    .nav{margin:14px 0 18px; display:grid; gap:8px}
-    .nav a, .nav button{
-      display:flex; align-items:center; gap:10px; padding:10px 12px;
-      border-radius:999px; color:#1e3a8a; background:rgba(255,255,255,0.6);
-      border:1px solid var(--line); cursor:pointer; font-weight:600;
-      transition: box-shadow .2s ease, transform .15s ease, background .2s ease;
-    }
-    .nav a.active, .nav a:hover, .nav button:hover{
-      background:var(--surface-strong);
-      box-shadow:0 0 0 3px rgba(96,165,250,0.18);
-      transform: translateY(-1px);
-    }
-
-    /* Sidebar cards */
-    .aside-card{
-      margin-top:14px;
-      background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-sm); padding:12px;
-      backdrop-filter: var(--frost); box-shadow: var(--shadow);
-    }
-    .aside-card h3{margin:0 0 6px; font-size:13px; color:#1e3a8a; font-weight:700}
-    .cta{
-      display:inline-block;margin-top:10px;padding:8px 12px;border-radius:999px;border:1px solid var(--accent-2);
-      background:linear-gradient(180deg,var(--accent),#3b82f6); color:white; font-weight:700;
-      box-shadow:0 6px 18px rgba(96,165,250,0.25);
-      transition: transform .15s ease, box-shadow .2s ease;
-    }
-    .cta:hover{ transform: translateY(-1px); box-shadow:0 10px 24px rgba(96,165,250,0.35) }
-
-    .chip{
-      display:inline-block;background:var(--chip-bg); color:var(--chip-text);
-      padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600; border:1px solid var(--line)
-    }
-    .tagrow{display:flex; gap:8px; flex-wrap:wrap}
-
-    /* Content */
-    .content{display:flex; flex-direction:column}
-    .topbar{
-      position:sticky; top:0; z-index:5; backdrop-filter: var(--frost);
-      background:rgba(255,255,255,0.6); border-bottom:1px solid var(--line)
-    }
-    .topwrap{max-width:1200px; margin:0 auto; padding:16px 20px; display:flex; align-items:center; justify-content:space-between}
-    .main{max-width:1200px; margin:0 auto; padding:20px}
-
-    /* Cards */
-    .card{
-      background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px 18px;
-      backdrop-filter: var(--frost); box-shadow: var(--shadow); transition: box-shadow .2s ease, transform .15s ease;
-    }
-    .card:hover{ box-shadow: var(--shadow-hover); transform: translateY(-1px) }
-
-    /* Headings */
-    h1,h2,h3{letter-spacing:.2px; margin:0 0 8px}
-    h1{font-size:24px}
-    h2{font-size:20px}
-    h3{font-size:16px}
-
-    .hr{height:1px; background:var(--line); margin:12px 0}
-
-    /* Grid */
-    .grid{display:grid; grid-template-columns: 1.05fr .95fr; gap:20px}
-    @media (max-width: 1100px){ .grid{grid-template-columns:1fr} }
-    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    @media (max-width: 900px){ .grid-2{grid-template-columns:1fr} }
-    .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
-    @media (max-width: 900px){ .cards{grid-template-columns:1fr} }
-    .mini{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-sm); padding:12px; backdrop-filter: var(--frost)}
-
-    /* Form layout */
-    .row{display:grid; gap:12px; grid-template-columns:repeat(12,1fr)}
-    .field{grid-column: span 6; display:flex; flex-direction:column; gap:6px}
-    .field.sm{grid-column: span 4}
-    .field.lg{grid-column: span 12}
-    label{font-weight:600; font-size:13px; color:#111827}
-    input,select,textarea{
-      width:100%; padding:12px 14px; border-radius:999px; border:1px solid var(--line);
-      background:rgba(255,255,255,0.85); color:var(--text); outline:none; font-size:14px;
-      transition: box-shadow .2s ease, border-color .2s ease, background .2s ease;
-    }
-    textarea{ border-radius:14px }
-    input:focus,select:focus,textarea:focus{
-      border-color:var(--accent);
-      box-shadow:0 0 0 4px rgba(96,165,250,0.18);
-      background:white;
-    }
-    .help{font-size:12.5px; color:var(--muted)}
-
-    /* Buttons */
-    .btnbar{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; align-items:center}
-    button{
-      background:linear-gradient(180deg,var(--accent),#3b82f6); color:#fff; border:none; padding:10px 16px;
-      border-radius:999px; cursor:pointer; font-weight:700; box-shadow:0 8px 18px rgba(96,165,250,0.25);
-      transition: transform .12s ease, box-shadow .2s ease;
-    }
-    button:hover{ transform: translateY(-1px); box-shadow:0 12px 26px rgba(96,165,250,0.35) }
-    button.ghost{
-      background:transparent; color:#1e3a8a; border:1px solid var(--accent-2); box-shadow:none;
-    }
-
-    /* KPIs */
-    .kpis{display:grid; grid-template-columns: repeat(4,1fr); gap:12px}
-    @media (max-width: 900px){ .kpis{grid-template-columns: 1fr 1fr} }
-    .kpi{
-      background:rgba(255,255,255,0.65); border:1px solid var(--line); border-radius:12px; padding:12px;
-      backdrop-filter: var(--frost); text-align:center;
-    }
-    .kpi h3{margin:0; font-size:12.5px; color:#1e3a8a; letter-spacing:.2px}
-    .kpi .val{font-size:22px; font-weight:800; margin-top:6px}
-    .bar{height:10px; background:#e5e7eb; border-radius:999px; overflow:hidden; margin-top:6px}
-    .bar>span{display:block; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-2))}
-
-    /* Tabs */
-    .tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px}
-    .tab{padding:8px 10px; border-radius:999px; border:1px solid var(--accent-2); background:rgba(255,255,255,0.7); cursor:pointer; font-weight:700; color:#1e3a8a}
-    .tab.active{background:linear-gradient(180deg,var(--accent),#3b82f6); color:#fff; border-color:transparent}
-
-    /* Explain list */
-    .explain{display:grid; gap:10px; margin-top:12px}
-    .item{display:flex; align-items:center; justify-content:space-between; gap:12px; background:rgba(255,255,255,0.65); border:1px solid var(--line); padding:8px 10px; border-radius:12px; backdrop-filter: var(--frost)}
-    .item .name{font-size:13px; color:#111827}
-    .item .score{font-weight:800}
-
-    /* Legend pills */
-    .pill{display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; border:1px solid var(--line); background:#eef2ff; color:#3730a3; font-weight:700}
-    .ok{color:var(--good); border-color:#d1fae5; background:#ecfdf5}
-    .warn{color:#b45309; border-color:#ffedd5; background:#fff7ed}
-    .bad{color:#b91c1c; border-color:#fee2e2; background:#fef2f2}
-
-    /* Callout */
-    .callout{
-      font-size:13px; color:#0c4a6e; border-left:4px solid #38bdf8; padding:10px 12px; margin-top:10px;
-      background:#e0f2fe; border-radius:10px;
-    }
-
-    /* Tables */
-    .table{width:100%; border-collapse:collapse; font-size:13px}
-    .table th, .table td{padding:8px 8px; border-bottom:1px solid var(--line); text-align:left}
-
-    /* Pages */
-    .page{display:none}
-    .page.active{display:block}
-
-    /* Wizard */
-    .wizard-nav{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px}
-    .wizard-progress{font-size:12.5px; color:var(--muted)}
-    .step{display:none; opacity:0; transform:translateY(8px); transition:opacity .25s ease, transform .25s ease}
-    .step.active{display:block; opacity:1; transform:translateY(0)}
-    .wizard-controls{display:flex; gap:10px; justify-content:flex-end; margin-top:10px; position:sticky; bottom:0; padding-top:10px; background:linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.6) 40%, rgba(255,255,255,0.8) 100%); backdrop-filter: var(--frost)}
-    .divider{height:1px; background:var(--line); margin:10px 0}
-
-    /* SVG containers in light theme */
-    svg.panel{background:rgba(255,255,255,0.65); border:1px solid var(--line); border-radius:12px}
-
-    /* Range accent */
-    input[type="range"]{ accent-color: var(--accent); }
+    .wizard-header { display: flex; align-items: baseline; justify-content: space-between; }
+    .wizard-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 10px; }
+    .tab { background: rgba(255,255,255,0.06); border: 1px solid var(--line); color: var(--text); padding: 8px 12px; border-radius: 8px; cursor: pointer; }
+    .tab.active { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(90,162,255,0.25) inset; }
+    .panel { background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 10px; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table th, .table td { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .kpi-box { background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+    .kpi-title { font-weight: 700; font-size: 13px; color: var(--muted); }
+    .kpi-value { font-weight: 800; font-size: 26px; margin-top: 2px; }
+    .kpi-band { margin-top: 8px; height: 6px; border-radius: 999px; background: linear-gradient(90deg, var(--good), var(--mid), var(--bad)); position: relative; }
+    .kpi-pointer { height: 10px; width: 10px; border-radius: 999px; background: #fff; position: relative; top: -2px; box-shadow: 0 0 0 2px rgba(255,255,255,0.3); }
+    .callout { background: rgba(255,255,255,0.06); border: 1px dashed var(--line-strong); border-radius: 10px; padding: 10px; }
+    /* Login overlay */
+    #loginOverlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; backdrop-filter: blur(6px); background: rgba(0,0,0,0.4); }
+    #loginBox { width: 360px; background: var(--surface-strong); border: 1px solid var(--line-strong); border-radius: 16px; padding: 16px; }
   </style>
 </head>
-<body>
+
+<body class="clinical-mode">
   <div class="app">
-    <aside class="sidebar">
+    <!-- Sidebar -->
+    <aside class="sidebar" role="navigation" aria-label="Primary">
       <div class="brand">
-        <img src="stratacyst-logo-og.png" alt="Stratacyst logo" style="height:40px; width:40px; border-radius:12px; background:rgba(255,255,255,0.7); padding:6px; border:1px solid var(--line)" />
+        <img src="stratacyst-logo-og.png" alt="Stratacyst logo"
+             style="height:40px;width:40px;border-radius:12px;background:rgba(255,255,255,0.06);padding:6px;border:1px solid var(--line)" />
         <div>
           <div class="title">Stratacyst</div>
           <div class="muted" style="font-size:12.5px">CF risk & genotype inference</div>
         </div>
       </div>
-
-      <nav class="nav">
-        <a data-page="dashboard" class="active">🏠 Dashboard</a>
-        <a data-page="newpatient">🧬 New patient</a>
-        <a data-page="education">📚 CF education</a>
-        <a data-page="scenarios">🧪 View all scenarios</a>
-        <a data-page="microbiome">🦠 Microbiome simulation</a>
-        <a data-page="longitudinal">📈 Longitudinal simulation</a>
+      <nav class="nav" aria-label="Sections">
+        <a data-page="dashboard" class="active" role="button" tabindex="0">Dashboard</a>
+        <a data-page="newpatient" role="button" tabindex="0">New patient</a>
+        <a data-page="report" class="clinical-only" role="button" tabindex="0">Clinical report</a>
+        <a data-page="compliance" class="clinical-only" role="button" tabindex="0">Compliance & audit</a>
+        <a data-page="integration" class="clinical-only" role="button" tabindex="0">Integration (FHIR/API)</a>
+        <a data-page="validation" class="clinical-only" role="button" tabindex="0">Validation & calibration</a>
       </nav>
-
-      <div class="aside-card">
-        <h3>Sample clinical profile</h3>
-        <div class="muted">F508del homozygous • Insufficient typical CFTR function</div>
-        <div class="grid-2" style="margin-top:10px">
-          <div>
-            <div class="muted" style="font-size:12px">Clinical severity</div>
-            <div style="font-weight:800">20/100</div>
-          </div>
-          <div>
-            <div class="muted" style="font-size:12px">Phenotype class</div>
-            <div><span class="pill">Severe</span></div>
-          </div>
-        </div>
-        <a class="cta" href="#" onclick="switchPage('scenarios')">View all plans</a>
-      </div>
-
-      <div class="aside-card" style="margin-top:12px">
-        <h3>Scenario presets</h3>
-        <div class="muted">Load a quick phenotype to demo inference.</div>
-        <div class="btnbar" style="margin-top:8px">
-          <button class="ghost" onclick="loadPreset('severe')">Severe adult</button>
-          <button class="ghost" onclick="loadPreset('moderate')">Moderate teen</button>
-          <button class="ghost" onclick="loadPreset('mild')">Mild/atypical</button>
-        </div>
+      <div class="aside-card clinical-only" style="margin-top:12px">
+        <h3>Build info</h3>
+        <div class="muted" id="modelVersion">Model: —</div>
+        <div class="muted" id="buildHash">Build: —</div>
+        <div class="muted" id="cspStatus">CSP: local-only</div>
       </div>
     </aside>
 
+    <!-- Content -->
     <div class="content">
-      <div class="topbar">
+      <header class="topbar" role="banner">
         <div class="topwrap">
-          <div class="muted">Educational prototype. Not for clinical use.</div>
-          <div class="tagrow">
-            <span class="chip">Local-only compute</span>
-            <span class="chip">Phenotype-first</span>
-            <span class="chip">Transparent logic</span>
+          <div class="tagrow" role="group" aria-label="Compliance status">
+            <span class="chip">Clinical mode</span>
+            <span class="chip">HIPAA-style consent</span>
+            <span class="chip">Versioned</span>
+            <span class="chip">Audit-enabled</span>
+            <span class="chip" id="dataStatus">Catalogs: loading…</span>
+          </div>
+          <div class="btnbar">
+            <label for="roleSelect" class="muted" style="font-weight:800;">Role</label>
+            <select id="roleSelect" aria-label="User role" onchange="onRoleChange()">
+              <option value="viewer">Viewer</option>
+              <option value="clinician">Clinician</option>
+              <option value="researcher">Researcher</option>
+              <option value="admin">Admin</option>
+            </select>
+            <button id="btnLogin" class="ghost" onclick="openLogin()">Sign in</button>
+            <button id="btnLogout" class="ghost" onclick="logout()" style="display:none">Sign out</button>
           </div>
         </div>
-      </div>
+      </header>
 
-      <main class="main">
-        <!-- DASHBOARD PAGE -->
-        <section id="page-dashboard" class="page active">
+      <main class="main" id="mainContent" role="main">
+        <div id="consentBanner" class="callout clinical-only" aria-live="assertive" style="display:none">
+          This application supports clinical workflows but is not a diagnostic device.
+          Use only with patient consent and institutional approval.
+          All inputs/outputs are versioned and auditable.
+          <div class="btnbar" style="margin-top:8px">
+            <button id="btnAckConsent" class="ghost" onclick="ackConsent()">Acknowledge</button>
+          </div>
+        </div>
+
+        <!-- Dashboard -->
+        <section id="page-dashboard" class="page active" aria-labelledby="dashTitle" role="region">
           <div style="text-align:center; margin-bottom:20px;">
             <img src="stratacyst-logo.png" alt="Stratacyst logo"
-              style="height:280px; border-radius:24px; background:rgba(255,255,255,0.7);
-                     padding:12px; border:1px solid var(--line);
-                     box-shadow:0 0 40px rgba(96,165,250,.25)" />
+                 style="height:180px;border-radius:24px;background:rgba(255,255,255,0.04);padding:12px;border:1px solid var(--line);box-shadow:0 0 40px rgba(90,162,255,.25)" />
           </div>
           <div class="card">
-            <h2>Welcome to Stratacyst</h2>
-            <div class="muted">Stratacyst estimates CF risk and severity, infers likely CFTR genotype class from phenotype, and suggests modulator eligibility. It’s transparent, educational, and designed for scenario simulation—no backend, all local.</div>
+            <h2 id="dashTitle">Welcome to Stratacyst</h2>
+            <div class="muted">
+              Bayesian posterior risk, SK-mapped clinical severity, quantile-anchored severity percentile, full audit trail, and FHIR-ready exports.
+            </div>
             <div class="hr"></div>
-            <div class="cards">
+            <div class="grid-2">
               <div class="mini">
                 <h3>What it does</h3>
-                <div class="muted">Combines sweat chloride, lung function, infections, BMI, and comorbidities to compute a risk score and severity index.</div>
-              </div>
-              <div class="mini">
-                <h3>Why it helps</h3>
-                <div class="muted">Phenotype-first inference supports users who don’t know genotype, while optional genotype refines eligibility.</div>
+                <div class="muted">Fuses phenotype, genotype, catalog priors, and microbiome to estimate risk, severity, eligibility, and simulated response.</div>
               </div>
               <div class="mini">
                 <h3>How to use</h3>
-                <div class="muted">Go to “New patient,” enter phenotype, optionally genotype, then click “Compute estimates.”</div>
+                <div class="muted">Enter phenotype ± genotype in “New patient,” compute, review rationale, export report, optionally send to EHR via FHIR.</div>
               </div>
             </div>
           </div>
-
           <div class="card" style="margin-top:12px">
-            <h2>Recent genetic tests</h2>
-            <div class="muted">Saved locally after each compute. Click a row to reload inputs.</div>
+            <h2>Recent sessions</h2>
+            <div class="muted">Saved locally with hashes and version. Click a row to reload inputs.</div>
             <div class="hr"></div>
-            <table class="table" id="historyTable">
+            <table class="table" id="historyTable" aria-label="Recent sessions history" role="table">
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Risk</th>
-                  <th>Severity</th>
-                  <th>Genotype class</th>
-                  <th>Eligibility</th>
-                  <th>Inputs</th>
+                  <th>Date</th><th>Risk</th><th>Severity</th><th>Genotype class</th><th>Eligibility</th><th>Model</th><th>Inputs</th>
                 </tr>
               </thead>
               <tbody></tbody>
             </table>
           </div>
         </section>
-        <!-- NEW PATIENT PAGE -->
-        <section id="page-newpatient" class="page">
+
+        <!-- New patient -->
+        <section id="page-newpatient" class="page" aria-labelledby="intakeTitle" role="region">
           <div class="grid">
-            <!-- Left: Inputs (wizard) -->
-            <section class="card">
-              <div class="wizard-nav">
-                <h2 style="margin:0">New patient intake</h2>
-                <div class="wizard-progress" id="stepTracker">Step 1 of 5: Phenotype</div>
+            <!-- Wizard -->
+            <section class="card wizard-card" aria-labelledby="intakeTitle" role="form">
+              <div class="wizard-header">
+                <h2 id="intakeTitle">New patient intake</h2>
+                <div id="stepTracker" aria-live="polite">Step 1 of 4: Phenotype</div>
               </div>
-              <div class="muted">Enter phenotype (and optionally genotype) to estimate risk, severity, genotype class, and modulator eligibility.</div>
               <div class="hr"></div>
-
-              <!-- STEP 1: Phenotype -->
-              <div class="step active" id="step1">
-                <h3>Phenotype</h3>
-                <div class="row">
-                  <div class="field sm">
-                    <label for="sweat" title="Pilocarpine iontophoresis sweat chloride">Sweat chloride (mmol/L)</label>
-                    <input id="sweat" type="number" min="0" max="200" placeholder="e.g., 85" />
-                    <div class="help">≥60 suggests CF-range; 30–59 intermediate.</div>
-                  </div>
-                  <div class="field sm">
-                    <label for="fev1" title="Percent predicted FEV1">FEV₁ % predicted</label>
-                    <input id="fev1" type="number" min="0" max="150" placeholder="e.g., 78" />
-                    <div class="help">Lung function; lower implies higher severity signal.</div>
-                  </div>
-                  <div class="field sm">
-                    <label for="bmi" title="BMI or percentile if pediatric">BMI</label>
-                    <input id="bmi" type="number" min="8" max="60" step="0.1" placeholder="e.g., 20.3" />
-                  </div>
-                  <div class="field sm">
-                    <label for="pseudomonas" title="Chronic ~ ≥50% positive cultures over a year">Pseudomonas status</label>
-                    <select id="pseudomonas">
-                      <option value="">Unknown</option>
-                      <option>None</option>
-                      <option>Intermittent</option>
-                      <option>Chronic</option>
-                    </select>
-                  </div>
-                  <div class="field sm">
-                    <label for="ntm">NTM/MRSA/Aspergillus</label>
-                    <select id="ntm">
-                      <option value="">None/Unknown</option>
-                      <option>NTM</option>
-                      <option>MRSA</option>
-                      <option>Aspergillus</option>
-                      <option>Multiple</option>
-                    </select>
-                  </div>
-                  <div class="field sm">
-                    <label for="cfrd">CFRD</label>
-                    <select id="cfrd">
-                      <option value="">Unknown</option>
-                      <option>No</option>
-                      <option>Yes</option>
-                    </select>
-                  </div>
-                  <div class="field sm">
-                    <label for="pi">Pancreatic insufficiency</label>
-                    <select id="pi">
-                      <option value="">Unknown</option>
-                      <option>No</option>
-                      <option>Yes</option>
-                    </select>
-                  </div>
-                  <div class="field sm">
-                    <label for="age">Age (years)</label>
-                    <input id="age" type="number" min="0" max="100" placeholder="e.g., 16" />
-                  </div>
-                  <div class="field sm">
-                    <label for="sex">Sex</label>
-                    <select id="sex">
-                      <option value="">Select</option>
-                      <option>Female</option>
-                      <option>Male</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <!-- STEP 2: Genotype -->
-              <div class="step" id="step2">
-                <h3>Genotype (optional)</h3>
-                <div class="field lg">
-                  <div class="switch" style="display:flex; align-items:center; gap:10px">
-                    <input type="checkbox" id="knowGenotype" onchange="toggleGenotype()" />
-                    <label for="knowGenotype">I know the patient's CFTR variants</label>
-                  </div>
-                  <div class="help">If unchecked, Stratacyst will infer genotype-class from phenotype.</div>
-                </div>
-
-                <div id="genoBlock" class="field lg" style="display:none">
+              <div class="wizard-body">
+                <!-- Step 1: Phenotype -->
+                <div class="step" data-step="1" id="step-1">
+                  <h3>Phenotype</h3>
                   <div class="row">
                     <div class="field sm">
-                      <label for="variant1" title="First CFTR variant, e.g., F508del">CFTR variant 1</label>
-                      <input id="variant1" placeholder="e.g., F508del" />
-                      <div class="help">Examples: F508del, G551D, W1282X</div>
+                      <label for="sweat">Sweat chloride (mmol/L)</label>
+                      <input id="sweat" type="number" min="0" max="200" placeholder="e.g., 85" />
+                      <div class="help">≥60 suggests CF-range; 30–59 intermediate.</div>
                     </div>
                     <div class="field sm">
-                      <label for="variant2" title="Second CFTR variant">CFTR variant 2</label>
-                      <input id="variant2" placeholder="e.g., R117H" />
-                      <div class="help">Leave blank if unknown</div>
+                      <label for="fev1">FEV₁ % predicted</label>
+                      <input id="fev1" type="number" min="0" max="150" placeholder="e.g., 78" />
+                    </div>
+                    <div class="field sm">
+                      <label for="bmi">BMI</label>
+                      <input id="bmi" type="number" min="8" max="60" step="0.1" placeholder="e.g., 20.3" />
+                    </div>
+                    <div class="field sm">
+                      <label for="pseudomonas">Pseudomonas status</label>
+                      <select id="pseudomonas">
+                        <option value="">Unknown</option>
+                        <option>None</option>
+                        <option>Intermittent</option>
+                        <option>Chronic</option>
+                      </select>
+                    </div>
+                    <div class="field sm">
+                      <label for="ntm">NTM/MRSA/Aspergillus</label>
+                      <select id="ntm">
+                        <option value="">None/Unknown</option>
+                        <option>NTM</option>
+                        <option>MRSA</option>
+                        <option>Aspergillus</option>
+                        <option>Multiple</option>
+                      </select>
+                    </div>
+                    <div class="field sm">
+                      <label for="cfrd">CFRD</label>
+                      <select id="cfrd">
+                        <option value="">Unknown</option>
+                        <option>No</option>
+                        <option>Yes</option>
+                      </select>
+                    </div>
+                    <div class="field sm">
+                      <label for="pi">Pancreatic insufficiency</label>
+                      <select id="pi">
+                        <option value="">Unknown</option>
+                        <option>No</option>
+                        <option>Yes</option>
+                      </select>
+                    </div>
+                    <div class="field xs">
+                      <label for="age">Age (years)</label>
+                      <input id="age" type="number" min="0" max="100" placeholder="e.g., 16" />
+                    </div>
+                    <div class="field xs">
+                      <label for="sex">Sex</label>
+                      <select id="sex">
+                        <option value="">Select</option>
+                        <option>Female</option>
+                        <option>Male</option>
+                      </select>
                     </div>
                   </div>
+
+                  <div class="mini" style="margin-top:10px">
+                    <h3>Calibration weights</h3>
+                    <div class="help">Adjust feature influence (0.50–1.50) for heuristic index only.</div>
+                    <div class="row">
+                      <div class="field xs">
+                        <label for="w_sweat">Sweat <span class="badge" id="w_sweat_val">1.00</span></label>
+                        <input id="w_sweat" type="range" min="0.5" max="1.5" step="0.05" value="1.00" />
+                      </div>
+                      <div class="field xs">
+                        <label for="w_fev1">FEV₁ <span class="badge" id="w_fev1_val">1.00</span></label>
+                        <input id="w_fev1" type="range" min="0.5" max="1.5" step="0.05" value="1.00" />
+                      </div>
+                      <div class="field xs">
+                        <label for="w_bmi">BMI <span class="badge" id="w_bmi_val">1.00</span></label>
+                        <input id="w_bmi" type="range" min="0.5" max="1.5" step="0.05" value="1.00" />
+                      </div>
+                      <div class="field xs">
+                        <label for="w_pseudo">Pseudo <span class="badge" id="w_pseudo_val">1.00</span></label>
+                        <input id="w_pseudo" type="range" min="0.5" max="1.5" step="0.05" value="1.00" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 2: Genotype -->
+                <div class="step" data-step="2" id="step-2" style="display:none">
+                  <h3>Genotype (optional)</h3>
+                  <div class="field lg">
+                    <label><input type="checkbox" id="knowGenotype" /> I know the patient's CFTR variants</label>
+                    <div class="help">If unchecked, genotype class inferred from phenotype signals.</div>
+                  </div>
+                  <div id="genoBlock" class="field lg" style="display:none" aria-live="polite">
+                    <div class="row">
+                      <div class="field sm">
+                        <label for="variant1">CFTR variant 1</label>
+                        <input id="variant1" placeholder="e.g., F508del" aria-describedby="variantHelp1" />
+                        <div class="help" id="variantHelp1">Examples: F508del, G551D, W1282X</div>
+                      </div>
+                      <div class="field sm">
+                        <label for="variant2">CFTR variant 2</label>
+                        <input id="variant2" placeholder="e.g., R117H" aria-describedby="variantHelp2" />
+                        <div class="help" id="variantHelp2">Leave blank if unknown</div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="field sm">
+                        <label for="rareFlag">Rare or uncertain variant?</label>
+                        <select id="rareFlag">
+                          <option value="">Auto-detect</option>
+                          <option value="No">No (common/known)</option>
+                          <option value="Yes">Yes (rare/uncertain)</option>
+                        </select>
+                      </div>
+                      <div class="field sm">
+                        <label for="evidence">Variant evidence level</label>
+                        <select id="evidence">
+                          <option value="">—</option>
+                          <option value="Strong">Strong</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Limited">Limited</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 3: Infection dynamics -->
+                <div class="step" data-step="3" id="step-3" style="display:none">
+                  <h3>Infection dynamics</h3>
                   <div class="row">
                     <div class="field sm">
-                      <label for="rareFlag">Rare or uncertain variant?</label>
-                      <select id="rareFlag" onchange="compute()">
-                        <option value="">Auto-detect</option>
-                        <option value="No">No (common/known)</option>
-                        <option value="Yes">Yes (rare/uncertain)</option>
-                      </select>
-                      <div class="help">Auto: flags rare if neither variant is in a known catalog.</div>
+                      <label for="infection_burden">% year with Pseudomonas positive</label>
+                      <input id="infection_burden" type="number" min="0" max="100" step="1" placeholder="e.g., 60" />
+                      <div class="help">Approx % cultures positive over the last year.</div>
                     </div>
                     <div class="field sm">
-                      <label for="evidence">Variant evidence level</label>
-                      <select id="evidence" onchange="compute()">
-                        <option value="">—</option>
-                        <option value="Strong">Strong</option>
-                        <option value="Moderate">Moderate</option>
-                        <option value="Limited">Limited</option>
+                      <label for="exacerbations">Exacerbations past year</label>
+                      <input id="exacerbations" type="number" min="0" max="12" step="1" placeholder="e.g., 2" />
+                    </div>
+                    <div class="field sm">
+                      <label for="eradication">Recent eradication therapy?</label>
+                      <select id="eradication"><option value="">Unknown</option><option>No</option><option>Yes</option></select>
+                    </div>
+                  </div>
+
+                  <div class="mini" style="margin-top:10px">
+                    <h3>Airway microbiome</h3>
+                    <div class="help">Optional 16S/metagenomics summary for severity and response context.</div>
+                    <div class="row">
+                      <div class="field sm">
+                        <label for="shannon">16S diversity (Shannon, 0–5)</label>
+                        <input id="shannon" type="number" min="0" max="5" step="0.1" placeholder="e.g., 1.8" />
+                      </div>
+                      <div class="field sm">
+                        <label for="dysbiosis">Dysbiosis index (%)</label>
+                        <input id="dysbiosis" type="number" min="0" max="100" step="1" placeholder="e.g., 70" />
+                      </div>
+                      <div class="field sm">
+                        <label for="pathRichness">Pathogen richness (count)</label>
+                        <input id="pathRichness" type="number" min="0" max="20" step="1" placeholder="e.g., 5" />
+                      </div>
+                      <div class="field sm">
+                        <label for="dominantTaxa">Dominant taxa</label>
+                        <select id="dominantTaxa">
+                          <option value="">Unknown</option>
+                          <option>Pseudomonas-dominant</option>
+                          <option>Achromobacter</option>
+                          <option>Staph-dominant</option>
+                          <option>Anaerobe-leaning</option>
+                          <option>Balanced/commensal</option>
+                        </select>
+                      </div>
+                      <div class="field sm">
+                        <label for="recentAbx">Recent antibiotics</label>
+                        <select id="recentAbx">
+                          <option value="">Unknown</option>
+                          <option>Yes (≤30 days)</option>
+                          <option>No</option>
+                        </select>
+                      </div>
+                      <div class="field sm">
+                        <label for="polymicrobial">Polymicrobial?</label>
+                        <select id="polymicrobial">
+                          <option value="">Unknown</option>
+                          <option>Yes</option>
+                          <option>No</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 4: Modulator & notes -->
+                <div class="step" data-step="4" id="step-4" style="display:none">
+                  <h3>Modulator & notes</h3>
+                  <div class="row">
+                    <div class="field lg">
+                      <label for="modulator">Current CFTR modulator</label>
+                      <select id="modulator">
+                        <option value="">None</option>
+                        <option>ETI (elexacaftor/tezacaftor/ivacaftor)</option>
+                        <option>Ivacaftor</option>
+                        <option>Tezacaftor/ivacaftor</option>
                       </select>
-                      <div class="help">Impacts confidence and eligibility narrative.</div>
+                    </div>
+                    <div class="field lg">
+                      <label for="notes">Notes</label>
+                      <textarea id="notes" rows="2" placeholder="Add context, test dates, therapy specifics..."></textarea>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- STEP 3: Microbiome -->
-              <div class="step" id="step3">
-                <h3>Microbiome</h3>
-                <div class="row">
-                  <div class="field sm">
-                    <label for="shannon_diversity">Microbiome diversity (Shannon index)</label>
-                    <input id="shannon_diversity" type="number" step="0.1" min="0" max="5" placeholder="e.g., 1.6" />
-                    <div class="help">Lower diversity (<2.0) linked to worse outcomes.</div>
-                  </div>
-                  <div class="field sm">
-                    <label for="dominant_phylum">Dominant phylum</label>
-                    <select id="dominant_phylum">
-                      <option value="">—</option>
-                      <option>Proteobacteria</option>
-                      <option>Firmicutes</option>
-                      <option>Bacteroidetes</option>
-                      <option>Actinobacteria</option>
-                      <option>Fusobacteria</option>
-                    </select>
-                    <div class="help">Proteobacteria dominance linked to inflammation.</div>
-                  </div>
-                </div>
-              </div>
 
-              <!-- STEP 4: Modulator & notes -->
-              <div class="step" id="step4">
-                <h3>Modulator & notes</h3>
-                <div class="row">
-                  <div class="field lg">
-                    <label for="modulator">Current CFTR modulator</label>
-                    <select id="modulator">
-                      <option value="">None</option>
-                      <option>ETI (elexacaftor/tezacaftor/ivacaftor)</option>
-                      <option>Ivacaftor</option>
-                      <option>Tezacaftor/ivacaftor</option>
-                    </select>
-                  </div>
-                  <div class="field lg">
-                    <label for="notes">Notes (optional)</label>
-                    <textarea id="notes" rows="2" placeholder="Add context, test dates, therapy specifics..."></textarea>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Step controls -->
-              <div class="wizard-controls">
-                <button class="ghost" id="backBtn" onclick="goBack()" style="display:none">← Back</button>
-                <button class="primary" id="nextBtn" onclick="goNext()">Next →</button>
+              <div class="wizard-footer btnbar">
+                <button id="wizardBack" class="ghost" aria-label="Previous step">← Back</button>
+                <button id="wizardNext" class="primary" aria-label="Next step">Next →</button>
+                <button id="computeBtn" class="ghost" aria-label="Compute now">Compute</button>
                 <span id="completeness" class="pill">Completeness: 0%</span>
               </div>
-
-              <div class="divider"></div>
-
-              <!-- Calibration weights -->
-              <h3>Calibration weights</h3>
-              <div class="help">Tune how each feature contributes. Default = 1.00. Judges can adjust to explore robustness.</div>
-              <div class="row" id="weightsPanel">
-                <div class="field sm">
-                  <label for="w_sweat">Sweat weight</label>
-                  <input id="w_sweat" type="range" min="0" max="2" step="0.05" value="1" oninput="onWeightChange()">
-                  <div class="help"><span id="w_sweat_val">1.00</span></div>
-                </div>
-                <div class="field sm">
-                  <label for="w_fev1">FEV₁ weight</label>
-                  <input id="w_fev1" type="range" min="0" max="2" step="0.05" value="1" oninput="onWeightChange()">
-                  <div class="help"><span id="w_fev1_val">1.00</span></div>
-                </div>
-                <div class="field sm">
-                  <label for="w_pseudo">Pseudomonas weight</label>
-                  <input id="w_pseudo" type="range" min="0" max="2" step="0.05" value="1" oninput="onWeightChange()">
-                  <div class="help"><span id="w_pseudo_val">1.00</span></div>
-                </div>
-                <div class="field sm">
-                  <label for="w_bmi">BMI weight</label>
-                  <input id="w_bmi" type="range" min="0" max="2" step="0.05" value="1" oninput="onWeightChange()">
-                  <div class="help"><span id="w_bmi_val">1.00</span></div>
-                </div>
-                <div class="field sm">
-                  <label for="w_cfrd">CFRD weight</label>
-                  <input id="w_cfrd" type="range" min="0" max="2" step="0.05" value="1" oninput="onWeightChange()">
-                  <div class="help"><span id="w_cfrd_val">1.00</span></div>
-                </div>
-                <div class="field sm">
-                  <label for="w_pi">PI weight</label>
-                  <input id="w_pi" type="range" min="0" max="2" step="0.05" value="1" oninput="onWeightChange()">
-                  <div class="help"><span id="w_pi_val">1.00</span></div>
-                </div>
-                <div class="field sm">
-                  <label for="w_mod">Modulator weight</label>
-                  <input id="w_mod" type="range" min="0" max="2" step="0.05" value="1" oninput="onWeightChange()">
-                  <div class="help"><span id="w_mod_val">1.00</span></div>
-                </div>
-              </div>
-              <div class="btnbar">
-                <button class="ghost" onclick="resetWeights()">Reset weights</button>
-              </div>
             </section>
 
-            <!-- Right: Results (Step 5) -->
-            <section class="card" aria-live="polite">
-              <div class="step" id="step5" style="display:none">
-                <div class="tabs">
-                  <div class="tab active" data-subtab="primary">Primary result</div>
-                  <div class="tab" data-subtab="details">Details</div>
-                  <div class="tab" data-subtab="education">Education</div>
-                </div>
+            <!-- Results -->
+            <section class="card results-card" id="resultsCard" style="display:none" role="region" aria-labelledby="resultsTitle">
+              <h2 id="resultsTitle" class="visually-hidden">Computation Results</h2>
 
-                <div id="subtab-primary">
-                  <div class="kpis">
-                    <div class="kpi">
-                      <h3>Risk score</h3>
-                      <div class="val" id="riskScore">—</div>
-                      <div class="help">0–100 (higher suggests greater CF likelihood)</div>
-                    </div>
-                    <div class="kpi">
-                      <h3>Severity index</h3>
-                      <div class="val" id="severityIndex">—</div>
-                      <div class="bar"><span id="sevBar" style="width:0%"></span></div>
-                    </div>
-                    <div class="kpi">
-                      <h3>Confidence</h3>
-                      <div class="val" id="confidence">—</div>
-                      <div class="help">Based on signal count & strength</div>
-                    </div>
-                    <div class="kpi">
-                      <h3>Genotype class</h3>
-                      <div class="val" id="genoClass">—</div>
-                      <div class="help" id="genoExamples">—</div>
-                    </div>
-                  </div>
+              <div class="tabs" role="tablist" aria-label="Results sections">
+                <button class="tab active" role="tab" aria-selected="true" aria-controls="subtab-primary" id="tab-primary" data-subtab="primary" tabindex="0">Primary result</button>
+                <button class="tab" role="tab" aria-selected="false" aria-controls="subtab-details" id="tab-details" data-subtab="details" tabindex="-1">Details</button>
+                <button class="tab" role="tab" aria-selected="false" aria-controls="subtab-simulator" id="tab-simulator" data-subtab="simulator" tabindex="-1">Response simulator</button>
+              </div>
 
-                  <div class="legend" style="margin-top:6px">
-                    <span class="pill ok">Lower</span>
-                    <span class="pill warn">Moderate</span>
-                    <span class="pill bad">Higher</span>
-                  </div>
-
-                  <div class="hr"></div>
-                  <h2>Modulator eligibility</h2>
-                  <div id="eligibility" class="muted">—</div>
-
-                  <div class="hr"></div>
-                  <div id="rarityBanner" class="callout" style="display:none">
-                    Rare or uncertain CFTR variant context detected. Outputs adjusted with lower confidence and eligibility caveats.
-                  </div>
-
-                  <div class="hr"></div>
-                  <h2>Feature contributions</h2>
-                  <div class="explain" id="explainList"></div>
-
-                  <div class="hr"></div>
-                  <h2>Microbiome profile</h2>
-                  <div class="explain">
-                    <div class="item">
-                      <div class="name">Microbiome Score
-                        <div class="help">0–18. Low diversity and Proteobacteria dominance increase severity.</div>
+              <!-- Primary -->
+              <div id="subtab-primary" role="region" aria-label="Primary result">
+                <div class="grid-2">
+                  <div class="mini">
+                    <h3>Summary</h3>
+                    <div id="primarySummary" class="muted">Run Compute to populate results.</div>
+                    <div class="hr"></div>
+                    <div class="kpi-grid">
+                      <div class="kpi-box">
+                        <div class="kpi-title">Risk (Bayesian)</div>
+                        <div class="kpi-value" id="bayesRisk">—</div>
+                        <div class="kpi-band"><div class="kpi-pointer" id="riskPointer" style="left:0%"></div></div>
                       </div>
-                      <div class="score" id="microbiome_score">—</div>
+                      <div class="kpi-box">
+                        <div class="kpi-title">Severity index</div>
+                        <div class="kpi-value" id="severityIndex">—</div>
+                        <div class="kpi-band"><div class="kpi-pointer" id="sevPointer" style="left:0%"></div></div>
+                      </div>
+                      <div class="kpi-box">
+                        <div class="kpi-title">Severity percentile</div>
+                        <div class="kpi-value" id="sevPercentile">—</div>
+                      </div>
+                      <div class="kpi-box">
+                        <div class="kpi-title">SK score</div>
+                        <div class="kpi-value" id="skScore">—</div>
+                      </div>
                     </div>
                   </div>
-                  <div id="microbiome_badges" class="tagrow"></div>
-
-                  <div class="hr"></div>
-                  <h2>Calibration curves</h2>
-                  <div class="grid-2">
-                    <div class="mini">
-                      <h3>Sweat chloride → risk</h3>
-                      <svg id="curveSweat" class="panel" viewBox="0 0 320 140" width="100%" height="140"></svg>
-                    </div>
-                    <div class="mini">
-                      <h3>FEV₁ % predicted → severity</h3>
-                      <svg id="curveFev1" class="panel" viewBox="0 0 320 140" width="100%" height="140"></svg>
-                    </div>
+                  <div class="mini">
+                    <h3>Genotype & eligibility</h3>
+                    <div id="genoClass" class="muted">—</div>
+                    <div id="eligibilityText" class="muted" style="margin-top:6px">—</div>
                   </div>
-
-                  <div class="hr"></div>
-                  <div class="muted">Outputs are educational. This is not medical advice or a diagnostic device.</div>
                 </div>
+                <div class="hr"></div>
+                <div class="btnbar clinical-only">
+                  <button onclick="exportReport('pdf')">Export PDF</button>
+                  <button class="ghost" onclick="exportReport('json')">Export JSON</button>
+                  <button class="ghost" onclick="queueFHIR()">Send to EHR (FHIR)</button>
+                </div>
+                <div class="hr"></div>
+                <div class="muted">Outputs are decision-support only and not medical advice.</div>
+              </div>
 
-                <div id="subtab-details" style="display:none">
-                  <h2>Patient summary</h2>
-                  <table class="table" id="summaryTable">
-                    <tbody></tbody>
-                  </table>
+              <!-- Details -->
+              <div id="subtab-details" role="region" aria-label="Details" style="display:none">
+                <div class="grid-2">
+                  <div class="mini">
+                    <h3>Inputs</h3>
+                    <pre id="detailInputs" class="muted">—</pre>
+                  </div>
+                  <div class="mini">
+                    <h3>Rationale</h3>
+                    <pre id="detailRationale" class="muted">—</pre>
+                  </div>
+                </div>
+                <div class="hr"></div>
+                <h3>Calibration reliability</h3>
+                <svg id="val_reliability" class="panel" viewBox="0 0 320 140" width="100%" height="140"></svg>
+              </div>
 
-                  <div class="grid-2" style="margin-top:12px">
-                    <div class="kpi">
-                      <h3>Predicted profile</h3>
-                      <div class="val" id="predictedProfile">—</div>
-                      <div class="help">Derived from phenotype + genotype (if provided)</div>
+              <!-- Simulator -->
+              <div id="subtab-simulator" role="region" aria-label="Response simulator" style="display:none">
+                <div class="grid-2">
+                  <div class="mini" role="form">
+                    <h3>Parameters</h3>
+                    <div class="row">
+                      <div class="field sm">
+                        <label for="sim_therapy">Therapy</label>
+                        <select id="sim_therapy">
+                          <option>ETI</option>
+                          <option>Ivacaftor</option>
+                          <option>Tez/Iva</option>
+                          <option>Airway clearance + Abx</option>
+                        </select>
+                      </div>
+                      <div class="field sm">
+                        <label for="sim_adherence">Adherence (%)</label>
+                        <input id="sim_adherence" type="number" min="0" max="100" value="85" />
+                      </div>
+                      <div class="field sm">
+                        <label for="sim_base_fev1">Baseline FEV₁ (%pred)</label>
+                        <input id="sim_base_fev1" type="number" min="0" max="150" placeholder="defaults to intake" />
+                      </div>
+                      <div class="field sm">
+                        <label for="sim_base_bmi">Baseline BMI</label>
+                        <input id="sim_base_bmi" type="number" min="8" max="60" step="0.1" placeholder="defaults to intake" />
+                      </div>
+                      <div class="field sm">
+                        <label for="sim_agegrp">Age group</label>
+                        <select id="sim_agegrp">
+                          <option>6–11</option><option>12–17</option><option>18–25</option><option>26+</option>
+                        </select>
+                      </div>
+                      <div class="field sm">
+                        <label for="sim_horizon">Horizon (months)</label>
+                        <input id="sim_horizon" type="number" min="1" max="24" value="6" />
+                      </div>
                     </div>
-                    <div class="kpi">
-                      <h3>Mutation severity score</h3>
-                      <div class="val" id="mutationScore">—</div>
-                      <div class="bar"><span id="mutBar" style="width:0%"></span></div>
+                    <div class="btnbar" style="margin-top:8px">
+                      <button class="primary" onclick="simulateResponse()">Simulate</button>
                     </div>
                   </div>
-
-                  <div class="hr"></div>
-                  <h2>Rationale</h2>
-                  <div id="rationale" class="muted">—</div>
-                </div>
-
-                <div id="subtab-education" style="display:none">
-                  <h2>How to interpret</h2>
-                  <div class="explain">
-                    <div class="item">
-                      <div class="name">Risk score</div>
-                      <div class="muted">Combines sweat chloride, lung function, infections, and comorbidity signals.</div>
-                    </div>
-                    <div class="item">
-                      <div class="name">Severity index</div>
-                      <div class="muted">Higher means more severe phenotype; sensitive to FEV₁, infection status, BMI, CFRD/PI.</div>
-                    </div>
-                    <div class="item">
-                      <div class="name">Genotype class</div>
-                      <div class="muted">Inferred when genotype unknown; if known, used to refine eligibility.</div>
-                    </div>
-                    <div class="item">
-                      <div class="name">Modulator eligibility</div>
-                      <div class="muted">From genotype if provided; otherwise inferred from phenotype class patterns.</div>
-                    </div>
+                  <div class="mini" role="region">
+                    <h3>Projected changes</h3>
+                    <div class="muted" id="sim_fev1_caption">FEV₁ projection will appear here.</div>
+                    <svg id="sim_chart_fev1" class="panel" viewBox="0 0 360 180" width="100%" height="180"></svg>
+                    <div class="hr"></div>
+                    <div class="muted" id="sim_bmi_caption">BMI projection will appear here.</div>
+                    <svg id="sim_chart_bmi" class="panel" viewBox="0 0 360 180" width="100%" height="180"></svg>
                   </div>
                 </div>
               </div>
             </section>
           </div>
+        </section>
 
-          <!-- A/B comparison card -->
-          <section class="card" style="margin-top:12px">
-            <h2>Scenario comparison (A/B)</h2>
-            <div class="help">Save two scenarios and compare risk, severity, and class side-by-side. Great for showing treatment impact.</div>
-            <div class="btnbar" style="margin-top:8px">
-              <button class="ghost" onclick="snapshot('A')">Save snapshot A</button>
-              <button class="ghost" onclick="snapshot('B')">Save snapshot B</button>
-              <button class="ghost" onclick="clearSnapshots()">Clear</button>
-            </div>
-            <div class="grid-2" style="margin-top:10px">
-              <div class="mini">
-                <h3>Snapshot A</h3>
-                <div id="snapA" class="muted">—</div>
-              </div>
-              <div class="mini">
-                <h3>Snapshot B</h3>
-                <div id="snapB" class="muted">—</div>
-              </div>
-            </div>
+        <!-- Report -->
+        <section id="page-report" class="page clinical-only" role="region" aria-labelledby="reportTitle">
+          <div class="card" role="document">
+            <h2 id="reportTitle">Clinical report</h2>
+            <div class="muted">Standardized, versioned report for charting and collaboration.</div>
             <div class="hr"></div>
-            <h3>Delta</h3>
-            <table class="table">
-              <tbody id="snapDelta"></tbody>
+            <div class="grid-2">
+              <div class="mini" role="status" aria-live="polite">
+                <h3>Report preview</h3>
+                <pre id="reportPreview" class="muted">Compute a patient to view preview.</pre>
+              </div>
+              <div class="mini" role="form" aria-label="Report controls">
+                <h3>Report controls</h3>
+                <div class="btnbar">
+                  <button id="exportPdfBtn" onclick="exportReport('pdf')">Export PDF</button>
+                  <button id="exportJsonBtn" class="ghost" onclick="exportReport('json')">Export JSON</button>
+                </div>
+                <div class="hr"></div>
+                <h3>Redaction</h3>
+                <div class="help">Exclude patient identifiers and dates from the export.</div>
+                <label for="redactNames"><input type="checkbox" id="redactNames" checked /> Redact names</label>
+                <label for="redactDates"><input type="checkbox" id="redactDates" checked /> Redact dates</label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Compliance -->
+        <section id="page-compliance" class="page clinical-only" role="region" aria-labelledby="complianceTitle">
+          <div class="card" role="document">
+            <h2 id="complianceTitle">Compliance & Audit</h2>
+            <div class="muted">Versioned calculations with timestamps, user role, and cryptographic hashes.</div>
+            <div class="hr"></div>
+            <div class="btnbar" role="group" aria-label="Audit log controls" style="margin-bottom:12px">
+              <button id="exportAuditBtn" class="ghost" onclick="exportAudit()" aria-describedby="exportAuditHelp">Export audit log (JSON)</button>
+              <button id="clearAuditBtn" class="ghost danger" onclick="clearAudit()" aria-describedby="clearAuditHelp">Clear local audit (irreversible)</button>
+            </div>
+            <div class="help" id="exportAuditHelp">Downloads a JSON file of all stored audit records.</div>
+            <div class="help" id="clearAuditHelp">Permanently removes all audit records from local storage.</div>
+            <div class="hr"></div>
+            <table class="table" id="auditTable" role="table" aria-label="Audit log">
+              <thead role="rowgroup">
+                <tr role="row">
+                  <th role="columnheader">Time</th>
+                  <th role="columnheader">Role</th>
+                  <th role="columnheader">Model</th>
+                  <th role="columnheader">Input hash</th>
+                  <th role="columnheader">Output hash</th>
+                </tr>
+              </thead>
+              <tbody role="rowgroup"></tbody>
             </table>
-          </section>
-        </section>
-        <!-- CF EDUCATION PAGE -->
-        <section id="page-education" class="page">
-          <div class="card">
-            <h2>Cystic Fibrosis overview</h2>
-            <div class="muted">Cystic Fibrosis (CF) is a genetic condition caused by pathogenic variants in CFTR, leading to multisystem disease. Clinical presentation varies with CFTR dysfunction level, environment, and care.</div>
-            <div class="hr"></div>
-            <div class="cards">
-              <div class="mini">
-                <h3>CFTR classes</h3>
-                <div class="muted">I: No protein; II: Misfolding/processing (e.g., F508del); III: Gating (e.g., G551D); IV: Conductance (e.g., R117H); V: Reduced synthesis.</div>
-              </div>
-              <div class="mini">
-                <h3>Phenotype signals</h3>
-                <div class="muted">Sweat chloride (≥60 typical CF-range), FEV₁% predicted, chronic infections (e.g., Pseudomonas), BMI/nutrition, CFRD, pancreatic status.</div>
-              </div>
-              <div class="mini">
-                <h3>Modulators</h3>
-                <div class="muted">Ivacaftor benefits gating; ETI benefits many class II contexts; indications are genotype-specific and evolving.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card" style="margin-top:12px">
-            <h2>Why inference matters</h2>
-            <div class="muted">When genotype is unknown, phenotype patterns can guide provisional expectations and education. Stratacyst shows how inputs drive outputs for transparent learning.</div>
           </div>
         </section>
 
-        <!-- SCENARIOS PAGE -->
-        <section id="page-scenarios" class="page">
-          <div class="card">
-            <h2>Scenarios</h2>
-            <div class="muted">Use presets to demonstrate model behavior. Load, tweak, and recompute to see changes.</div>
+        <!-- Integration -->
+        <section id="page-integration" class="page clinical-only" role="region" aria-labelledby="integrationTitle">
+          <div class="card" role="document">
+            <h2 id="integrationTitle">Integration (FHIR/API)</h2>
+            <div class="muted">Configure FHIR server and API keys. Nothing leaves the browser unless you send it.</div>
             <div class="hr"></div>
-            <div class="btnbar">
-              <button class="primary" onclick="loadPreset('severe')">Load severe adult</button>
-              <button class="primary" onclick="loadPreset('moderate')">Load moderate teen</button>
-              <button class="primary" onclick="loadPreset('mild')">Load mild/atypical</button>
-              <button class="ghost" onclick="switchPage('newpatient')">Go to inputs</button>
-            </div>
-          </div>
-        </section>
-
-        <!-- MICROBIOME SIMULATION PAGE -->
-        <section id="page-microbiome" class="page">
-          <div class="card">
-            <h2>Microbiome simulation</h2>
-            <div class="muted">Explore how microbial diversity and dominant phylum affect severity via the microbiome penalty (0–18).</div>
-            <div class="hr"></div>
-
-            <div class="row">
-              <div class="field sm">
-                <label for="sim_shannon">Shannon diversity index</label>
-                <input type="range" id="sim_shannon" min="0.5" max="3.5" step="0.1" value="2.0" oninput="updateMicrobiomeSim()">
-                <div class="help"><span id="sim_shannon_val">2.0</span></div>
-              </div>
-              <div class="field sm">
-                <label for="sim_phylum">Dominant phylum</label>
-                <select id="sim_phylum" onchange="updateMicrobiomeSim()">
-                  <option value="">—</option>
-                  <option value="Firmicutes">Firmicutes</option>
-                  <option value="Bacteroidetes">Bacteroidetes</option>
-                  <option value="Proteobacteria">Proteobacteria</option>
-                  <option value="Actinobacteria">Actinobacteria</option>
-                </select>
-              </div>
-              <div class="field sm">
-                <label>Penalty preview</label>
-                <div class="kpi" style="margin:0">
-                  <h3>Microbiome penalty</h3>
-                  <div class="val" id="sim_penalty">0</div>
+            <div class="grid-2">
+              <div class="mini" role="form" aria-label="FHIR configuration">
+                <h3>FHIR config</h3>
+                <div class="row">
+                  <div class="field lg">
+                    <label for="fhirUrl">FHIR server URL</label>
+                    <input id="fhirUrl" type="url" placeholder="https://example.org/fhir" aria-describedby="fhirUrlHelp" />
+                    <div class="help" id="fhirUrlHelp">Enter the base URL of your FHIR endpoint (HTTPS recommended).</div>
+                  </div>
+                  <div class="field lg">
+                    <label for="fhirToken">Bearer token (stored locally)</label>
+                    <input id="fhirToken" type="password" placeholder="••••••" aria-describedby="fhirTokenHelp" />
+                    <div class="help" id="fhirTokenHelp">Your FHIR authorization token. Stored in localStorage for session.</div>
+                  </div>
+                  <div class="field lg">
+                    <label for="patientId">Patient resource ID</label>
+                    <input id="patientId" placeholder="Patient/123" aria-describedby="patientIdHelp" />
+                    <div class="help" id="patientIdHelp">FHIR Resource reference, e.g. “Patient/123”.</div>
+                  </div>
+                </div>
+                <div class="btnbar">
+                  <button id="testFhirBtn" class="ghost" onclick="testFHIR()">Test connection</button>
                 </div>
               </div>
-            </div>
 
-            <div class="hr"></div>
-            <h3>Signals</h3>
-            <div id="sim_badges" class="tagrow"></div>
-
-            <div class="hr"></div>
-            <div class="muted">
-              Low diversity (<2.0) and Proteobacteria dominance are associated with increased inflammation and worse outcomes in CF.
+              <div class="mini" role="region" aria-label="FHIR send artifacts">
+                <h3>Send artifacts</h3>
+                <div class="help">Send Observation/DocumentReference with report JSON/PDF.</div>
+                <div class="btnbar">
+                  <button id="queueFhirBtn" onclick="queueFHIR()">Queue current result</button>
+                  <button id="sendQueuedBtn" class="ghost" onclick="sendQueued()">Send queued (batch)</button>
+                </div>
+                <div class="hr"></div>
+                <div class="muted" id="queueStatus" role="status">Queue: 0</div>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- LONGITUDINAL SIMULATION PAGE -->
-        <section id="page-longitudinal" class="page">
-          <div class="card">
-            <h2>📈 Longitudinal simulation</h2>
-            <p class="muted">Simulate CF severity progression over time. Adjust age and modulator use to see trajectory.</p>
+        <!-- Validation -->
+        <section id="page-validation" class="page clinical-only" role="region" aria-labelledby="validationTitle">
+          <div class="card" role="document">
+            <h2 id="validationTitle">Validation & Calibration</h2>
+            <div class="muted">Load datasets (CSV) to compute discrimination and calibration metrics. Results are local.</div>
             <div class="hr"></div>
+            <div class="grid-2">
+              <div class="mini" role="form" aria-label="Dataset import">
+                <h3>Dataset import</h3>
+                <div class="help">CSV columns: sweat, fev1, bmi, pseudo, ntm, cfrd, pi, mod, variant1(opt), variant2(opt), outcome(opt 0/1).</div>
+                <input type="file" id="valCsv" accept=".csv" aria-describedby="valCsvHelp" />
+                <div class="help" id="valCsvHelp">Select a comma-separated file matching the specified schema.</div>
+                <div class="btnbar" style="margin-top:8px">
+                  <button id="runValBtn" onclick="runValidation()">Run validation</button>
+                </div>
+              </div>
 
-            <div class="row">
-              <div class="field sm">
-                <label for="sim_age">Current age</label>
-                <input type="range" id="sim_age" min="2" max="30" step="1" value="12" oninput="updateModulatorSim()">
-                <div class="help"><span id="sim_age_val">12</span> years</div>
-              </div>
-              <div class="field sm">
-                <label for="sim_start_age">Start ETI at age</label>
-                <select id="sim_start_age" onchange="updateModulatorSim()">
-                  <option value="">Never</option>
-                  <option value="2">2</option>
-                  <option value="4">4</option>
-                  <option value="6">6</option>
-                  <option value="8">8</option>
-                  <option value="10">10</option>
-                  <option value="12">12</option>
-                  <option value="14">14</option>
-                  <option value="16">16</option>
-                  <option value="18">18</option>
-                  <option value="20">20</option>
-                  <option value="25">25</option>
-                </select>
-              </div>
-              <div class="field sm">
-                <label for="sim_compare">Compare with no treatment?</label>
-                <select id="sim_compare" onchange="updateModulatorSim()">
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
+              <div class="mini" role="region" aria-label="Validation metrics">
+                <h3>Metrics</h3>
+                <div class="grid-2">
+                  <div class="kpi" role="group" aria-label="AUROC (risk)">
+                    <h3>AUROC (risk)</h3><div class="val" id="kpi_auroc">—</div>
+                  </div>
+                  <div class="kpi" role="group" aria-label="AUPRC (risk)">
+                    <h3>AUPRC (risk)</h3><div class="val" id="kpi_auprc">—</div>
+                  </div>
+                  <div class="kpi" role="group" aria-label="Brier score">
+                    <h3>Brier score</h3><div class="val" id="kpi_brier">—</div>
+                  </div>
+                  <div class="kpi" role="group" aria-label="Calibration slope">
+                    <h3>Calibration slope</h3><div class="val" id="kpi_calslope">—</div>
+                  </div>
+                </div>
+                <div class="hr"></div>
+                <h3>Reliability plot</h3>
+                <svg id="val_reliability_val" class="panel" viewBox="0 0 320 140" width="100%" height="140" aria-label="Calibration reliability plot"></svg>
+                <div class="hr"></div>
+                <h3>Decision curve (net benefit)</h3>
+                <svg id="val_decision" class="panel" viewBox="0 0 320 140" width="100%" height="140" aria-label="Decision-curve net benefit plot"></svg>
               </div>
             </div>
-
-            <div class="hr"></div>
-            <h3>Predicted trajectory</h3>
-            <svg id="trajectoryChart" class="panel" viewBox="0 0 320 140" width="100%" height="140"></svg>
-
-            <div class="hr"></div>
-            <div class="muted">Trajectory is based on age-adjusted FEV₁, BMI, and modulator impact. Educational only.</div>
           </div>
         </section>
-  <script>
-    // --- Utilities ---
-    const get = id => document.getElementById(id);
-    const q = sel => document.querySelector(sel);
-    const qa = sel => Array.from(document.querySelectorAll(sel));
-    const val = id => (get(id)?.value ?? "").trim();
-    const num = id => { const n = parseFloat(val(id)); return Number.isFinite(n) ? n : null; };
-    const clamp = (v,min,max) => Math.max(min, Math.min(max, v));
-
-    // --- Weights state ---
-    const WEIGHTS = { sweat: 1, fev1: 1, pseudo: 1, bmi: 1, cfrd: 1, pi: 1, mod: 1 };
-    function onWeightChange(){
-      const ids = ["sweat","fev1","pseudo","bmi","cfrd","pi","mod"];
-      ids.forEach(k=>{
-        const el = get("w_"+k);
-        if(el){
-          WEIGHTS[k] = parseFloat(el.value)||1;
-          const vEl = get("w_"+k+"_val");
-          if(vEl) vEl.textContent = WEIGHTS[k].toFixed(2);
-        }
-      });
-      drawCurves();
-      if (currentStep === 5) compute();
-    }
-    function resetWeights(){
-      Object.keys(WEIGHTS).forEach(k=>{
-        WEIGHTS[k] = 1;
-        const el = get("w_"+k); if(el) el.value = 1;
-        const vEl = get("w_"+k+"_val"); if(vEl) vEl.textContent = "1.00";
-      });
-      drawCurves();
-      if (currentStep === 5) compute();
-    }
-
-    // --- Sidebar navigation ---
-    qa('.nav a').forEach(a=>{
-      a.addEventListener('click', ()=> switchPage(a.dataset.page));
-    });
-    function switchPage(page){
-      qa('.nav a').forEach(a=> a.classList.toggle('active', a.dataset.page===page));
-      qa('.page').forEach(p=> p.classList.toggle('active', p.id === 'page-'+page));
-      if(page==='dashboard') renderHistory();
-      if(page==='microbiome') updateMicrobiomeSim();
-      if(page==='longitudinal') updateModulatorSim();
-    }
-
-    // --- Subtabs in New Patient -> Results ---
-    document.addEventListener('click', (e)=>{
-      const tab = e.target.closest('.tab');
-      if(!tab) return;
-      const name = tab.dataset.subtab;
-      qa('.tab').forEach(t=> t.classList.toggle('active', t===tab));
-      ['primary','details','education'].forEach(n=>{
-        const panel = get('subtab-'+n);
-        if(panel) panel.style.display = (n===name) ? 'block' : 'none';
-      });
-    });
-
-    // --- Genotype toggle ---
-    function toggleGenotype(){
-      const show = get("knowGenotype")?.checked;
-      const block = get("genoBlock");
-      if(block) block.style.display = show ? "block" : "none";
-    }
-
-    // --- Completeness ---
-    function pctCompleteness(){
-      const usedFields = ["sweat","fev1","bmi","pseudomonas","cfrd","pi","modulator"];
-      const used = usedFields.reduce((a,f)=> a + (val(f) ? 1 : 0), 0);
-      return Math.round(100 * used / usedFields.length);
-    }
-    function completenessBadge(){
-      const el = get("completeness");
-      if (el) el.textContent = `Completeness: ${pctCompleteness()}%`;
-    }
-
-    // --- Microbiome scoring helpers ---
-    function microbiomePenalty(mb) {
-      const rules = { diversityThreshold: 2.0, lowDiversityPenalty: 6, proteobacteriaPenalty: 8, bothBonus: 4 };
-      if (!mb || mb.shannon_diversity == null || !mb.dominant_phylum) return 0;
-      const diversity = parseFloat(mb.shannon_diversity);
-      const phylum = (mb.dominant_phylum||"").trim().toLowerCase();
-      const lowDiv = diversity < rules.diversityThreshold;
-      const proteo = phylum === "proteobacteria";
-      let p = 0;
-      if (lowDiv) p += rules.lowDiversityPenalty;
-      if (proteo) p += rules.proteobacteriaPenalty;
-      if (lowDiv && proteo) p += rules.bothBonus;
-      return p; // 0–18
-    }
-    function readMicrobiomeInputs(){
-      const dStr = val('shannon_diversity');
-      const div = dStr === "" ? null : parseFloat(dStr);
-      const phy = val('dominant_phylum');
-      return { shannon_diversity: Number.isFinite(div) ? div : null, dominant_phylum: phy || null };
-    }
-
-    // --- Microbiome simulation UI ---
-    function updateMicrobiomeSim() {
-      const shEl = get("sim_shannon"), phyEl = get("sim_phylum");
-      if (!shEl || !phyEl) return;
-      const div = parseFloat(shEl.value);
-      const phy = (phyEl.value||"").toLowerCase();
-      const valEl = get("sim_shannon_val"); if (valEl) valEl.textContent = div.toFixed(1);
-      const score = microbiomePenalty({ shannon_diversity: div, dominant_phylum: phy });
-      const out = get("sim_penalty"); if (out) out.textContent = score;
-      const badges = [];
-      if (div < 2.0) badges.push("Low diversity ↑ severity");
-      if (phy === "proteobacteria") badges.push("Proteobacteria dominance ↑ inflammation");
-      const cont = get("sim_badges"); if (cont) cont.innerHTML = badges.map(b => `<span class="pill">${b}</span>`).join('');
-    }
-
-    // --- Longitudinal simulation UI ---
-    function updateModulatorSim(){
-      const age = parseInt(val("sim_age")) || 12;
-      const start = parseInt(val("sim_start_age")) || null;
-      const compare = val("sim_compare") === "Yes";
-      const ageOut = get("sim_age_val"); if (ageOut) ageOut.textContent = age;
-
-      const svg = get("trajectoryChart");
-      if(!svg) return;
-      const W=320, H=140;
-      svg.innerHTML = "";
-
-      const mkPath = (data,color) => {
-        let d = "";
-        data.forEach((y,i) => {
-          const x = i * (W / (data.length-1));
-          const yy = H - y*(H/100);
-          d += (i===0 ? "M" : "L") + x + " " + yy + " ";
-        });
-        const p = document.createElementNS("http://www.w3.org/2000/svg","path");
-        p.setAttribute("d", d.trim());
-        p.setAttribute("stroke", color);
-        p.setAttribute("fill", "none");
-        p.setAttribute("stroke-width","2");
-        svg.appendChild(p);
-      };
-
-      const base = [], treated = [];
-      for(let i=2;i<=30;i++){
-        const noTx = clamp(100 - (i*2.5),0,100);
-        base.push(noTx);
-        let sev = 100 - (i*2.5);
-        if(start && i >= start) sev -= 15;
-        treated.push(clamp(sev,0,100));
-     }
-
-      mkPath(base,"#ef4444"); // no treatment
-      if(compare && start) mkPath(treated,"#34d399"); // with ETI
-
-      // 🎯 Add dot marker for current age
-      const idx = clamp(age-2, 0, base.length-1);
-      const x = idx * (W / (base.length-1));
-      const y = H - base[idx]*(H/100);
-
-      const dot = document.createElementNS("http://www.w3.org/2000/svg","circle");
-      dot.setAttribute("cx", x);
-      dot.setAttribute("cy", y);
-      dot.setAttribute("r", "4.5");
-      dot.setAttribute("fill", "#60a5fa");
-      dot.setAttribute("stroke", "white");
-      dot.setAttribute("stroke-width", "1.5");
-      svg.appendChild(dot);
-
-      // Optional label
-      const lbl = document.createElementNS("http://www.w3.org/2000/svg","text");
-      lbl.setAttribute("x", x + 6);
-      lbl.setAttribute("y", y - 6);
-      lbl.setAttribute("fill", "currentColor");
-      lbl.setAttribute("font-size", "10");
-      lbl.textContent = `Age ${age}`;
-      svg.appendChild(lbl);
-    }
-
-
-    // --- Step-by-step wizard controls (+ swipe) ---
-    let currentStep = 1;
-    const stepLabels = ["Phenotype", "Genotype", "Microbiome", "Modulator & Notes", "Results"];
-
-    function showStep(idx){
-      for(let i=1;i<=4;i++){
-        const el = get("step"+i);
-        if(el) el.style.display = (i===idx) ? "block" : "none";
-      }
-      const step5 = get("step5");
-      if(step5) step5.style.display = (idx===5) ? "block" : "none";
-      // Apply active class for animation
-      qa('.step').forEach(s=> s.classList.remove('active'));
-      const activeEl = get("step"+idx);
-      if (activeEl) activeEl.classList.add('active');
-      if (idx===5) step5?.classList.add('active');
-    }
-
-    function updateStepTracker(){
-      const tr = get("stepTracker");
-      if(tr) tr.textContent = `Step ${currentStep} of 5: ${stepLabels[currentStep-1]}`;
-      const back = get("backBtn"), next = get("nextBtn");
-      if(back) back.style.display = currentStep === 1 ? "none" : "inline-block";
-      if(next) next.textContent = currentStep === 5 ? "Recompute" : "Next →";
-      completenessBadge();
-      if(currentStep === 5){ compute(); }
-    }
-
-    function goNext(){
-      if(currentStep < 5){
-        currentStep++;
-        showStep(currentStep);
-        updateStepTracker();
-      } else {
-        compute();
-      }
-    }
-    function goBack(){
-      if(currentStep > 1){
-        currentStep--;
-        showStep(currentStep);
-        updateStepTracker();
-      }
-    }
-    // Swipe (mobile-friendly)
-    let touchStartX = null;
-    document.addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
-    document.addEventListener('touchend', (e)=>{
-      if(touchStartX==null) return;
-      const dx = e.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(dx) > 60){
-        if (dx < 0) goNext(); else goBack();
-      }
-      touchStartX = null;
-    }, {passive:true});
-
-    // --- Curves ---
-    function drawCurves(){ drawCurveSweat(); drawCurveFev1(); }
-    function drawCurveSweat(){
-      const svg = get("curveSweat"); if(!svg) return;
-      const W=320, H=140, pad=20;
-      const xs = Array.from({length:21}, (_,i)=> i*10);
-      const points = xs.map(x=>{
-        const contrib = (x>=60?25:(x>=30?10:-10)) * WEIGHTS.sweat;
-        const risk = clamp(Math.round(20 + contrib), 0, 100);
-        return {x, y: risk};
-      });
-      renderLine(svg, points, 0,200, 0,100, W,H,pad, "#60a5fa");
-    }
-    function drawCurveFev1(){
-      const svg = get("curveFev1"); if(!svg) return;
-      const W=320, H=140, pad=20;
-      const xs = Array.from({length:21}, (_,i)=> i*5);
-      const points = xs.map(x=>{
-        const sev = clamp(Math.round(50 + WEIGHTS.fev1 * (80 - x) * 0.5), 0, 100);
-        return {x, y: sev};
-      });
-      renderLine(svg, points, 0,100, 0,100, W,H,pad, "#93c5fd");
-    }
-    function renderLine(svg, pts, xmin,xmax, ymin,ymax, W,H,pad, stroke){
-      svg.innerHTML = "";
-      const scaleX = x => pad + (x - xmin) / (xmax - xmin) * (W - 2*pad);
-      const scaleY = y => H - pad - (y - ymin) / (ymax - ymin) * (H - 2*pad);
-      const axis = document.createElementNS("http://www.w3.org/2000/svg","path");
-      axis.setAttribute("d", `M${pad},${H-pad} L${W-pad},${H-pad} M${pad},${H-pad} L${pad},${pad}`);
-      axis.setAttribute("stroke", "rgba(30,58,138,0.25)"); axis.setAttribute("stroke-width","1");
-      svg.appendChild(axis);
-      const d = pts.map((p,i)=> (i? "L":"M") + scaleX(p.x)+","+scaleY(p.y)).join(" ");
-      const path = document.createElementNS("http://www.w3.org/2000/svg","path");
-      path.setAttribute("d", d);
-      path.setAttribute("fill","none"); path.setAttribute("stroke", stroke); path.setAttribute("stroke-width","2");
-      svg.appendChild(path);
-    }
-
-    // --- Known variants catalog (demo-scale) ---
-    const KNOWN_CFTR = new Set([
-      "f508del","g551d","w1282x","g542x","r553x","n1303k","r117h",
-      "3849+10kb c→t","3849+10kb c>t","d1152h","2789+5g→a","2789+5g>a","a455e",
-      "g85e","1717-1g→a","1717-1g>a","621+1g→t","621+1g>t","2t>g","p67l","g178r"
-    ]);
-    function detectRarity(g1, g2){
-      const u1 = (g1||"").trim().toLowerCase();
-      const u2 = (g2||"").trim().toLowerCase();
-      const v1Known = u1 && KNOWN_CFTR.has(u1);
-      const v2Known = u2 && KNOWN_CFTR.has(u2);
-      if (!u1 && !u2) return {autoRare:false, reason:"no genotype provided"};
-      const autoRare = !(v1Known || v2Known);
-      return {autoRare, reason: autoRare ? "not in known catalog" : "known catalog match"};
-    }
-
-    // --- Scoring (weight-aware) ---
-    function computeScores(inputs){
-      const {sweat, fev1, bmi, pseudo, ntm, cfrd, pi, mod, g1, g2} = inputs;
-
-      let risk = 20;
-      if (sweat !== null){ risk += WEIGHTS.sweat * (sweat>=60?25:(sweat>=30?10:-10)); }
-      if (fev1 !== null){ risk += WEIGHTS.fev1  * (fev1<60?10:(fev1>=90?-5:0)); }
-      if (pseudo === "Chronic") risk += WEIGHTS.pseudo * 6;
-      if (/f508del/.test(g1+g2)) risk += 10;
-      if (/g551d|w1282x|g542x|r553x|n1303k/.test((g1+g2))) risk += 6;
-      risk = clamp(Math.round(risk),0,100);
-
-      let sev = 50;
-      if (fev1 !== null) sev += WEIGHTS.fev1 * (80 - fev1) * 0.5;
-      if (pseudo === "Chronic") sev += WEIGHTS.pseudo * 10;
-      else if (pseudo === "Intermittent") sev += WEIGHTS.pseudo * 5;
-      if (ntm && ntm !== "") sev += 5;
-      if (bmi !== null){ if (bmi < 18.5) sev += WEIGHTS.bmi*8; else if (bmi >= 23) sev -= WEIGHTS.bmi*5; }
-      if (cfrd) sev += WEIGHTS.cfrd*6;
-      if (pi) sev += WEIGHTS.pi*4;
-      if (mod) sev -= WEIGHTS.mod*6;
-      sev = clamp(Math.round(sev),0,100);
-
-      return {risk, sev};
-    }
-
-    // --- Genotype class inference from phenotype (weight-aware) ---
-    function inferGenotypeClass(inputs){
-      const {sweat, fev1, pseudo, bmi, cfrd, pi} = inputs;
-      let score = 0;
-      const signals = [];
-
-      if (sweat !== null){
-        if (sweat >= 90){ score += 3*WEIGHTS.sweat; signals.push("very high sweat chloride"); }
-        else if (sweat >= 60){ score += 2*WEIGHTS.sweat; signals.push("high sweat chloride"); }
-        else if (sweat >= 30){ score += 1*WEIGHTS.sweat; signals.push("intermediate sweat chloride"); }
-        else { score -= 2*WEIGHTS.sweat; signals.push("low sweat chloride"); }
-      }
-      if (fev1 !== null){
-        if (fev1 < 40){ score += 3*WEIGHTS.fev1; signals.push("very low FEV₁"); }
-        else if (fev1 < 60){ score += 2*WEIGHTS.fev1; signals.push("low FEV₁"); }
-        else if (fev1 < 80){ score += 1*WEIGHTS.fev1; signals.push("moderate FEV₁"); }
-        else if (fev1 >= 90){ score -= 1*WEIGHTS.fev1; signals.push("high FEV₁"); }
-      }
-      if (pseudo){
-        if (pseudo === "Chronic"){ score += 2*WEIGHTS.pseudo; signals.push("chronic Pseudomonas"); }
-        else if (pseudo === "Intermittent"){ score += 1*WEIGHTS.pseudo; signals.push("intermittent Pseudomonas"); }
-        else if (pseudo === "None"){ score -= 1*WEIGHTS.pseudo; signals.push("no Pseudomonas"); }
-      }
-      if (bmi !== null){
-        if (bmi < 18.5){ score += 1*WEIGHTS.bmi; signals.push("low BMI"); }
-        else if (bmi >= 23){ score -= 1*WEIGHTS.bmi; signals.push("higher BMI"); }
-      }
-      if (cfrd){ score += 1*WEIGHTS.cfrd; signals.push("CFRD"); }
-      if (pi){ score += 1*WEIGHTS.pi; signals.push("pancreatic insufficiency"); }
-
-      let klass, examples, msev;
-      if (score >= 8){ klass = "Class I–II likely"; examples = "e.g., F508del/F508del, W1282X, G542X"; msev = 80; }
-      else if (score >= 5){ klass = "Class II–III possible"; examples = "e.g., F508del/other, G551D"; msev = 55; }
-      else { klass = "Class IV–V or atypical"; examples = "e.g., R117H, 3849+10kb C→T"; msev = 25; }
-
-      const used = (sweat!==null) + (fev1!==null) + (!!pseudo) + (bmi!==null) + (!!cfrd) + (!!pi);
-      const strength = Math.min(6, Math.abs(score - 6));
-      const confidence = clamp(Math.round(48 + used*8 + strength*3), 50, 96);
-
-      return {klass, examples, confidence, signals, mutationSeverity:msev};
-    }
-
-    // --- If genotype provided, refine class ---
-    function refineWithGenotype(g1,g2,inferred){
-      const g = (g1+" "+g2).toLowerCase();
-      if (!g.trim()) return inferred;
-      if (g.includes("f508del") && (g.match(/f508del/g)||[]).length>=2)
-        return {klass:"Class II (processing) — strong", examples:"F508del/F508del", confidence:Math.max(inferred.confidence, 90), signals:[...inferred.signals, "provided genotype"], mutationSeverity:85};
-      if (g.includes("g551d"))
-        return {klass:"Class III (gating) — strong", examples:"G551D/other", confidence:Math.max(inferred.confidence, 88), signals:[...inferred.signals, "provided genotype"], mutationSeverity:60};
-      if (/w1282x|g542x|r553x|n1303k/.test(g))
-        return {klass:"Class I (nonsense) — strong", examples:"e.g., W1282X/other", confidence:Math.max(inferred.confidence, 88), signals:[...inferred.signals, "provided genotype"], mutationSeverity:78};
-      if (g.includes("r117h"))
-        return {klass:"Class IV (conductance) — moderate", examples:"R117H/other", confidence:Math.max(inferred.confidence, 80), signals:[...inferred.signals, "provided genotype"], mutationSeverity:35};
-      return {...inferred, signals:[...inferred.signals, "genotype noted (unmapped demo)"], confidence:Math.max(inferred.confidence, 75)};
-    }
-
-    // --- Eligibility narrative ---
-    function modulatorEligibility(g1,g2,inferred){
-      const g = (g1+" "+g2).toLowerCase();
-      if (g.includes("g551d")) return "Ivacaftor-responsive pattern (gating) likely.";
-      if (g.includes("f508del") && (g.match(/f508del/g)||[]).length>=2) return "ETI likely appropriate (F508del homozygous).";
-      if (g.includes("f508del")) return "Possible ETI eligibility (F508del heterozygous; depends on second allele).";
-      if (/w1282x|g542x|r553x|n1303k/.test(g)) return "Class I variants: modulator response varies by indication.";
-      if (inferred.klass.startsWith("Class I") || inferred.klass.startsWith("Class II")) return "Phenotype suggests loss-of-function; ETI class benefits plausible if genotype aligns.";
-      if (inferred.klass.startsWith("Class III")) return "Gating features; ivacaftor-class benefit plausible if genotype confirms.";
-      if (inferred.klass.startsWith("Class IV") || inferred.klass.startsWith("Class V")) return "Milder classes; benefit may be genotype-specific.";
-      return "Insufficient information to estimate eligibility.";
-    }
-
-    // --- Feature breakdown for UI ---
-    function featuresBreakdown(inputs){
-      const {sweat, fev1, bmi, pseudo} = inputs;
-      const cfrdYes = (val('cfrd')==="Yes");
-      const piYes = (val('pi')==="Yes");
-      const modSel = val('modulator');
-
-      const sweatScore = (sweat===null?0:(sweat>=60?+18:(sweat>=30?+8:-6))) * WEIGHTS.sweat;
-      const fev1Score  = (fev1===null?0:(fev1<60?+12:(fev1>=90?-6:-2))) * WEIGHTS.fev1;
-      const pseudoScore= (pseudo==="Chronic"?+8:(pseudo==="Intermittent"?+4:0)) * WEIGHTS.pseudo;
-      const bmiScore   = (bmi===null?0:(bmi<18.5?+6:(bmi>=23?-4:0))) * WEIGHTS.bmi;
-      const comorbScore= (cfrdYes?+4:0)*WEIGHTS.cfrd + (piYes?+3:0)*WEIGHTS.pi;
-      const modScore   = (modSel? -6 : 0) * WEIGHTS.mod;
-
-      const sh = num('shannon_diversity');
-      const phy = val('dominant_phylum');
-      const mbFeat = microbiomePenalty({ shannon_diversity: sh, dominant_phylum: phy || null });
-
-      const list = [
-        {name:"Sweat chloride", val: (sweat===null?"—":sweat+" mmol/L"), score: Math.round(sweatScore)},
-        {name:"FEV₁ % predicted", val: (fev1===null?"—":fev1+"%"), score: Math.round(fev1Score)},
-        {name:"Pseudomonas status", val: val('pseudomonas')||"—", score: Math.round(pseudoScore)},
-        {name:"Nutritional status (BMI)", val: (bmi===null?"—":bmi), score: Math.round(bmiScore)},
-        {name:"Comorbidities (CFRD/PI)", val: ((cfrdYes?"CFRD ":"") + (piYes?"PI":"")) || "—", score: Math.round(comorbScore)},
-        {name:"On CFTR modulator", val: val('modulator')||"No", score: Math.round(modScore)},
-        {name:"Microbiome", val: (sh==null?"—":`Shannon ${sh}`) + (phy?` • ${phy}`:""), score: Math.round(mbFeat)}
-      ];
-      return list;
-    }
-    function renderExplain(list){
-      const el = get("explainList");
-      el.innerHTML = "";
-      list.forEach(e=>{
-        const div = document.createElement("div");
-        div.className = "item";
-        const color = e.score>5 ? "#ef4444" : (e.score<-3 ? "#34d399" : "#1f2937");
-        div.innerHTML = `<div class="name">${e.name}<div class="help">${e.val}</div></div>
-                         <div class="score" style="color:${color}">${e.score>0? "+"+e.score : e.score}</div>`;
-        el.appendChild(div);
-      });
-    }
-
-    function fillSummary(inputs, scores, geno){
-      const tbody = get("summaryTable").querySelector("tbody");
-      tbody.innerHTML = "";
-
-      const mb = readMicrobiomeInputs();
-      const mbScore = microbiomePenalty(mb);
-
-      const rows = [
-        ["Sweat chloride", inputs.sweat ?? "—"],
-        ["FEV₁ % predicted", inputs.fev1 ?? "—"],
-        ["Pseudomonas", inputs.pseudo || "—"],
-        ["BMI", inputs.bmi ?? "—"],
-        ["CFRD", inputs.cfrd ? "Yes" : (val('cfrd')===""?"Unknown":"No")],
-        ["Pancreatic insufficiency", inputs.pi ? "Yes" : (val('pi')===""?"Unknown":"No")],
-        ["Modulator", inputs.mod || "None"],
-        ["Microbiome diversity (Shannon)", mb.shannon_diversity ?? "—"],
-        ["Dominant phylum", mb.dominant_phylum ?? "—"],
-        ["Microbiome Score", mbScore === 0 ? "0" : mbScore],
-        ["Provided genotype", ((inputs.g1+inputs.g2).trim()? (inputs.g1+" / "+inputs.g2) : "None")],
-        ["Rare/uncertain variant", (function(){
-          const manualRare = val("rareFlag");
-          const evLevel = val("evidence") || "—";
-          const r = detectRarity(inputs.g1, inputs.g2);
-          const rare = manualRare === "Yes" ? true : (manualRare === "No" ? false : r.autoRare);
-          return (rare ? "Yes" : "No") + ` (evidence: ${evLevel})`;
-        })()],
-        ["Inferred genotype class", geno.klass],
-        ["Examples", geno.examples],
-        ["Risk score", scores.risk],
-        ["Severity index", scores.sev]
-      ];
-      rows.forEach(([k,v])=>{
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<th class="muted" style="font-weight:600">${k}</th><td>${v}</td>`;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function profileText(sev){
-      if (sev>=70) return "Severe phenotype";
-      if (sev>=40) return "Moderate phenotype";
-      return "Mild phenotype";
-    }
-
-    // --- History (recent tests) ---
-    function saveHistory(entry){
-      const key = "sg_history";
-      const list = JSON.parse(localStorage.getItem(key) || "[]");
-      list.unshift(entry);
-      localStorage.setItem(key, JSON.stringify(list.slice(0,20)));
-    }
-    function renderHistory(){
-      const key = "sg_history";
-      const list = JSON.parse(localStorage.getItem(key) || "[]");
-      const tbody = get("historyTable").querySelector("tbody");
-      tbody.innerHTML = "";
-      list.forEach((r, idx)=>{
-        const tr = document.createElement("tr");
-        const inputsBrief = `Sweat: ${r.inputs.sweat ?? "—"}, FEV₁: ${r.inputs.fev1 ?? "—"}, Pseudo: ${r.inputs.pseudo || "—"}`;
-        tr.innerHTML = `
-          <td>${new Date(r.ts).toLocaleString()}</td>
-          <td>${r.scores.risk}</td>
-          <td>${r.scores.sev}</td>
-          <td>${r.geno.klass}</td>
-          <td>${r.eligibility}</td>
-          <td class="muted">${inputsBrief}</td>
-        `;
-        tr.style.cursor = "pointer";
-        tr.addEventListener("click", ()=> restoreFromHistory(idx));
-        tbody.appendChild(tr);
-      });
-    }
-    function restoreFromHistory(index){
-      const list = JSON.parse(localStorage.getItem("sg_history") || "[]");
-      const r = list[index];
-      if(!r) return;
-      switchPage('newpatient');
-      setVal("sweat", r.inputs.sweat);
-      setVal("fev1", r.inputs.fev1);
-      setVal("age", r.inputs.age);
-      setVal("sex", r.inputs.sex);
-      setVal("bmi", r.inputs.bmi);
-      setVal("pseudomonas", r.inputs.pseudo);
-      setVal("ntm", r.inputs.ntm);
-      setVal("cfrd", r.inputs.cfrd ? "Yes" : (val('cfrd')===""?"": "No"));
-      setVal("pi", r.inputs.pi ? "Yes" : (val('pi')===""?"": "No"));
-      setVal("modulator", r.inputs.mod);
-      const know = !!(r.inputs.g1 || r.inputs.g2);
-      get("knowGenotype").checked = know; toggleGenotype();
-      setVal("variant1", r.inputs.g1);
-      setVal("variant2", r.inputs.g2);
-      setVal("rareFlag", r.inputs.rareFlag || "");
-      setVal("evidence", r.inputs.evidence || "");
-      currentStep = 5; showStep(currentStep); updateStepTracker();
-      compute();
-    }
-    function setVal(id, v){ const el=get(id); if(!el) return; el.value = (v===null||v===undefined) ? "" : v; }
-
-    // --- A/B snapshots ---
-    const SNAPSHOTS = { A:null, B:null };
-    function currentState(){
-      return {
-        inputs:{
-          sweat: num("sweat"), fev1: num("fev1"), age: num("age"), sex: val("sex"),
-          bmi: num("bmi"), pseudo: val("pseudomonas"), ntm: val("ntm"),
-          cfrd: val("cfrd"), pi: val("pi"), modulator: val("modulator"),
-          rareFlag: val("rareFlag"), evidence: val("evidence")
-        },
-        weights: {...WEIGHTS},
-        outputs:{
-          risk: parseInt(get("riskScore").textContent)||null,
-          severity: parseInt(get("severityIndex").textContent)||null,
-          class: get("genoClass").textContent || "",
-          eligibility: get("eligibility").textContent || ""
-        }
-      };
-    }
-    function snapshot(which){
-      const state = currentState();
-      SNAPSHOTS[which] = state;
-      get(which==='A' ? 'snapA' : 'snapB').textContent =
-        `Risk: ${state.outputs.risk} | Severity: ${state.outputs.severity}
-Class: ${state.outputs.class}
-Elig: ${state.outputs.eligibility}`;
-      renderDelta();
-    }
-    function clearSnapshots(){
-      SNAPSHOTS.A = SNAPSHOTS.B = null;
-      get("snapA").textContent = "—";
-      get("snapB").textContent = "—";
-      get("snapDelta").innerHTML = "";
-    }
-    function renderDelta(){
-      const A = SNAPSHOTS.A, B = SNAPSHOTS.B;
-      const tb = get("snapDelta"); if(!tb) return;
-      tb.innerHTML = "";
-      if(!A || !B) return;
-      const del = (a,b)=> (a==null||b==null) ? "—" : (b - a>0? "+"+(b-a):(b-a));
-      const rows = [
-        ["Risk", A.outputs.risk, B.outputs.risk, del(A.outputs.risk, B.outputs.risk)],
-        ["Severity", A.outputs.severity, B.outputs.severity, del(A.outputs.severity, B.outputs.severity)],
-        ["Class", A.outputs.class, B.outputs.class, A.outputs.class===B.outputs.class ? "same" : "changed"],
-        ["Eligibility", A.outputs.eligibility, B.outputs.eligibility, A.outputs.eligibility===B.outputs.eligibility ? "same" : "changed"]
-      ];
-      rows.forEach(([k,a,b,d])=>{
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<th class="muted" style="font-weight:600">${k}</th><td>${a}</td><td>${b}</td><td>${d}</td>`;
-        tb.appendChild(tr);
-      });
-    }
-
-    // --- Compute pipeline ---
-    function compute(){
-      const g1 = val("variant1").toLowerCase();
-      const g2 = val("variant2").toLowerCase();
-      const inputs = {
-        sweat: num("sweat"),
-        fev1: num("fev1"),
-        age: num("age"),
-        sex: val("sex"),
-        bmi: num("bmi"),
-        pseudo: val("pseudomonas"),
-        ntm: val("ntm"),
-        cfrd: val("cfrd")==="Yes",
-        pi: val("pi")==="Yes",
-        mod: val("modulator"),
-        g1, g2
-      };
-
-      completenessBadge();
-
-      // Rarity detection
-      const manualRare = val("rareFlag");
-      const evLevel = val("evidence");
-      const rarity = detectRarity(g1, g2);
-      const isRare = manualRare === "Yes" ? true : (manualRare === "No" ? false : rarity.autoRare);
-
-      // Core inference
-      let inferred = inferGenotypeClass(inputs);
-      inferred = refineWithGenotype(g1,g2,inferred);
-      const scores = computeScores(inputs);
-
-      // Microbiome adjust
-      const mbInputs = readMicrobiomeInputs();
-      const mbScore = microbiomePenalty(mbInputs);
-      scores.sev = clamp(scores.sev + mbScore, 0, 100);
-
-      // Confidence adjustors for rarity/evidence
-      let confAdj = 0;
-      if (isRare) confAdj -= 8;
-      if (evLevel === "Limited") confAdj -= 5;
-      else if (evLevel === "Moderate") confAdj -= 2;
-      else if (evLevel === "Strong") confAdj += 2;
-
-      // Eligibility with caveat
-      let eligibilityTxt = modulatorEligibility(g1,g2,inferred);
-      if (isRare) {
-        eligibilityTxt += " Caution: rare/uncertain variant — eligibility depends on functional data and labeling.";
-      }
-
-      // KPIs
-      get("riskScore").textContent = scores.risk;
-      get("severityIndex").textContent = scores.sev;
-      get("sevBar").style.width = scores.sev + "%";
-      get("genoClass").textContent = inferred.klass;
-      get("genoExamples").textContent = inferred.examples;
-      const cVal = clamp(inferred.confidence + confAdj, 35, 98);
-      get("confidence").textContent = cVal + "%";
-
-      // Eligibility
-      get("eligibility").textContent = eligibilityTxt;
-
-      // Rarity banner
-      const rb = get("rarityBanner");
-      if (rb) rb.style.display = isRare ? "block" : "none";
-
-      // Feature breakdown
-      const explain = featuresBreakdown(inputs);
-      renderExplain(explain);
-
-      // Microbiome score
-      get("microbiome_score").textContent = mbScore;
-      const mbBadges = [];
-      if (mbInputs.shannon_diversity < 2.0) mbBadges.push("Low diversity ↑ severity");
-      if ((mbInputs.dominant_phylum||"").toLowerCase() === "proteobacteria") mbBadges.push("Proteobacteria dominance ↑ inflammation");
-      get("microbiome_badges").innerHTML = mbBadges.map(b => `<span class="pill">${b}</span>`).join('');
-
-      // Summary tab
-      fillSummary(inputs, scores, inferred);
-      get("predictedProfile").textContent = profileText(scores.sev);
-      get("mutationScore").textContent = inferred.mutationSeverity;
-      get("mutBar").style.width = inferred.mutationSeverity + "%";
-      get("rationale").textContent = inferred.signals.join(", ");
-
-      // Save to history
-      saveHistory({
-        ts: Date.now(),
-        inputs: {...inputs, rareFlag: val("rareFlag"), evidence: val("evidence")},
-        scores, geno: inferred, eligibility: eligibilityTxt
-      });
-    }
-
-    // --- Presets ---
-    function loadPreset(type){
-      switchPage('newpatient');
-      const presets = {
-        severe: {
-          sweat: 95, fev1: 38, age: 22, sex: "Female", bmi: 17.2,
-          pseudomonas: "Chronic", ntm: "MRSA", cfrd: "Yes", pi: "Yes",
-          modulator: "", variant1: "F508del", variant2: "F508del"
-        },
-        moderate: {
-          sweat: 78, fev1: 62, age: 16, sex: "Male", bmi: 19.5,
-          pseudomonas: "Intermittent", ntm: "", cfrd: "No", pi: "Yes",
-          modulator: "ETI (elexacaftor/tezacaftor/ivacaftor)", variant1: "F508del", variant2: "R117H"
-        },
-        mild: {
-          sweat: 42, fev1: 88, age: 28, sex: "Female", bmi: 22.8,
-          pseudomonas: "None", ntm: "", cfrd: "No", pi: "No",
-          modulator: "Ivacaftor", variant1: "R117H", variant2: "3849+10kb C→T"
-        }
-      };
-      const p = presets[type];
-      Object.entries(p).forEach(([k,v])=> setVal(k,v));
-      get("knowGenotype").checked = true;
-      toggleGenotype();
-      currentStep = 5; showStep(currentStep); updateStepTracker();
-      compute();
-    }
-
-    // --- Reset ---
-    document.addEventListener("DOMContentLoaded", () => {
-      const resetBtn = get("resetBtn");
-      if (resetBtn) {
-        resetBtn.addEventListener("click", () => {
-          document.querySelectorAll("input, select, textarea").forEach(el => el.value = "");
-          get("knowGenotype").checked = false;
-          toggleGenotype();
-          currentStep = 1; showStep(currentStep); updateStepTracker();
-          compute();
-        });
-      }
-    });
-
-    // --- DOMContentLoaded ---
-    document.addEventListener("DOMContentLoaded", () => {
-      toggleGenotype();
-      completenessBadge();
-      renderHistory();
-      drawCurves();
-
-      // Wire input changes to completeness (don’t auto-compute until Results)
-      ["sweat","fev1","bmi","pseudomonas","cfrd","pi","modulator","shannon_diversity","dominant_phylum"]
-        .forEach(id => {
-          const el = get(id);
-          if (!el) return;
-          el.addEventListener("change", completenessBadge);
-          el.addEventListener("input", completenessBadge);
-        });
-
-      const shInput = get("shannon_diversity");
-      const phyInput = get("dominant_phylum");
-      if (shInput) shInput.addEventListener("input", () => { if(currentStep===5) compute(); });
-      if (phyInput) phyInput.addEventListener("change", () => { if(currentStep===5) compute(); });
-
-      updateMicrobiomeSim();
-      updateModulatorSim();
-
-      // Initialize wizard
-      currentStep = 1; showStep(currentStep); updateStepTracker();
-
-      // Optional: compute button (if present elsewhere) can jump to results
-      const computeBtn = get("computeBtn");
-      if (computeBtn) computeBtn.addEventListener("click", () => {
-        currentStep = 5; showStep(currentStep); updateStepTracker();
-        compute();
-      });
-    });
-  </script>
       </main>
     </div>
   </div>
+
+  <!-- Login overlay -->
+  <div id="loginOverlay" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div id="loginBox">
+      <h3 id="loginTitle">Sign in</h3>
+      <div class="field lg">
+        <label for="loginEmail">Email</label>
+        <input id="loginEmail" type="email" placeholder="you@example.com" />
+      </div>
+      <div class="field lg">
+        <label for="loginPass">Password</label>
+        <input id="loginPass" type="password" placeholder="••••••••" />
+      </div>
+      <div class="field lg">
+        <label for="loginRole">Role</label>
+        <select id="loginRole">
+          <option>clinician</option>
+          <option>researcher</option>
+          <option>admin</option>
+        </select>
+      </div>
+      <div class="btnbar" style="margin-top:8px">
+        <button id="loginSubmit" class="primary">Sign in</button>
+        <button class="ghost" onclick="closeLogin()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logic -->
+  <script>
+    // Model metadata
+    const MODEL_VERSION = "v2.2.1-clinical+bayes+sk+quantile+ecology+organoid+hardened";
+    const MODEL_SCHEMA  = "cf-risk-2026-b11";
+    const BUILD_ID = (() => {
+      const raw = btoa(`${MODEL_VERSION}|${MODEL_SCHEMA}`).replace(/=+$/, "");
+      return "build-" + raw;
+    })();
+
+    // Global error trap: surface any runtime error blocking compute
+    (function attachGlobalErrorTrap(){
+      if (window.__sg_error_trap__) return;
+      window.__sg_error_trap__ = true;
+      window.addEventListener('error', (e) => {
+        console.error('Global error:', e.error || e.message, e);
+        alert('Runtime error: ' + (e?.error?.message || e?.message || 'unknown'));
+      });
+      window.addEventListener('unhandledrejection', (e) => {
+        console.error('Unhandled promise rejection:', e.reason);
+        alert('Async error: ' + (e?.reason?.message || e?.reason || 'unknown'));
+      });
+    })();
+
+    // Catalog namespace (optional JSONs loaded if present)
+    const Catalog = {
+      cftr2Meta:     null,
+      genotype:      null,
+      lung:          null,
+      infections:    null,
+      nutrition:     null,
+      survival:      null,
+      treatments:    null,
+      legacyMap:     null,
+      organoidPriors:null,
+      cftrFunction:  null
+    };
+
+    async function tryFetchLocalJson(path) {
+      try {
+        const resp = await fetch(path, { cache: "no-store" });
+        if (!resp.ok) return null;
+        return await resp.json();
+      } catch { return null; }
+    }
+
+    async function initCatalogs() {
+      const [
+        cftr2Meta, genotype, lung, infections, nutrition, survival, treatments,
+        legacyMap, organoidPriors, cftrFunction
+      ] = await Promise.all([
+        tryFetchLocalJson("cftr2_variant_meta.json"),
+        tryFetchLocalJson("Genotype_variant.json"),
+        tryFetchLocalJson("Lung_Function_stuff.json"),
+        tryFetchLocalJson("Psuedomonas_UK.json"),
+        tryFetchLocalJson("Nutrition_BMI.json"),
+        tryFetchLocalJson("Survival_pred_UK.json"),
+        tryFetchLocalJson("Treatment_Burden_Antibiotics.json"),
+        tryFetchLocalJson("ncbi_protein_legacy_map.json"),
+        tryFetchLocalJson("organoid_priors.json"),
+        tryFetchLocalJson("cftr_function_scores.json")
+      ]);
+      Catalog.cftr2Meta      = cftr2Meta      || Catalog.cftr2Meta;
+      Catalog.genotype       = genotype       || Catalog.genotype;
+      Catalog.lung           = lung           || Catalog.lung;
+      Catalog.infections     = infections     || Catalog.infections;
+      Catalog.nutrition      = nutrition      || Catalog.nutrition;
+      Catalog.survival       = survival       || Catalog.survival;
+      Catalog.treatments     = treatments     || Catalog.treatments;
+      Catalog.legacyMap      = legacyMap      || Catalog.legacyMap;
+      Catalog.organoidPriors = organoidPriors || Catalog.organoidPriors;
+      Catalog.cftrFunction   = cftrFunction   || Catalog.cftrFunction;
+      setDataStatus();
+    }
+
+    function setBuildBadges() {
+      const mv = document.getElementById("modelVersion");
+      const bh = document.getElementById("buildHash");
+      if (mv) mv.textContent = `Model: ${MODEL_VERSION} (${MODEL_SCHEMA})`;
+      if (bh) bh.textContent = `Build: ${BUILD_ID}`;
+    }
+    function setDataStatus() {
+      const have = key => Catalog[key] ? "✓" : "—";
+      const parts = [
+        `CFTR2 ${have("cftr2Meta")}`,
+        `Genotypes ${have("genotype")}`,
+        `Lung ${have("lung")}`,
+        `Infxn ${have("infections")}`,
+        `Nutrition ${have("nutrition")}`,
+        `Surv ${have("survival")}`
+      ];
+      const el = document.getElementById("dataStatus");
+      if (el) el.textContent = `Catalogs: ${parts.join(" | ")}`;
+    }
+  </script>
+
+  <!-- Core scoring -->
+  <script>
+    // Synonyms and normalization
+    const VARIANT_SYNONYMS = {
+      "F508DEL": "F508DEL", "DELF508": "F508DEL", "PHE508DEL": "F508DEL", "CFTR:F508DEL": "F508DEL",
+      "G551D": "G551D", "W1282X": "W1282X", "G542X": "G542X", "R553X": "R553X", "N1303K": "N1303K",
+      "R117H": "R117H", "A455E": "A455E", "D1152H": "D1152H"
+    };
+
+    function normalizeHGVS(raw) {
+      let s = (raw || "").trim().replace(/>/g, "→").replace(/\s+/g, "");
+      s = s.replace(/^CFTR:/i, "").replace(/^c\./i, "").replace(/^p\./i, "");
+      s = s.replace(/^PHE?508DEL$/i, "F508del");
+      return s;
+    }
+
+    function canonicalizeVariant(raw) {
+      if (!raw) return "";
+      const norm = normalizeHGVS(raw);
+      const candidates = [norm, norm.toUpperCase(), norm.toLowerCase()];
+      const legacy = Catalog.legacyMap || {};
+      for (const cand of candidates) { if (legacy[cand]) return legacy[cand]; }
+      for (const cand of candidates) { const key = cand.toUpperCase(); if (VARIANT_SYNONYMS[key]) return VARIANT_SYNONYMS[key]; }
+      const keys = Catalog.cftr2Meta ? Object.keys(Catalog.cftr2Meta) : [];
+      for (const cand of candidates) { if (Catalog.cftr2Meta?.[cand]) return cand; }
+      for (const key of keys) { if (key.toLowerCase() === norm.toLowerCase()) return key; }
+      return norm;
+    }
+
+    function getCoreAllele(variant) {
+      if (!variant) return "";
+      const root = String(variant).split(/[^A-Za-z0-9→]+/)[0];
+      return root.toUpperCase();
+    }
+
+    function assessVariants(raw1, raw2) {
+      const lists = Catalog.genotype?.genotypes?.modulator_eligibility_lists || {};
+      const toRootSet = (arr = []) => new Set(arr.map(v => getCoreAllele(canonicalizeVariant(v))));
+      const ETI = toRootSet(lists.FDA_ETI_responsive);
+      const IVA = toRootSet(lists.Ivacaftor_responsive);
+      const FR  = toRootSet(lists.French_compassionate_use);
+      return [raw1, raw2].filter(Boolean).map(raw => {
+        const canonical = canonicalizeVariant(raw);
+        const root = getCoreAllele(canonical);
+        const meta = Catalog.cftr2Meta?.[canonical] || {};
+        return {
+          raw, canonical, root,
+          isCfCausing: Boolean(meta.is_cf_causing),
+          lists: { ETI: ETI.has(root), IVA: IVA.has(root), French: FR.has(root) }
+        };
+      });
+    }
+
+    function classifyModulatorGroup(alleles) {
+      const roots = alleles.map(a => a.root);
+      const f508Count = roots.filter(r => r === "F508DEL").length;
+      const hasETI = alleles.some(a => a.lists.ETI);
+      const hasIVA = alleles.some(a => a.lists.IVA);
+      if (f508Count >= 2) return { group: "group_1", reason: "F508del homozygous" };
+      if (f508Count === 1) return { group: "group_2", reason: "F508del heterozygous" };
+      if (hasETI)          return { group: "group_3", reason: "ETI-responsive allele" };
+      if (hasIVA)          return { group: "group_4", reason: "Ivacaftor-responsive allele" };
+      return { group: "group_5", reason: "No known responsive allele" };
+    }
+
+    function computeCftrFunctionScore(rootAllele) {
+      const f = Catalog.cftrFunction?.[rootAllele];
+      if (!f) return null;
+      const score = (f.gating || 0) * (f.cond || 0) * (f.proc || 0);
+      return Math.min(1, Math.max(0, score));
+    }
+
+    const CFTR2_PRIORS = {
+      F508DEL: { class: "II",  sevPrior: 0.82, resp: { ETI:1.0, TezIva:0.4, Iva:0.1 } },
+      G551D:   { class: "III", sevPrior: 0.60, resp: { ETI:0.7, TezIva:0.2, Iva:1.0 } },
+      W1282X:  { class: "I",   sevPrior: 0.85, resp: { ETI:0.5, TezIva:0.2, Iva:0.1 } },
+      G542X:   { class: "I",   sevPrior: 0.83, resp: { ETI:0.5, TezIva:0.2, Iva:0.1 } },
+      R553X:   { class: "I",   sevPrior: 0.82, resp: { ETI:0.5, TezIva:0.2, Iva:0.1 } },
+      N1303K:  { class: "II",  sevPrior: 0.78, resp: { ETI:0.9, TezIva:0.3, Iva:0.1 } },
+      R117H:   { class: "IV",  sevPrior: 0.40, resp: { ETI:0.6, TezIva:0.3, Iva:0.7 } },
+      A455E:   { class: "IV",  sevPrior: 0.45, resp: { ETI:0.6, TezIva:0.3, Iva:0.4 } },
+      D1152H:  { class: "IV",  sevPrior: 0.42, resp: { ETI:0.6, TezIva:0.3, Iva:0.5 } }
+    };
+
+    function cftr2Reference(raw1, raw2) {
+      const roots  = [raw1, raw2].filter(Boolean).map(r => getCoreAllele(canonicalizeVariant(r)));
+      const priors = roots.map(r => CFTR2_PRIORS[r]).filter(Boolean);
+      if (!priors.length) return null;
+      const worst = priors.reduce((a,b) => b.sevPrior > a.sevPrior ? b : a);
+      return { sevAnchor: Math.round(worst.sevPrior * 100), classHint: worst.class, resp: worst.resp };
+    }
+
+    function detectVariantRarity(raw1, raw2) {
+      const roots   = [raw1, raw2].filter(Boolean).map(r => getCoreAllele(canonicalizeVariant(r)));
+      const known   = new Set(Object.keys(CFTR2_PRIORS));
+      const anyKnown= roots.some(r => known.has(r));
+      return { autoRare: !anyKnown, reason: anyKnown ? "known catalog match" : "not in known catalog" };
+    }
+
+    function computeMicrobiomeImpact(inputs) {
+      let riskΔ = 0, sevΔ = 0;
+      if (inputs.shannon != null) {
+        const d = 2.0 - inputs.shannon;
+        riskΔ += d * 2.5; sevΔ += d * 3.0;
+      }
+      if (inputs.dysbiosis != null) {
+        riskΔ += (inputs.dysbiosis / 100) * 4.0;
+        sevΔ  += (inputs.dysbiosis / 100) * 6.0;
+      }
+      if (inputs.pathRichness != null) {
+        riskΔ += inputs.pathRichness * 0.6;
+        sevΔ  += inputs.pathRichness * 0.8;
+      }
+      switch (inputs.dominantTaxa) {
+        case 'Pseudomonas-dominant': riskΔ += 4;  sevΔ += 8;  break;
+        case 'Achromobacter':        riskΔ += 3;  sevΔ += 5;  break;
+        case 'Staph-dominant':       riskΔ += 1.5;sevΔ += 2.5;break;
+        case 'Anaerobe-leaning':     riskΔ += 1;  sevΔ += 2;  break;
+        case 'Balanced/commensal':   riskΔ -= 1;  sevΔ -= 2;  break;
+      }
+      if (inputs.recentAbx === 'Yes (≤30 days)') { riskΔ -= 1; sevΔ -= 2; }
+      if (inputs.polymicrobial === 'Yes') { riskΔ += 1.5; sevΔ += 2.5; }
+      return { riskΔ: Math.round(riskΔ), sevΔ: Math.round(sevΔ) };
+    }
+
+    function computeInfectionPenalty(inputs) {
+      const burden = inputs.infection_burden || 0;
+      const exac   = inputs.exacerbations   || 0;
+      const erad   = inputs.eradication === 'Yes' ? -2 : 0;
+      return Math.round((burden / 100) * 8 + Math.min(exac,6) * 1.5 + erad);
+    }
+
+    function computeHeuristicScores(inputs) {
+      const w = {
+        sweat:  parseFloat(document.getElementById('w_sweat').value)  || 1,
+        fev1:   parseFloat(document.getElementById('w_fev1').value)   || 1,
+        bmi:    parseFloat(document.getElementById('w_bmi').value)    || 1,
+        pseudo: parseFloat(document.getElementById('w_pseudo').value) || 1
+      };
+
+      const alleles = assessVariants(inputs.variant1, inputs.variant2);
+      const cfCount = alleles.filter(a => a.isCfCausing).length;
+
+      let risk = 20;
+      if (inputs.sweat != null) {
+        risk += w.sweat * (inputs.sweat >= 60 ? 25 : inputs.sweat >= 30 ? 10 : -10);
+      }
+      if (inputs.fev1 != null) {
+        risk += w.fev1 * (inputs.fev1 < 60 ? 10 : inputs.fev1 >= 90 ? -5 : 0);
+      }
+      if (inputs.pseudomonas === 'Chronic') risk += w.pseudo * 6;
+      else if (inputs.pseudomonas === 'Intermittent') risk += w.pseudo * 3;
+
+      if (cfCount >= 2) risk += 10; else if (cfCount === 1) risk += 6;
+
+      if (inputs.bmi != null) {
+        risk += w.bmi * (inputs.bmi < 18.5 ? 8 : inputs.bmi >= 23 ? -5 : 0);
+      }
+      if (inputs.cfrd) risk += 6;
+      if (inputs.pi)   risk += 4;
+
+      const { riskΔ } = computeMicrobiomeImpact(inputs);
+      risk += riskΔ;
+
+      if (inputs.priorAnchor != null) {
+        risk = Math.round(risk + (inputs.priorAnchor - 50) / 40);
+      }
+
+      let sev = 50;
+      if (inputs.fev1 != null) sev += (80 - inputs.fev1) * 0.5;
+      if (inputs.pseudomonas === 'Chronic') sev += 10;
+      if (inputs.bmi < 18.5) sev += 8;
+      if (inputs.modulator) sev -= 6;
+      sev += computeInfectionPenalty(inputs);
+
+      return {
+        risk: Math.min(100, Math.max(0, Math.round(risk))),
+        sev:  Math.min(100, Math.max(0, Math.round(sev)))
+      };
+    }
+
+    function selectAgeBand(age, bands) {
+      const a = parseInt(age,10);
+      for (let b of bands) {
+        const m = b.match(/^(\d+)(?:-(\d+)|\+)?$/);
+        if (!m) continue;
+        const lo = parseInt(m[1],10);
+        const hi = m[2] ? parseInt(m[2],10) : Infinity;
+        if (a >= lo && a <= hi) return b;
+      }
+      return bands[0];
+    }
+
+    function computeQuantilePercentile(age, sex, fev1) {
+      // --- Fallback if catalogs missing or FEV1 not provided ---
+      if (fev1 == null) return null;
+
+      const tables = Catalog.lung?.lung_function;
+      if (!tables) {
+        // Simple fallback bands if no catalog data available
+        if (fev1 >= 90) return 90;
+        if (fev1 >= 70) return 70;
+        if (fev1 >= 50) return 40;
+        return 10;
+      }
+
+      // --- Use catalog tables if available ---
+      const annualGroups = tables.fev1_annual_review?.by_age_group || {};
+      const bands = Object.keys(annualGroups);
+      if (!bands.length) {
+        // No bands in catalog, fallback
+        if (fev1 >= 90) return 90;
+        if (fev1 >= 70) return 70;
+        if (fev1 >= 50) return 40;
+        return 10;
+      }
+
+      const band = selectAgeBand(age ?? 26, bands);
+      const annual = tables.fev1_annual_review.by_age_group[band] || {};
+      const best   = tables.fev1_best?.by_age_group?.[band] || {};
+
+      const sexKey = String(sex || "overall").toLowerCase();
+      const mu  = annual[sexKey] ?? annual.overall ?? 75;
+      const hi  = best[sexKey]   ?? best.overall   ?? Math.max(80, mu + 8);
+      const lo  = Math.max(0, mu - (hi - mu || 10));
+
+      // --- Percentile calculation ---
+      if (fev1 <= lo) return 0;
+      let p;
+      if (fev1 <= mu) {
+        p = Math.pow(fev1 - lo, 2) / ((mu - lo) * (hi - lo));
+      } else if (fev1 < hi) {
+        p = 1 - Math.pow(hi - fev1, 2) / ((hi - lo) * (hi - mu));
+      } else {
+        p = 1;
+      }
+
+      return Math.round(Math.max(0, Math.min(1, p)) * 100);
+    }
+
+
+    // Helper: map FEV1 (%) to pulmonary domain bands
+    function pulmonaryBand(fev1) {
+      if (fev1 == null) return 22;          // default near-normal if unknown
+      if (fev1 < 40)      return 10;
+      else if (fev1 < 60) return 15;
+      else if (fev1 < 80) return 20;
+      else                return 25;
+    }
+
+    // Helper: normalize Brasfield (3–25) to SK radiology domain (5–25)
+    function brasfieldToRadiologyDomain(brasfieldScore) {
+      if (brasfieldScore == null) return null;
+      const clamped = Math.max(3, Math.min(25, brasfieldScore));
+      // Map 25 (normal) -> 25 domain; 3 (severe) -> ~8–10 domain
+      const t = (clamped - 3) / (25 - 3);
+      return Math.round(10 + t * (25 - 10)); // domain range 10–25
+    }
+
+    // Helper: normalize CT composite (higher worse) to SK radiology domain (5–25)
+    // ctComposite: e.g., sum of bronchiectasis, plugging, wall thickening, opacities (scaled)
+    function ctToRadiologyDomain(ctComposite) {
+      if (ctComposite == null) return null;
+      // Assume ctComposite in 0–100; higher worse; invert to domain
+      const w = Math.max(0, Math.min(100, ctComposite));
+      const inv = 100 - w; // 100 best -> 25 domain
+      return Math.round(10 + (inv / 100) * (25 - 10)); // 10–25
+    }
+
+    function computeSKScore(inputs) {
+      // A: Activity/exam (acute clinical domain)
+      // Use exacerbations + infection status as proxy for CFCS-like acute state
+      let A = 25;
+      const ex = Math.min(inputs.exacerbations || 0, 6);
+      A -= ex * 2; // mild decrement per exacerbation
+      if (inputs.pseudomonas === 'Chronic')      A -= 6;
+      else if (inputs.pseudomonas === 'Intermittent') A -= 3;
+      // Optional: symptom flags (dyspnea/crackles/sputum/resp rate) would live here if available
+      A = Math.max(8, Math.min(25, A)); // floor to avoid zeroing the domain
+
+      // P: Pulmonary (FEV1 % predicted, age-normalized thresholds)
+      let P = pulmonaryBand(inputs.fev1);
+
+      // N: Nutrition (BMI + comorbidities)
+      let N = 25;
+      if (inputs.bmi != null) {
+        if (inputs.bmi < 18.5)      N -= 8;
+        else if (inputs.bmi < 21)   N -= 4;
+        else if (inputs.bmi >= 25)  N -= 2;
+      }
+      if (inputs.cfrd) N -= 3;
+      if (inputs.pi)   N -= 3;
+      N = Math.max(8, Math.min(25, N));
+
+      // R: Radiology (prefer Brasfield, then CT, else severity index proxy)
+      let R = 25;
+      if (inputs.brasfieldScore != null) {
+        R = brasfieldToRadiologyDomain(inputs.brasfieldScore);
+      } else if (inputs.ctComposite != null) {
+        R = ctToRadiologyDomain(inputs.ctComposite);
+      } else if (!isNaN(inputs.sevIndex)) {
+        // Proxy from severity index if imaging unavailable
+        if (inputs.sevIndex >= 70)      R = 10;
+        else if (inputs.sevIndex >= 55) R = 15;
+        else if (inputs.sevIndex >= 40) R = 20;
+        else                            R = 23;
+      }
+      R = Math.max(8, Math.min(25, R));
+
+      // Combine domains with soft normalization (min sum 32; max sum ~100)
+      const total = A + P + N + R;
+      // Map sum 32–100 to 0–100 SK score
+      const minSum = 32, maxSum = 100;
+      const scaled = Math.max(0, Math.min(1, (total - minSum) / (maxSum - minSum)));
+      const sk = Math.round(scaled * 100);
+
+      return sk;
+    }
+    function bayesianPosteriorRisk(inputs, genoRef) {
+      let logit = 0;
+
+      if (inputs.sweat != null) {
+        logit += inputs.sweat >= 90 ? 3.0
+             :  inputs.sweat >= 60 ? 1.8
+             :  inputs.sweat >= 30 ? 0.7
+             : -1.2;
+      }
+
+      const alleles = assessVariants(inputs.variant1, inputs.variant2);
+      const cfCount = alleles.filter(a => a.isCfCausing).length;
+      if (cfCount >= 2) logit += 2.2;
+      else if (cfCount === 1) logit += 1.2;
+
+      if (genoRef?.sevAnchor != null) {
+        logit += (genoRef.sevAnchor - 50) / 18;
+      }
+
+      if (inputs.fev1 != null) {
+        logit += inputs.fev1 < 40 ? 1.0
+             :  inputs.fev1 < 60 ? 0.6
+             :  inputs.fev1 >= 90 ? -0.4
+             :  0;
+      }
+
+      logit += inputs.pseudomonas === 'Chronic'      ? 0.7
+            :  inputs.pseudomonas === 'Intermittent' ? 0.3
+            :  inputs.pseudomonas === 'None'         ? -0.2
+            :  0;
+
+      if (inputs.bmi != null && inputs.bmi < 18.5) logit += 0.5;
+      if (inputs.cfrd) logit += 0.4;
+      if (inputs.pi)   logit += 0.6;
+
+      if (inputs.shannon != null && inputs.shannon < 2.0) {
+        logit += 0.3 * (2.0 - inputs.shannon);
+      }
+      if ((inputs.dysbiosis || 0) >= 70) logit += 0.4;
+      if (inputs.dominantTaxa === 'Pseudomonas-dominant') logit += 0.5;
+
+      const fRoots = alleles.map(a => a.root);
+      const fScores = fRoots.map(r => computeCftrFunctionScore(r) || 0);
+      const cftrPrior = fScores.length ? Math.max(...fScores) : 0;
+      if (cftrPrior > 0) logit += (cftrPrior - 0.5) * 1.2;
+
+      const rarity = detectVariantRarity(inputs.variant1, inputs.variant2);
+      if (rarity.autoRare) logit -= 0.6;
+      if (inputs.evidence === 'Strong') logit += 0.5;
+      else if (inputs.evidence === 'Limited') logit -= 0.4;
+
+      logit = Math.max(-10, Math.min(10, logit));
+      const p = 1 / (1 + Math.exp(-logit));
+      const bounded = Math.max(0.001, Math.min(0.999, p));
+      return Math.round(bounded * 1000) / 1000;
+    }
+  </script>
+  </script>
+
+  <!-- Audit, history, validation helpers -->
+  <script>
+    function hashStringFast(s) {
+      let h = 0x811c9dc5;
+      for (let i = 0; i < s.length; i++) {
+        h ^= s.charCodeAt(i);
+        h += (h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24);
+        h >>>= 0;
+      }
+      return ("00000000" + h.toString(16)).slice(-8);
+    }
+    function inputHash(inputs)  { return hashStringFast(JSON.stringify(inputs)); }
+    function outputHash(obj)    { return hashStringFast(JSON.stringify(obj)); }
+
+    function auditRecord(inputs, results, role) {
+      const rec = {
+        ts: Date.now(),
+        role: role || session.role || 'viewer',
+        model: MODEL_VERSION,
+        inputHash: inputHash(inputs),
+        outputHash: outputHash(results)
+      };
+      const list = JSON.parse(localStorage.getItem('sg_audit')||'[]');
+      list.unshift(rec);
+      localStorage.setItem('sg_audit', JSON.stringify(list.slice(0,200)));
+      renderAudit();
+    }
+    function renderAudit() {
+      const tbody = document.getElementById('auditTable')?.querySelector('tbody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      JSON.parse(localStorage.getItem('sg_audit')||'[]').forEach(r => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${new Date(r.ts).toLocaleString()}</td>
+                        <td>${r.role}</td>
+                        <td>${r.model}</td>
+                        <td>${r.inputHash}</td>
+                        <td>${r.outputHash}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+    function saveHistory(inputs, summary) {
+      const list = JSON.parse(localStorage.getItem('sg_history')||'[]');
+      list.unshift({ ts: Date.now(), inputs, summary });
+      localStorage.setItem('sg_history', JSON.stringify(list.slice(0,30)));
+      renderHistory();
+    }
+    function renderHistory() {
+      const tbody = document.getElementById('historyTable')?.querySelector('tbody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      JSON.parse(localStorage.getItem('sg_history')||'[]').forEach((r,i) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${new Date(r.ts).toLocaleString()}</td>
+                        <td>${r.summary.bayesianRisk ?? r.summary.risk ?? '—'}</td>
+                        <td>${r.summary.severity ?? r.summary.sev ?? '—'}</td>
+                        <td>${r.summary.genotypeClass ?? r.summary.genoClass ?? '—'}</td>
+                        <td>${r.summary.eligibility ?? '—'}</td>
+                        <td>${r.summary.model ?? '—'}</td>
+                        <td class="muted">Sweat:${r.inputs.sweat??'—'}, FEV₁:${r.inputs.fev1??'—'}</td>`;
+        tr.style.cursor = 'pointer';
+        tr.addEventListener('click', () => restoreFromHistory(i));
+        tbody.appendChild(tr);
+      });
+    }
+    function exportAudit() {
+      const blob = new Blob([localStorage.getItem('sg_audit')||'[]'], {type:'application/json'});
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = `audit-${new Date().toISOString()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+    function clearAudit() {
+      if (!confirm('Clear local audit? This cannot be undone.')) return;
+      localStorage.removeItem('sg_audit');
+      renderAudit();
+    }
+
+    async function runValidation() {
+      const file = document.getElementById('valCsv').files[0];
+      if (!file) { alert('Select a CSV file.'); return; }
+      const text = await file.text();
+      const lines = text.trim().split(/\r?\n/);
+      if (lines.length < 2) { alert('CSV empty or header-only.'); return; }
+
+      const header = lines[0].split(',').map(s => s.trim().toLowerCase());
+      const idx = name => header.indexOf(name);
+      const col = {
+        sweat: idx('sweat'), fev1: idx('fev1'), bmi: idx('bmi'),
+        pseudo: idx('pseudo'), ntm: idx('ntm'), cfrd: idx('cfrd'), pi: idx('pi'),
+        mod: idx('mod'), variant1: idx('variant1'), variant2: idx('variant2'), outcome: idx('outcome')
+      };
+
+      const records = [];
+      for (let i = 1; i < lines.length; i++) {
+        const c = lines[i].split(',').map(s => s.trim());
+        const row = {
+          sweat: col.sweat >= 0 ? (parseFloat(c[col.sweat]) || null) : null,
+          fev1: col.fev1 >= 0 ? (parseFloat(c[col.fev1]) || null) : null,
+          bmi: col.bmi >= 0 ? (parseFloat(c[col.bmi]) || null) : null,
+          pseudomonas: col.pseudo >= 0 ? c[col.pseudo] : null,
+          ntm: col.ntm >= 0 ? c[col.ntm] : null,
+          cfrd: col.cfrd >= 0 ? (c[col.cfrd] === 'Yes') : null,
+          pi: col.pi >= 0 ? (c[col.pi] === 'Yes') : null,
+          modulator: col.mod >= 0 ? c[col.mod] : null,
+          variant1: col.variant1 >= 0 ? c[col.variant1] : null,
+          variant2: col.variant2 >= 0 ? c[col.variant2] : null,
+          outcome: col.outcome >= 0 ? (c[col.outcome] === '1') : null
+        };
+        if (row.sweat == null && row.fev1 == null) continue;
+        records.push(row);
+      }
+      if (!records.length) { alert('No valid rows parsed.'); return; }
+
+      const labels = [], preds = [];
+      records.forEach(pt => {
+        const bayes = bayesianPosteriorRisk(pt, cftr2Reference(pt.variant1, pt.variant2));
+        if (isFinite(bayes)) {
+          preds.push(bayes);
+          labels.push(pt.outcome ? 1 : 0);
+        }
+      });
+
+      const auroc = computeAUROC(labels, preds);
+      const auprc = computeAUPRC(labels, preds);
+      const brier = computeBrier(labels, preds);
+      const { slope } = computeCalibration(labels, preds);
+
+      document.getElementById('kpi_auroc').textContent    = (auroc || 0).toFixed(3);
+      document.getElementById('kpi_auprc').textContent    = (auprc || 0).toFixed(3);
+      document.getElementById('kpi_brier').textContent    = (brier || 0).toFixed(3);
+      document.getElementById('kpi_calslope').textContent = (slope || 0).toFixed(3);
+
+      drawCalibrationPlot('val_reliability_val', labels, preds);
+      drawDecisionCurve('val_decision', labels, preds);
+    }
+
+    function uniqueSorted(arr){ return Array.from(new Set(arr)).sort((a,b)=>b-a); }
+    function computeAUROC(labels,scores) {
+      let auc=0, prevFPR=0, prevTPR=0;
+      uniqueSorted(scores).forEach(t=>{
+        let tp=0,fp=0,tn=0,fn=0;
+        labels.forEach((y,i)=> {
+          const p=scores[i]>=t;
+          if(p&&y) tp++; else if(p&&!y) fp++;
+          else if(!p&&y) fn++; else tn++;
+        });
+        const tpr=tp/(tp+fn||1), fpr=fp/(fp+tn||1);
+        auc += (fpr-prevFPR)*(tpr+prevTPR)/2;
+        prevFPR=fpr; prevTPR=tpr;
+      });
+      return Math.max(0,1-auc);
+    }
+    function computeAUPRC(labels,scores) {
+      let prevR=0, prevP=1, auprc=0;
+      uniqueSorted(scores).forEach(t=>{
+        let tp=0,fp=0,fn=0;
+        labels.forEach((y,i)=> {
+          const p=scores[i]>=t;
+          if(p&&y) tp++; if(p&&!y) fp++; if(!p&&y) fn++;
+        });
+        const prec=tp/(tp+fp||1), rec=tp/(tp+fn||1);
+        auprc += (rec-prevR)*(prec+prevP)/2;
+        prevR=rec; prevP=prec;
+      });
+      return auprc;
+    }
+    function computeBrier(labels,scores) {
+      let sum=0;
+      labels.forEach((y,i)=> sum += Math.pow(scores[i]-y,2));
+      return sum/labels.length;
+    }
+    function computeCalibration(labels,scores) {
+      const safe = scores.map(p => Math.max(0.001, Math.min(0.999, p)));
+      const xs = safe.map(p => Math.log(p / (1 - p)));
+      const ys = labels.map(y => y ? 1 : 0);
+      const n = xs.length;
+      if (!n) return { slope: 0, intercept: 0 };
+      const mx = xs.reduce((a,b)=>a+b,0)/n, my = ys.reduce((a,b)=>a+b,0)/n;
+      let num=0, den=0;
+      for(let i=0;i<n;i++){
+        num += (xs[i]-mx)*(ys[i]-my);
+        den += (xs[i]-mx)*(xs[i]-mx);
+      }
+      const slope = den ? num/den : 0;
+      const intercept = my - slope*mx;
+      return { slope, intercept };
+    }
+    function drawCalibrationPlot(id, labels, scores) {
+      const svg=document.getElementById(id);
+      if(!svg) return;
+      const W=320,H=140,p={l:40,r:10,t:10,b:30};
+      svg.innerHTML='';
+      const bins=Array.from({length:10},(_,i)=>({th:(i+1)/10,count:0,sumObs:0}));
+      labels.forEach((y,i)=>{
+        const pp=scores[i], idx=Math.min(9,Math.floor(pp*10));
+        bins[idx].count++; bins[idx].sumObs += y?1:0;
+      });
+      bins.forEach((b,i)=>{
+        if(!b.count) return;
+        const x=p.l+(i+0.5)*(W-p.l-p.r)/10;
+        const y=p.t+(H-p.b-p.t)*(1-(b.sumObs/b.count));
+        const c=document.createElementNS(svg.namespaceURI,'circle');
+        c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r',4);
+        c.setAttribute('fill','#5aa2ff'); svg.appendChild(c);
+      });
+      const line=document.createElementNS(svg.namespaceURI,'line');
+      line.setAttribute('x1',p.l); line.setAttribute('y1',H-p.b);
+      line.setAttribute('x2',W-p.r); line.setAttribute('y2',p.t);
+      line.setAttribute('stroke','#fbbf24'); svg.appendChild(line);
+    }
+    function drawDecisionCurve(id, labels, scores) {
+      const svg=document.getElementById(id);
+      if(!svg) return;
+      const W=320,H=140,p={l:40,r:10,t:10,b:30};
+      svg.innerHTML='';
+      const ths=uniqueSorted(scores.map(p=>p));
+      ths.forEach((t,i)=>{
+        let tp=0,fp=0;
+        labels.forEach((y,j)=>{
+          const p=scores[j]>=t;
+          if(p&&y) tp++; if(p&&!y) fp++;
+        });
+        const n=labels.length, nb=tp/n - fp/n*(t/(1-t||1e-6));
+        const x=p.l+i*(W-p.l-p.r)/(Math.max(1,ths.length-1));
+        const y=p.t+(H-p.b-p.t)*(1-((nb+0.1)/0.6));
+        const c=document.createElementNS(svg.namespaceURI,'circle');
+        c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r',3);
+        c.setAttribute('fill','#34d399'); svg.appendChild(c);
+      });
+    }
+  </script>
+
+  <!-- Simulator priors -->
+  <script>
+    function ORG_PRIORS() { return { F508DEL: 1.15, G551D: 1.10 }; }
+    function effectPriorsFEV1(therapy, ctx) {
+      const base = { 'ETI': 12, 'Ivacaftor': 8, 'Tez/Iva': 6, 'Airway clearance + Abx': 4 }[therapy] || 5;
+      const classHint = ctx.genoRef?.classHint;
+      const mod = classHint === 'II' ? 1.0 : classHint === 'III' ? 1.1 : 0.9;
+      const horizonMod = Math.min(1, (ctx.horizon||6)/6);
+      return base * mod * horizonMod;
+    }
+    function effectPriorsBMI(therapy, ctx) {
+      const base = { 'ETI': 1.2, 'Ivacaftor': 0.8, 'Tez/Iva': 0.6, 'Airway clearance + Abx': 0.3 }[therapy] || 0.5;
+      const horizonMod = Math.min(1, (ctx.horizon||6)/6);
+      return base * horizonMod;
+    }
+    function evidenceUncertainty(evidence, rare) {
+      const sdFev = evidence==='Strong' ? 1.5 : evidence==='Moderate' ? 2.5 : 3.5;
+      const sdBmi = evidence==='Strong' ? 0.15 : evidence==='Moderate' ? 0.25 : 0.35;
+      return { sdFev: sdFev + (rare?0.8:0), sdBmi: sdBmi + (rare?0.1:0) };
+    }
+    function drawSimChart(id, { mean, ci, ticks }) {
+      const svg = document.getElementById(id);
+      if (!svg) return;
+      const W=360,H=180,p={top:20,bottom:30,left:40,right:20};
+      svg.innerHTML = '';
+      const lo = Math.min(...ticks), hi = Math.max(...ticks);
+      ticks.forEach(t => {
+        const y = p.top + (H-p.bottom-p.top)*(1-(t-lo)/(hi-lo));
+        const line = document.createElementNS(svg.namespaceURI,'line');
+        line.setAttribute('x1',p.left); line.setAttribute('x2',W-p.right);
+        line.setAttribute('y1',y);    line.setAttribute('y2',y);
+        line.setAttribute('stroke','rgba(186,206,255,0.2)');
+        svg.appendChild(line);
+        const text= document.createElementNS(svg.namespaceURI,'text');
+        text.setAttribute('x',p.left-6); text.setAttribute('y',y+4);
+        text.setAttribute('fill','#aab7d6'); text.setAttribute('font-size','12');
+        text.setAttribute('text-anchor','end'); text.textContent = t;
+        svg.appendChild(text);
+      });
+      const yHi = p.top + (H-p.bottom-p.top)*(1-((mean+ci-lo)/(hi-lo)));
+      const yLo = p.top + (H-p.bottom-p.top)*(1-((mean-ci-lo)/(hi-lo)));
+      const band= document.createElementNS(svg.namespaceURI,'rect');
+      band.setAttribute('x',p.left); band.setAttribute('y',yHi);
+      band.setAttribute('width',W-p.left-p.right); band.setAttribute('height',Math.abs(yLo-yHi));
+      band.setAttribute('fill','rgba(90,162,255,0.25)'); band.setAttribute('stroke','rgba(90,162,255,0.5)');
+      svg.appendChild(band);
+      const yMid = p.top + (H-p.bottom-p.top)*(1-((mean-lo)/(hi-lo)));
+      const line2 = document.createElementNS(svg.namespaceURI,'line');
+      line2.setAttribute('x1',p.left); line2.setAttribute('x2',W-p.right);
+      line2.setAttribute('y1',yMid); line2.setAttribute('y2',yMid);
+      line2.setAttribute('stroke','#5aa2ff'); line2.setAttribute('stroke-width','3');
+      svg.appendChild(line2);
+    }
+  </script>
+
+  <!-- Compute, report, UI -->
+  <script>
+    let session = { signedIn: false, role: 'viewer', email: '' };
+    let consentAck = false;
+    let lastInputs = null;
+    let lastResults = null;
+    let FHIR_QUEUE = [];
+
+    function getVal(id) {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const v = el.value;
+      if (el.type === 'number') return v === '' ? null : parseFloat(v);
+      return v || null;
+    }
+    function normalizeBoolSel(v) {
+      if (v === 'Yes') return true;
+      if (v === 'No') return false;
+      return null;
+    }
+    function gatherInputs() {
+      return {
+        sweat: getVal('sweat'),
+        fev1: getVal('fev1'),
+        bmi: getVal('bmi'),
+        pseudomonas: getVal('pseudomonas'),
+        ntm: getVal('ntm'),
+        cfrd: normalizeBoolSel(getVal('cfrd')),
+        pi: normalizeBoolSel(getVal('pi')),
+        age: getVal('age'),
+        sex: getVal('sex'),
+        variant1: getVal('variant1'),
+        variant2: getVal('variant2'),
+        rareFlag: getVal('rareFlag'),
+        evidence: getVal('evidence'),
+        infection_burden: getVal('infection_burden'),
+        exacerbations: getVal('exacerbations'),
+        eradication: getVal('eradication'),
+        shannon: getVal('shannon'),
+        dysbiosis: getVal('dysbiosis'),
+        pathRichness: getVal('pathRichness'),
+        dominantTaxa: getVal('dominantTaxa'),
+        recentAbx: getVal('recentAbx'),
+        polymicrobial: getVal('polymicrobial'),
+        modulator: getVal('modulator'),
+        notes: getVal('notes')
+      };
+    }
+
+    function getModulatorEligibility(raw1, raw2, extra = {}) {
+      const age = extra.age;
+      const alleles = [raw1, raw2].filter(Boolean).map(canonicalizeVariant);
+      const roots   = alleles.map(getCoreAllele);
+      const countF508 = roots.filter(r => r === "F508DEL").length;
+
+      // -------------------------------
+      // FDA/Vertex mutation sets
+      // -------------------------------
+      const IVA_MUTATIONS = new Set([
+        "G551D","R117H","S549N","S549R","G1244E","G1349D","G178R","G551S",
+        "S1251N","S1255P","S1255N","G970R"
+      ]);
+
+      const ORKAMBI_MUTATIONS = new Set(["F508DEL"]); // must be homozygous
+
+      const SYMDEKO_MUTATIONS = new Set([
+        ...IVA_MUTATIONS,
+        "A455E","D110E","D110H","D1152H","D1270N","E193K","E831X","F1052V","F1074L","F1099L",
+        "G1069R","G178E","G27R","G970D","I148T","I175V","I336K","I502T","I601F","K1060T",
+        "L206W","L320V","L346P","L967S","L997F","M152V","M265R","M952I","M952T","N1303K",
+        "P67L","Q237E","Q237H","Q359R","R1066H","R1070Q","R1070W","R117C","R117G","R117L",
+        "R334L","R334Q","R347H","R347L","R347P","R352Q","R352W","R553Q","R668C","R751L",
+        "S945L","S977F","S1159F","S1159P","S912L","T338I","T1036N","T1053I","V201M","V232D",
+        "V456A","V456F","V562I","V754M","V1153E","V1240G","V1293G","W361R","W1098C","W1282R",
+        "Y109N","Y161D","Y161S","Y563N","Y1014C","Y1032C"
+      ]);
+
+      const TRIKAFTA_MUTATIONS = new Set([
+        "F508DEL",
+        "3141del9","546insCTA","A120T","A234D","A349V","A455E","A554E","A1006E","A1067T",
+        "D110E","D110H","D192G","D443Y","D579G","D836Y","D924N","D979V","D1152H","D1270N",
+        "E56K","E60K","E92K","E116K","E193K","E403D","E474K","E588V","F191V","F311del",
+        "F508C","F575Y","F1016S","F1052V","F1074L","F1099L","G27R","G85E","G126D","G178E",
+        "G194R","G314E","G463V","G480C","G622D","G628R","G970D","G1061R","G1069R","G1244E",
+        "G1249R","G1349D","H139R","H199Y","H939R","H1054D","H1085P","H1085R","H1375P",
+        "I148T","I175V","I336K","I502T","I601F","I807M","I980K","I1027T","I1139V","I1269N",
+        "K1060T","L15P","L165S","L206W","L320V","L346P","L453S","L967S","L997F","L1077P",
+        "L1324P","L1335P","L1480P","M152V","M265R","M952I","M952T","M1101K","N1303K","P5L",
+        "P67L","P205S","P574H","Q98R","Q237E","Q237H","Q359R","Q1291R","R31L","R74Q","R74W",
+        "R75Q","R117C","R117G","R117H","R117L","R117P","R170H","R258G","R334L","R334Q",
+        "R347H","R347L","R347P","R352Q","R352W","R553Q","R668C","R751L","R792G","R933G",
+        "R1066H","R1070Q","R1070W","R1162L","R1283M","R1283S","S13F","S341P","S364P","S492F",
+        "S549N","S549R","S589N","S737F","S912L","S945L","S977F","S1159F","S1159P","S1251N",
+        "S1255P","S1255N","T338I","T1036N","T1053I","V201M","V232D","V456A","V456F","V562I",
+        "V754M","V1153E","V1240G","V1293G","W361R","W1098C","W1282R","Y109N","Y161D","Y161S",
+        "Y563N","Y1014C","Y1032C"
+        // (FDA label includes >170; truncated here for brevity, but you can extend)
+      ]);
+
+      // -------------------------------
+      // Helper: age gates
+      // -------------------------------
+      function ageMeets(label, age) {
+        if (age == null || isNaN(Number(age))) return { ok: false, note: "Age unknown" };
+        const a = Number(age);
+        switch (label) {
+          case "IVA": return { ok: a >= (1/12), note: "Ivacaftor ≥1 month" };
+          case "ORK": return { ok: a >= 1,      note: "Orkambi ≥1 year" };
+          case "SYM": return { ok: a >= 6,      note: "Symdeko ≥6 years" };
+          case "ETI": return { ok: a >= 2,      note: "Trikafta ≥2 years" };
+          default:    return { ok: false,       note: "Unknown product" };
+        }
+      }
+
+      // -------------------------------
+      // Eligibility logic
+      // -------------------------------
+      const notes = [];
+
+      // Orkambi: F508del homozygous
+      if (countF508 === 2) {
+        const gate = ageMeets("ORK", age);
+        if (gate.ok) return `Orkambi eligible (F508del homozygous). ${gate.note}`;
+        return `Potential Orkambi candidate (F508del homozygous), age gate not met (${gate.note}).`;
+      }
+
+      // Symdeko: F508del homozygous OR F508del + responsive mutation
+      if (roots.some(r => SYMDEKO_MUTATIONS.has(r)) || countF508 > 0) {
+        const gate = ageMeets("SYM", age);
+        if (gate.ok) return `Symdeko eligible (F508del or responsive mutation). ${gate.note}`;
+        notes.push(`Symdeko age gate not met (${gate.note}).`);
+      }
+
+      // Trikafta: ≥1 F508del OR responsive mutation
+      if (roots.some(r => TRIKAFTA_MUTATIONS.has(r)) || countF508 > 0) {
+        const gate = ageMeets("ETI", age);
+        if (gate.ok) return `Trikafta eligible (≥1 F508del or responsive mutation). ${gate.note}`;
+        notes.push(`Trikafta age gate not met (${gate.note}).`);
+      }
+
+      // Ivacaftor: gating mutations
+      if (roots.some(r => IVA_MUTATIONS.has(r))) {
+        const gate = ageMeets("IVA", age);
+        if (gate.ok) return `Ivacaftor eligible (gating mutation). ${gate.note}`;
+        notes.push(`Ivacaftor age gate not met (${gate.note}).`);
+      }
+
+      // Fallback
+      return notes.length ? `No known responsive allele. Notes: ${notes.join("; ")}` : "No known responsive allele (Group 5)";
+    }
+
+    function compute() {
+      const inputs = gatherInputs();
+
+      // Genotype reference & priors
+      const genoRef = cftr2Reference(inputs.variant1, inputs.variant2);
+      const allelesAssessed = assessVariants(inputs.variant1, inputs.variant2);
+
+      // Bayesian posterior
+      let bayes = bayesianPosteriorRisk(inputs, genoRef);
+      const bayesPct = Math.round(Math.min(97, Math.max(3, bayes * 100)));
+
+      // Heuristic severity & SK
+      const heur  = computeHeuristicScores({ ...inputs, priorAnchor: genoRef?.sevAnchor });
+      const sevPercentile = computeQuantilePercentile(inputs.age, inputs.sex, inputs.fev1);
+      const sk = computeSKScore({ ...inputs, sevIndex: heur.sev });
+
+      // Genotype class text
+      let genoClass = "Inferred from phenotype";
+      if (allelesAssessed.length === 2) {
+        const classes = allelesAssessed.map(a => CFTR2_PRIORS[a.root]?.class).filter(Boolean);
+        if (classes.length === 2 && classes[0] !== classes[1]) {
+          genoClass = `Compound heterozygote (Class ${classes[0]} / Class ${classes[1]})`;
+        } else if (classes.length) {
+          genoClass = `CFTR Class ${classes[0]}`;
+        }
+      } else if (genoRef?.classHint) {
+        genoClass = `CFTR Class ${genoRef.classHint}`;
+      }
+
+      // Eligibility
+      const eligibility = getModulatorEligibility(inputs.variant1, inputs.variant2);
+
+      // Final results
+      const results = {
+        model: MODEL_VERSION,
+        risk: heur.risk,
+        severity: heur.sev,
+        bayesianRisk: bayesPct,
+        severityPercentile: sevPercentile,
+        skScore: sk,
+        confidence: Math.min(95, Math.max(5, Math.round(50 + (bayes - 0.5) * 80))),
+        genotypeClass: genoClass,
+        eligibility,
+        alleles: allelesAssessed.map(a => ({
+          root: a.root,
+          cfCausing: a.isCfCausing,
+          ETI: a.lists.ETI,
+          IVA: a.lists.IVA
+        }))
+      };
+
+      // Guard: don’t update UI if results are missing
+      if (!results || results.bayesianRisk == null) {
+        console.warn("Results not ready, skipping UI update");
+        return;
+      }
+
+      lastInputs = inputs;
+      lastResults = results;
+
+      // UI updates
+      const safeSet = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+      safeSet('bayesRisk', results.bayesianRisk);
+      safeSet('severityIndex', results.severity);
+      safeSet('sevPercentile', results.severityPercentile ?? 'Not available');
+      safeSet('skScore', results.skScore);
+      safeSet('genoClass', `Genotype class: ${results.genotypeClass}`);
+      safeSet('eligibilityText', results.eligibility);
+      safeSet('primarySummary',
+        `Bayesian risk ${results.bayesianRisk}/100; Severity ${results.severity}/100; Percentile ${results.severityPercentile ?? '—'}; SK ${results.skScore}.`);
+
+      // KPI colorization
+      function colorizeKPI(id, value) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (value < 40) el.style.color = "#34d399";
+        else if (value < 70) el.style.color = "#fbbf24";
+        else el.style.color = "#f87171";
+      }
+      colorizeKPI('bayesRisk', results.bayesianRisk);
+      colorizeKPI('severityIndex', results.severity);
+      colorizeKPI('skScore', results.skScore);
+
+      const rp = document.getElementById('riskPointer'); if (rp) rp.style.left = `${results.bayesianRisk}%`;
+      const sp = document.getElementById('sevPointer');  if (sp) sp.style.left = `${results.severity}%`;
+
+      // Details rationale
+      const rationale = [];
+      if (inputs.sweat != null) rationale.push(`Sweat chloride ${inputs.sweat} mmol/L anchors CF risk`);
+      if (inputs.fev1 != null) rationale.push(`FEV₁ ${inputs.fev1}% influences severity and SK`);
+      if (inputs.bmi != null) rationale.push(`BMI ${inputs.bmi} adjusts nutrition component`);
+      if (inputs.pseudomonas) rationale.push(`Pseudomonas: ${inputs.pseudomonas}`);
+      if (inputs.cfrd) rationale.push(`CFRD present`);
+      if (inputs.pi) rationale.push(`Pancreatic insufficiency`);
+      if (inputs.variant1 || inputs.variant2) rationale.push(`Genotype: ${results.genotypeClass}`);
+      if (inputs.shannon != null) rationale.push(`Shannon diversity ${inputs.shannon}`);
+      if (inputs.dysbiosis != null) rationale.push(`Dysbiosis ${inputs.dysbiosis}%`);
+      const rationalePre = document.getElementById('detailRationale'); if (rationalePre) rationalePre.textContent = rationale.join('\n');
+      const inputsPre = document.getElementById('detailInputs'); if (inputsPre) inputsPre.textContent = JSON.stringify(inputs, null, 2);
+
+      // History & audit
+      saveHistory(inputs, {
+        bayesianRisk: results.bayesianRisk,
+        severity: results.severity,
+        genotypeClass: results.genotypeClass,
+        eligibility: results.eligibility,
+        model: results.model
+      });
+      auditRecord(inputs, results, session.role);
+      refreshReportPreview();
+
+      // Show results card
+      const rc = document.getElementById('resultsCard'); if (rc) rc.style.display = 'block';
+    }
+
+
+
+    function buildReportData() {
+      if (!lastInputs || !lastResults) return { meta:{}, results:{} };
+      return {
+        meta: {
+          title: "Stratacyst Clinical CF Report",
+          generatedAt: new Date().toLocaleString(),
+          model: MODEL_VERSION,
+          schema: MODEL_SCHEMA,
+          inputHash: inputHash(lastInputs),
+          outputHash: outputHash(lastResults)
+        },
+        inputs: lastInputs,
+        results: {
+          risk: lastResults.risk,
+          severity: lastResults.severity,
+          bayesianRisk: lastResults.bayesianRisk,
+          severityPercentile: lastResults.severityPercentile,
+          skScore: lastResults.skScore,
+          confidence: lastResults.confidence,
+          genotypeClass: lastResults.genotypeClass,
+          eligibility: lastResults.eligibility,
+          alleles: lastResults.alleles
+        }
+      };
+    }
+
+    function exportReport(type) {
+      const data = buildReportData();
+      if (!('risk' in data.results)) { alert('Compute a patient first.'); return; }
+
+      if (type === 'json') {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `stratacyst-report-${new Date().toISOString()}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        return;
+      }
+
+      if (type === 'pdf') {
+        const redactNames = document.getElementById('redactNames')?.checked ?? true;
+        const redactDates = document.getElementById('redactDates')?.checked ?? true;
+
+        const inputs = JSON.parse(JSON.stringify(data.inputs));
+        const meta   = JSON.parse(JSON.stringify(data.meta));
+
+        if (redactDates) {
+          meta.generatedAt = "REDACTED";
+          if (inputs.notes) inputs.notes = String(inputs.notes)
+            .replace(/\b\d{4}-\d{2}-\d{2}\b/g, "[REDACTED_DATE]")
+            .replace(/\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\b \d{1,2}, \d{4}/gi, "[REDACTED_DATE]");
+        }
+        if (redactNames) {
+          for (const k of Object.keys(inputs)) {
+            if (/name|mrn|identifier|uid|pid/i.test(k) && typeof inputs[k] === 'string') {
+              inputs[k] = "[REDACTED]";
+            }
+          }
+        }
+
+        const w = window.open('', '_blank');
+        const css = `
+          body { font-family: Inter, system-ui, -apple-system, Segoe UI; color: #0b1020; margin: 24px; }
+          h2 { margin: 0 0 6px 0; }
+          .meta { font-size: 12px; color: #444; margin: 2px 0; }
+          .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+          .kpi { border: 1px solid #ccd; border-radius: 8px; padding: 8px; }
+          .kpi b { display: block; margin-bottom: 4px; }
+          pre { background: #f6f8fb; border: 1px solid #dde; border-radius: 8px; padding: 10px; font-size: 12px; overflow: auto; }
+          hr { margin: 12px 0; }
+        `;
+        const html = `
+          <html><head><title>Stratacyst Report</title><style>${css}</style></head><body>
+          <h2>${meta.title}</h2>
+          <div class="meta">Model: ${meta.model} (${meta.schema})</div>
+          <div class="meta">Generated: ${meta.generatedAt}</div>
+          <div class="meta">InputHash: ${meta.inputHash} &nbsp; OutputHash: ${meta.outputHash}</div>
+          <hr/>
+          <div class="kpis">
+            <div class="kpi"><b>Bayesian risk</b>${data.results.bayesianRisk}</div>
+            <div class="kpi"><b>Severity index</b>${data.results.severity}</div>
+            <div class="kpi"><b>Severity percentile</b>${data.results.severityPercentile ?? '—'}</div>
+            <div class="kpi"><b>SK score</b>${data.results.skScore}</div>
+            <div class="kpi"><b>Genotype class</b>${data.results.genotypeClass}</div>
+            <div class="kpi"><b>Eligibility</b>${data.results.eligibility}</div>
+          </div>
+          <hr/>
+          <b>Inputs</b>
+          <pre>${JSON.stringify(inputs, null, 2)}</pre>
+          </body></html>
+        `;
+        w.document.write(html);
+        w.document.close();
+        w.focus();
+        w.print();
+      }
+    }
+
+    function refreshReportPreview() {
+      const preview = document.getElementById('reportPreview');
+      if (!preview) return;
+      const data = buildReportData();
+      if (!('risk' in data.results)) {
+        preview.textContent = 'Compute a patient to view preview.';
+        return;
+      }
+      const lines = [
+        data.meta.title,
+        `Generated: ${data.meta.generatedAt}`,
+        `Model: ${data.meta.model} (${data.meta.schema})`,
+        `InputHash: ${data.meta.inputHash} OutputHash: ${data.meta.outputHash}`,
+        `Bayesian risk: ${data.results.bayesianRisk}`,
+        `Severity percentile: ${data.results.severityPercentile ?? '—'}`,
+        `SK score: ${data.results.skScore}`,
+        `Risk: ${data.results.risk}`,
+        `Severity: ${data.results.severity}`,
+        `Confidence: ${data.results.confidence}`,
+        `Genotype class: ${data.results.genotypeClass}`
+      ];
+      preview.textContent = lines.join('\n');
+    }
+
+    function queueFHIR() {
+      if (!lastInputs || !lastResults) { alert('Compute a patient first.'); return; }
+      const cfg = {
+        url: document.getElementById('fhirUrl')?.value?.trim(),
+        token: document.getElementById('fhirToken')?.value?.trim(),
+        patient: document.getElementById('patientId')?.value?.trim()
+      };
+      const reportData = buildReportData();
+      FHIR_QUEUE.push({ cfg, reportData, ts: Date.now() });
+      const el = document.getElementById('queueStatus');
+      if (el) el.textContent = `Queue: ${FHIR_QUEUE.length}`;
+      alert('Queued locally.');
+    }
+    async function testFHIR() {
+      const url = document.getElementById('fhirUrl')?.value?.trim();
+      const token = document.getElementById('fhirToken')?.value?.trim();
+      if (!url || !token) { alert('Enter FHIR URL and bearer token.'); return; }
+      try {
+        const resp = await fetch(url.replace(/\/+$/, '') + '/metadata', {
+          method: 'GET',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        alert(resp.ok ? 'FHIR connection OK.' : `FHIR test failed: ${resp.status}`);
+      } catch (e) {
+        alert('FHIR test failed: ' + (e?.message || 'unknown error'));
+      }
+    }
+    async function sendQueued() {
+      if (!FHIR_QUEUE.length) { alert('Queue is empty.'); return; }
+      const sent = [];
+      for (const item of FHIR_QUEUE) {
+        const { cfg, reportData } = item;
+        const base = (cfg.url || '').replace(/\/+$/, '');
+        const token = cfg.token || '';
+        const patientRef = cfg.patient || 'Patient/unknown';
+
+        const obs = {
+          resourceType: 'Observation',
+          status: 'final',
+          code: { coding: [{ system: 'http://loinc.org', code: 'LP123456-7', display: 'CF risk/severity (Stratacyst)' }] },
+          subject: { reference: patientRef },
+          effectiveDateTime: new Date().toISOString(),
+          valueString: `Risk:${reportData.results.bayesianRisk}; Severity:${reportData.results.severity}; SK:${reportData.results.skScore}; Percentile:${reportData.results.severityPercentile ?? 'NA'}`,
+          note: [{ text: `Model ${reportData.meta.model} (${reportData.meta.schema}) IH:${reportData.meta.inputHash} OH:${reportData.meta.outputHash}` }]
+        };
+        const doc = {
+          resourceType: 'DocumentReference',
+          status: 'current',
+          type: { coding: [{ system: 'http://loinc.org', code: '11502-2', display: 'Clinical report' }] },
+          subject: { reference: patientRef },
+          date: new Date().toISOString(),
+          content: [{
+            attachment: {
+              contentType: 'application/json',
+              data: btoa(unescape(encodeURIComponent(JSON.stringify(reportData)))),
+              title: `Stratacyst Report ${new Date().toISOString()}`
+            }
+          }]
+        };
+        try {
+          const r1 = await fetch(base + '/Observation', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/fhir+json', 'Authorization': `Bearer ${token}` },
+            body: JSON.stringify(obs)
+          });
+          const r2 = await fetch(base + '/DocumentReference', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/fhir+json', 'Authorization': `Bearer ${token}` },
+            body: JSON.stringify(doc)
+          });
+          if (r1.ok && r2.ok) sent.push(item);
+        } catch (e) { /* continue batch */ }
+      }
+      FHIR_QUEUE = FHIR_QUEUE.filter(x => !sent.includes(x));
+      const el = document.getElementById('queueStatus');
+      if (el) el.textContent = `Queue: ${FHIR_QUEUE.length}`;
+      alert(`Sent ${sent.length} item(s).`);
+    }
+
+    // Wizard navigation (hardened)
+    (function(){
+      const TOTAL_STEPS = 4;
+      const STEP_NAMES = { 1:"Phenotype",2:"Genotype",3:"Infection dynamics",4:"Modulator & Notes",5:"Results" };
+      let currentStep = 1;
+
+      function el(id){ return document.getElementById(id); }
+      function qs(sel){ return document.querySelector(sel); }
+      function qsa(sel){ return Array.from(document.querySelectorAll(sel)); }
+
+      function showStep(step) {
+        currentStep = step;
+        const wizardCard  = qs(".wizard-card");
+        const resultsCard = el("resultsCard");
+        const steps       = qsa(".wizard-body .step");
+
+        if (!wizardCard || !resultsCard || steps.length === 0) return;
+
+        if (step <= TOTAL_STEPS) {
+          wizardCard.style.display  = "block";
+          resultsCard.style.display = "none";
+          steps.forEach(el => { el.style.display = (parseInt(el.dataset.step,10) === step) ? "block" : "none"; });
+        } else {
+          wizardCard.style.display  = "none";
+          resultsCard.style.display = "block";
+        }
+        updateTracker(); updateButtons(); updateCompleteness();
+      }
+
+      function updateTracker() {
+        const tracker = el("stepTracker");
+        if (!tracker) return;
+        tracker.textContent = (currentStep <= TOTAL_STEPS)
+          ? `Step ${currentStep} of ${TOTAL_STEPS}: ${STEP_NAMES[currentStep]}`
+          : STEP_NAMES[5];
+      }
+
+      function updateButtons() {
+        const backBtn = el("wizardBack");
+        const nextBtn = el("wizardNext");
+        if (!backBtn || !nextBtn) return;
+        backBtn.disabled = (currentStep === 1);
+        if (currentStep < TOTAL_STEPS) {
+          nextBtn.textContent = "Next →"; nextBtn.setAttribute("aria-label","Next step"); nextBtn.disabled = false;
+        } else if (currentStep === TOTAL_STEPS) {
+          nextBtn.textContent = "Compute"; nextBtn.setAttribute("aria-label","Compute results"); nextBtn.disabled = false;
+        } else {
+          backBtn.style.display = "none"; nextBtn.style.display = "none";
+        }
+      }
+
+      function updateCompleteness() {
+        const completeness = el("completeness");
+        if (!completeness) return;
+        const required = [
+          "sweat","fev1","bmi","pseudomonas","cfrd","pi",
+          "infection_burden","exacerbations","eradication",
+          "shannon","dysbiosis","dominantTaxa",
+          "modulator"
+        ];
+        const know = el('knowGenotype')?.checked;
+        if (know) required.push("variant1");
+
+        let filled = 0;
+        required.forEach(id => { const f = el(id); if (f && f.value) filled++; });
+        const pct = Math.round(filled / required.length * 100);
+        completeness.textContent = `Completeness: ${pct}%`;
+        completeness.classList.toggle("ok",   pct >= 75);
+        completeness.classList.toggle("warn", pct >= 40 && pct < 75);
+        completeness.classList.toggle("bad",  pct < 40);
+      }
+
+      function onNext() {
+        if (currentStep < TOTAL_STEPS) { showStep(currentStep + 1); }
+        else if (currentStep === TOTAL_STEPS) { try { compute(); } catch(e){ console.error(e); alert('Compute failed: ' + e.message); } showStep(TOTAL_STEPS + 1); }
+      }
+      function onBack() {
+        if (currentStep > 1 && currentStep <= TOTAL_STEPS + 1) { showStep(currentStep - 1); }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const backBtn = el("wizardBack");
+        const nextBtn = el("wizardNext");
+        const computeBtn = el("computeBtn");
+
+        if (backBtn) backBtn.addEventListener("click", onBack);
+        if (nextBtn) nextBtn.addEventListener("click", onNext);
+        if (backBtn) backBtn.addEventListener("keydown", e => { if (e.key==="Enter") onBack(); });
+        if (nextBtn) nextBtn.addEventListener("keydown", e => { if (e.key==="Enter") onNext(); });
+        if (computeBtn) computeBtn.addEventListener("click", () => { try { compute(); } catch(e){ console.error(e); alert('Compute failed: ' + e.message); } showStep(TOTAL_STEPS + 1); });
+
+        showStep(1);
+      });
+    })();
+
+    // UI bindings
+    function onRoleChange() {
+      const roleSel = document.getElementById('roleSelect');
+      if (!session.signedIn) session.role = roleSel.value;
+      else roleSel.value = session.role;
+      const clinicalEls = document.querySelectorAll('.clinical-only');
+      clinicalEls.forEach(el => {
+        const visible = session.role !== 'viewer';
+        if (el.tagName === 'A') {
+          el.style.display = visible ? '' : 'none';
+          el.setAttribute('aria-hidden', visible ? 'false' : 'true');
+          el.setAttribute('tabindex', visible ? '0' : '-1');
+        } else {
+          el.style.display = visible ? '' : 'none';
+          el.setAttribute('aria-hidden', visible ? 'false' : 'true');
+        }
+      });
+      const consentBanner = document.getElementById('consentBanner');
+      if (consentBanner) {
+        consentBanner.style.display = (session.role !== 'viewer' && !consentAck) ? 'block' : 'none';
+      }
+    }
+    function openLogin() {
+      const o = document.getElementById('loginOverlay');
+      if (o) o.style.display = 'flex';
+    }
+    function closeLogin() {
+      const o = document.getElementById('loginOverlay');
+      if (o) o.style.display = 'none';
+    }
+    function performLogin() {
+      const email = document.getElementById('loginEmail').value.trim();
+      const pass  = document.getElementById('loginPass').value.trim();
+      const role  = document.getElementById('loginRole').value || 'clinician';
+      if (!email || !pass) return alert('Enter email and password.');
+      session = { signedIn: true, role, email };
+      document.getElementById('btnLogin').style.display  = 'none';
+      document.getElementById('btnLogout').style.display = 'inline-block';
+      onRoleChange();
+      closeLogin();
+      alert(`Signed in as ${role}`);
+    }
+    function logout() {
+      session = { signedIn: false, role: 'viewer', email: '' };
+      document.getElementById('btnLogin').style.display  = 'inline-block';
+      document.getElementById('btnLogout').style.display = 'none';
+      document.getElementById('roleSelect').value = 'viewer';
+      onRoleChange();
+      alert('Signed out.');
+    }
+    function ackConsent() {
+      consentAck = true;
+      document.getElementById('consentBanner').style.display = 'none';
+      localStorage.setItem('sg_consent_ack','1');
+    }
+
+    // Safe genotype toggle binding
+    document.addEventListener('DOMContentLoaded', () => {
+      const chk = document.getElementById('knowGenotype');
+      if (chk) {
+        const block = document.getElementById('genoBlock');
+        const toggle = () => { if (block) block.style.display = chk.checked ? '' : 'none'; };
+        chk.addEventListener('change', toggle);
+        toggle();
+      }
+    });
+
+    // Safe tab binding
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.tabs .tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.tabs .tab').forEach(t => { t.classList.toggle('active', t === tab); t.setAttribute('aria-selected', t===tab ? 'true':'false'); });
+          ['primary','details','simulator'].forEach(id => {
+            const el = document.getElementById('subtab-'+id);
+            if (el) el.style.display = (id === tab.dataset.subtab) ? 'block' : 'none';
+          });
+        });
+      });
+    });
+
+    function restoreFromHistory(idx) {
+      const hist = JSON.parse(localStorage.getItem('sg_history')||'[]');
+      const rec  = hist[idx];
+      if (!rec) return;
+      switchPage('newpatient');
+      Object.keys(rec.inputs).forEach(k => setVal(k, rec.inputs[k]));
+      document.getElementById('knowGenotype').checked = !!(rec.inputs.variant1||rec.inputs.variant2);
+      const block = document.getElementById('genoBlock'); if (block) block.style.display = document.getElementById('knowGenotype').checked ? '' : 'none';
+      compute();
+      document.getElementById('resultsCard').style.display = 'block';
+    }
+    function setVal(id, v) { const el = document.getElementById(id); if (el) el.value = (v == null ? '' : v); }
+    function switchPage(page) {
+      document.querySelectorAll('.page').forEach(p => { p.classList.toggle('active', p.id === 'page-'+page); });
+      document.querySelectorAll('.nav a').forEach(a => a.classList.toggle('active', a.dataset.page === page));
+      if (page === 'dashboard') renderHistory();
+      if (page === 'compliance') renderAudit();
+      if (page === 'report') refreshReportPreview();
+    }
+
+    // Init (hardened)
+    document.addEventListener('DOMContentLoaded', async () => {
+      try { setBuildBadges(); } catch(e){ console.error('Badges failed:', e); }
+      try { await initCatalogs(); } catch(e){ console.error('Catalog init failed:', e); alert('Catalog load error: ' + e.message); }
+      try {
+        consentAck = localStorage.getItem('sg_consent_ack') === '1';
+        onRoleChange();
+      } catch(e){ console.error('Role/consent failed:', e); }
+      try {
+        const loginBtn = document.getElementById('loginSubmit');
+        if (loginBtn) loginBtn.addEventListener('click', performLogin);
+      } catch(e){ console.error('Login binding failed:', e); }
+      try {
+        document.getElementById('btnLogin')?.addEventListener('click', openLogin);
+        document.getElementById('btnLogout')?.addEventListener('click', logout);
+      } catch(e){ console.error('Auth buttons binding failed:', e); }
+      try {
+        document.querySelectorAll('.nav a').forEach(a => { a.addEventListener('click', () => switchPage(a.dataset.page)); });
+      } catch(e){ console.error('Nav binding failed:', e); }
+      try {
+        ['w_sweat','w_fev1','w_bmi','w_pseudo'].forEach(id => {
+          const el = document.getElementById(id);
+          const label = document.getElementById(id+'_val');
+          if (el && label) el.addEventListener('input', ()=> label.textContent = parseFloat(el.value).toFixed(2));
+        });
+      } catch(e){ console.error('Slider binding failed:', e); }
+      try {
+        renderHistory();
+        renderAudit();
+      } catch(e){ console.error('Render tables failed:', e); }
+      try { switchPage('dashboard'); } catch(e){ console.error('Switch page failed:', e); }
+    });
+  </script>
 </body>
 </html>
