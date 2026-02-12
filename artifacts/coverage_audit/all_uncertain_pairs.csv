@@ -1,7 +1,0 @@
-variant1,variant2,class1,class2,pathogenic_count,mod_group,risk,bucket1,bucket2
-1717-1G->A,1717-1G->A,uncertain,uncertain,0,5,CF negative / carrier,uncertain,uncertain
-1717-1G->A,1898+1G->A,uncertain,uncertain,0,5,CF negative / carrier,uncertain,uncertain
-1717-1G->A,P67L,uncertain,uncertain,0,5,CF negative / carrier,uncertain,uncertain
-1898+1G->A,1898+1G->A,uncertain,uncertain,0,5,CF negative / carrier,uncertain,uncertain
-1898+1G->A,P67L,uncertain,uncertain,0,5,CF negative / carrier,uncertain,uncertain
-P67L,P67L,uncertain,uncertain,0,5,CF negative / carrier,uncertain,uncertain
