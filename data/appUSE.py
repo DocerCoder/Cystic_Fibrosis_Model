@@ -1,3 +1,18 @@
+"""
+PROJECT: Stratacyst Platinum v3.0
+AUTHOR: ADITHYA VIKRAM
+DATE: February 2026
+INSTITUTION: REDMOND MIDDLE SCHOOL
+PURPOSE: Multi-Modal AI for CFTR Variant Pathogenicity Classification & Biophysical Stabilization.
+VERSION: Platinum-Stable (Audited)
+"""
+# LICENSE: MIT License
+# Copyright (c) 2026 ADITHYA VIKRAM
+# Permission is hereby granted, free of charge, to any person obtaining a copy 
+# of this software and associated documentation, to deal in the Software without restriction, 
+# including without limitation the rights to use, copy, modify, merge, publish, 
+# distribute, sublicense, and/or sell copies of the Software.
+
 from datetime import datetime
 import pandas as pd
 import numpy as np
