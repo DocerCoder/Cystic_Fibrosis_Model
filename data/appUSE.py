@@ -1,7 +1,7 @@
 """
 PROJECT: Stratacyst Platinum v3.0
 AUTHOR: ADITHYA VIKRAM
-DATE: February 2026
+DATE: February 16 2026
 INSTITUTION: REDMOND MIDDLE SCHOOL
 PURPOSE: Multi-Modal AI for CFTR Variant Pathogenicity Classification & Biophysical Stabilization.
 VERSION: Platinum-Stable (Audited)
@@ -55,7 +55,7 @@ def load_and_merge_data():
         return pd.DataFrame()
 
 # --- 2. BIOPHYSICAL FEATURE EXTRACTOR ---
-def extract_precision_features(v):
+def stratacyst_extract_precision_features(v):
     """Converts a variant name into a numerical biophysical vector."""
     v = str(v).upper().strip().replace("[", "").replace("]", "")
     if ";" in v: v = v.split(";")[0]
@@ -81,7 +81,7 @@ def extract_precision_features(v):
     
     return [pos, nonsense, folding, (1 if is_splice else 0), gating, cond, nbd, msd]
 
-def get_modulator_recommendation(p_class, p_ms, p_gfi):
+def stratacyst_get_modulator_recommendation(p_class, p_ms, p_gfi):
     """Matches the predicted class to the appropriate modulator profile."""
     if p_class == 'I':
         return "⚠️ NO CURRENT MODULATOR", "Class I variants (Nonsense) typically require read-through agents or gene therapy. Standard modulators (Trikafta) may have limited efficacy unless a splice-site is present."
@@ -129,7 +129,12 @@ def display_stratacyst_logic_audit(v_name, bits, sw, fe, pi, ps, p_gfi, p_ms, p_
     else:
         st.success(f"**Phenotypic Alignment:** Clinical markers consistent with Class {p_class}.")
 
-def display_analysis_plots(variant_data, clf_features, classifier):
+st.sidebar.markdown("---")
+st.sidebar.caption("© 2026 Stratacyst Platinum System")
+st.sidebar.caption("Developed by Adithya Vikram, Redmond Middle School")
+st.sidebar.caption("ISEF Project Category: Computational Biology")
+
+def display_stratacyst_analysis_plots(variant_data, clf_features, classifier):
     """Generates Local and Global importance bar charts."""
     st.divider()
     col1, col2 = st.columns(2)
@@ -162,7 +167,7 @@ def train_platinum_engine():
 
     # 1. Feature Prep
     bio_cols = ['pos', 'nonsense', 'folding', 'splice', 'gating', 'cond', 'nbd', 'msd']
-    bio_data = df['Variant'].apply(lambda x: pd.Series(extract_precision_features(x)))
+    bio_data = df['Variant'].apply(lambda x: pd.Series(stratacyst_extract_precision_features(x)))
     bio_data.columns = bio_cols
     df = pd.concat([df, bio_data], axis=1)
     df['gap'] = abs(df['sweat_chloride'] - df['pi_percent'])
@@ -196,7 +201,7 @@ def train_platinum_engine():
     
     return gfi_model, ms_model, classifier, clf_features
 
-def show_history_log():
+def show_stratacyst_history_log():
     """Displays the persistent session research log."""
     if 'history' in st.session_state and st.session_state.history:
         st.divider()
@@ -216,7 +221,7 @@ def show_history_log():
         )
         
 # --- 5. MAIN INTERFACE ---
-def main():
+def main_stratacyst_interface():
     st.set_page_config(page_title="Stratacyst Platinum", layout="wide")
     
     # Sidebar & Initialization
@@ -234,7 +239,7 @@ def main():
     psi = st.sidebar.number_input("Pseudomonas Rate (%)", 0, 100, 80)
 
     if st.sidebar.button("🚀 RUN ANALYSIS"):
-        bio_bits = extract_precision_features(variant_name)
+        bio_bits = stratacyst_extract_precision_features(variant_name)
         reg_input = np.array(bio_bits + [sw_cl, pi, fev1, psi]).reshape(1, -1)
         
         # Pred 1: Biophysics
@@ -258,7 +263,7 @@ def main():
         m4.metric("Confidence", f"{confidence:.1f}%")
         
         # --- TREATMENT RECOMMENDATION LAYER ---
-        rec_title, rec_desc = get_modulator_recommendation(pred_class, pred_ms, pred_gfi)
+        rec_title, rec_desc = stratacyst_get_modulator_recommendation(pred_class, pred_ms, pred_gfi)
         
         st.success(f"### 🛡️ Therapeutic Recommendation: {rec_title}")
         st.info(rec_desc)
@@ -266,7 +271,7 @@ def main():
         # Visuals & Logic Audit
         display_stratacyst_logic_audit(variant_name, bio_bits, sw_cl, fev1, pi, psi, pred_gfi, pred_ms, pred_class, confidence)
         variant_series = pd.Series(clf_input_data, index=clf_features)
-        display_analysis_plots(variant_series, clf_features, classifier)
+        display_stratacyst_analysis_plots(variant_series, clf_features, classifier)
         
         # Update Research Log
         # --- SAVE TO HISTORY ---
@@ -293,7 +298,7 @@ def main():
         st.session_state.history.insert(0, new_entry)
 
 if __name__ == "__main__":
-    main()
+    main_stratacyst_interface()
 
 # Show the log at the bottom of the page
-    show_history_log()
+    show_stratacyst_history_log()
