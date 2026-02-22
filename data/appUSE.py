@@ -133,6 +133,7 @@ st.sidebar.markdown("---")
 st.sidebar.caption("© 2026 Stratacyst Platinum System")
 st.sidebar.caption("Developed by Adithya Vikram, Redmond Middle School")
 st.sidebar.caption("ISEF Project Category: Computational Biology")
+st.sidebar.caption("Note that this system is a research prototype for educational purposes and should not be used for clinical decision-making. Always consult healthcare/medical professionals first.")
 
 def display_stratacyst_analysis_plots(variant_data, clf_features, classifier):
     """Generates Local and Global importance bar charts."""
