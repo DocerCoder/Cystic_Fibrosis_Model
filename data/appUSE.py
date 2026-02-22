@@ -29,9 +29,9 @@ def load_and_merge_data():
     """Loads and merges the clinical and biophysical datasets."""
     try:
         # Loading the three pillars of the dataset
-        isef_df = pd.read_csv('FINAL_ISEF_COMPARISON_1176_VARIANTS.csv')
-        stab_df = pd.read_csv('CLINICAL_DEVICE_V3_STABILIZED.csv')
-        audit_df = pd.read_csv('MASTER_AUDIT_ENRICHED.csv')
+        isef_df = pd.read_csv('data/FINAL_ISEF_COMPARISON_1176_VARIANTS.csv')
+        stab_df = pd.read_csv('data/CLINICAL_DEVICE_V3_STABILIZED.csv')
+        audit_df = pd.read_csv('data/MASTER_AUDIT_ENRICHED.csv')
 
         # Standardizing the target column
         isef_df = isef_df.rename(columns={'TRUE_CLASS': 'CLASS'})
