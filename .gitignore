@@ -1,77 +1,39 @@
-cftr_batch_results_merged.json
+--- COMPILER & SYSTEM CLUTTER ---
 
-cftr_function_scores.json
+pycache/
+*.py[cod]
+$py.class
+.DS_Store
+.DS_Store?
+._
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-cftr2_lung_function.json
+--- ENVIRONMENTS ---
 
-cftr2_pancreatic_insufficiency.json
+.venv/
+env/
+venv/
+ENV/
 
-cftr2_pseudomonas_infection.json
+--- EXPERIMENTAL NOTEBOOKS (CLUTTER) ---
 
-cftr2_sweat_chloride.json
+*.ipynb
+!MainCODE.ipynb  # Keep this one if you want judges to see your main development flow
 
-cftr2_variant_meta.json
+--- TEMPORARY / WORK-IN-PROGRESS DATA ---
 
-FINAL_CLASSES.json
+We hide the Excel files and raw scrapings that the app doesn't need to run.
 
-Comorbidities_Complications.json
-
-Genotype_variant.json
-
-Lung_Function.json
-
-ncbi_protein_legacy_map.json
-
-Nutrition_BMI.json
-
-organoid_priors.json
-
-new.ipynb
-
-Stratacyst_Platinum_Model_Metrics.csv
-
-Psuedomonas_UK.json
-
-Psuedominas_Infection.ipynb
-
-Survival_pred_UK.json
-
-Treatment_Burden_Antibiotics.json
-
-CLINICAL_DEVICE_V3_STABILIZED.csv
-
-DATA_FROM_CFTR2.csv
-
-FINAL_ISEF_COMPARISON_1176_VARIANTS.csv
-
-MASTER_AUDIT_ENRICHED.csv
-
-MASTER_MODULATOR_RECOMMENDER_SYSTEM.csv
-
-VALIDATION_COMPARISON_STAGE2.csv
-
-ULTIMATE_GFI_MS_Validation_Results.xlsx
-
-Strategic_Clinical_Audit_v2.xlsx
-
-MainCODE.ipynb
-
-REDO_CMEP_NOMISTAKES.ipynb
+*.xlsx
 CMEP_Final_Master_Data.csv
 CMEP_Stage2_Corrected_461.csv
+DATA_FROM_CFTR2.csv
+VALIDATION_COMPARISON_STAGE2.csv
 
-cmep_STUFF.ipynb
+--- USER SPECIFIC ---
 
-%_Pancreatic_Inufficiency.ipynb
-
-Lung_Function.ipynb
-
-Scraper_Classes.ipynb
-
-%_Pancreatic_Inufficiency.ipynb
-
-Scraper_Classes_Bug_FIX.ipynb
-
-Sweat_Chloride.ipynb
-
-*.json
+.vscode/
+.idea/

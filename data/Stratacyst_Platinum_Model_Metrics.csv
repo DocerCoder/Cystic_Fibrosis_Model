@@ -1,0 +1,14 @@
+Model Stage,Metric,Value,Methodology
+1. Biophysical Regressor,R-squared (Stability),-2.0212,Linear Regression (80/20 Split)
+1. Biophysical Regressor,Mean Absolute Error (MS),4.0671,Linear Regression (80/20 Split)
+2. Rosetta-McCague Validator,S-GFI Tolerance Accuracy,85.86%,5-Fold Cross Validation
+2. Rosetta-McCague Validator,MS Tolerance Accuracy,85.86%,5-Fold Cross Validation
+2. Rosetta-McCague Validator,Mean GFI Error,5.9666,5-Fold Cross Validation
+3. Clinical Phenotype Stabilizer,Weighted Integration,70% Clinical / 30% Biological,Bayesian Logic Audit
+3. Clinical Phenotype Stabilizer,Genetic Center of Gravity,Active,Non-linear Sigmoid Scaling
+4. Stratacyst Platinum Classifier,Global Classification Accuracy,97.97%,Random Forest (80/20 Split), 94.5% (Including NaN)
+4. Stratacyst Platinum Classifier,Class I (Severe) Accuracy,99.47%,Random Forest
+4. Stratacyst Platinum Classifier,Class IV (Mild) Accuracy,100.00%,Random Forest
+4. Stratacyst Platinum Classifier,Class II Accuracy,82.14%,Random Forest
+4. Stratacyst Platinum Classifier,Class III Accuracy,61.54%,Random Forest
+4. Stratacyst Platinum Classifier,Class V Accuracy,80.00%,Random Forest

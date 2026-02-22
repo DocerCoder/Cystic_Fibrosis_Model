@@ -1,0 +1,1175 @@
+Variant,TRUE_CLASS,PREDICTED_CLASS,RECOMMENDED_MODULATOR_STRATEGY,STABILIZED_GFI,sweat_chloride
+F508del,II,II,Triple Combination Corrector (ELX/TEZ/IVA),82.46600062187706,96.0
+G542X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.98224953870609,98.0
+G551D,III,III,High-Affinity Potentiator (Ivacaftor),76.28224953870608,98.0
+N1303K,II,II,Triple Combination Corrector (ELX/TEZ/IVA),82.668133605392,99.0
+W1282X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.08224943983855,96.0
+R117H,IV,IV,Corrector-Potentiator Dual Therapy,40.18889697269003,58.0
+3849+10kbC->T,V,V,Splicing Modulators / High-Dose Correctors,47.82207765160815,65.0
+621+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.87541936921137,100.0
+R553X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.22309532520786,98.0
+2789+5G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,73.39267858100749,94.0
+1717-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.15309532520787,98.0
+"CFTRdele2,3",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.66541936921138,100.0
+D1152H,IV,IV,Corrector-Potentiator Dual Therapy,33.24571372015846,45.0
+G85E,II,II,Triple Combination Corrector (ELX/TEZ/IVA),80.73470457160036,95.0
+R1162X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.52813360539201,99.0
+R334W,IV,IV,Potentiator Monotherapy (Ivacaftor),60.37419828135168,96.0
+3272-26A->G,V,V,Splicing Modulators / High-Dose Correctors,58.438074486251125,94.0
+3120+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.58174926502895,100.0
+2183AA->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.32897939189377,99.0
+I507del,II,II,Triple Combination Corrector (ELX/TEZ/IVA),82.23949415943272,96.0
+R347P,IV,IV,Potentiator Monotherapy (Ivacaftor),65.05510864147439,95.0
+2184insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.95650112196145,100.0
+3659delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.25840799384659,100.0
+L206W,IV,IV,Corrector-Potentiator Dual Therapy,45.2423225137297,69.0
+5T,V,V,Splicing Modulators / High-Dose Correctors,40.00719610674186,57.0
+A455E,IV,IV,Corrector-Potentiator Dual Therapy,56.03382782623567,81.0
+5T;TG12,V,V,Splicing Modulators / High-Dose Correctors,35.709851119163176,57.0
+1898+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.73541936921137,100.0
+R1066C,IV,IV,Potentiator Monotherapy (Ivacaftor),70.03897939189378,99.0
+1677delTA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.15309532520787,98.0
+R117H;7T,IV,IV,Corrector-Potentiator Dual Therapy,27.88987890178652,43.0
+394delTT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.63238237899628,100.0
+711+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.39897939189379,99.0
+R560T,II,II,Triple Combination Corrector (ELX/TEZ/IVA),84.34213880294571,101.0
+Q493X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.76072560064905,100.0
+2184delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.71309532520786,98.0
+M470V,,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E60X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.21379558129294,101.0
+P67L,II,II,Triple Combination Corrector (ELX/TEZ/IVA),57.92488367355416,60.0
+1154insTC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.83338825586446,100.0
+R117C,IV,IV,Corrector-Potentiator Dual Therapy,41.592247682915,63.0
+R347H,IV,IV,Corrector-Potentiator Dual Therapy,43.6248291910875,63.0
+Y1092X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.82683257150802,101.0
+R1158X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.51838222676923,97.0
+M1101K,II,II,Triple Combination Corrector (ELX/TEZ/IVA),80.17943054616424,102.0
+E92K,II,II,Triple Combination Corrector (ELX/TEZ/IVA),78.6759917873615,97.0
+3905insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.16745765341706,98.0
+2143delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.76643398903715,98.0
+S549N,III,III,High-Affinity Potentiator (Ivacaftor),74.3819590649284,94.0
+R117H;5T,IV,IV,Corrector-Potentiator Dual Therapy,45.896142470172805,69.0
+S945L,IV,IV,Corrector-Potentiator Dual Therapy,55.51907841076152,75.0
+1078delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.1502490702978,97.0
+S549R,III,III,High-Affinity Potentiator (Ivacaftor),75.61373454868512,101.0
+2789+2insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,61.74264631424146,77.0
+E585X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.14174926502895,100.0
+L1077P,II,II,Triple Combination Corrector (ELX/TEZ/IVA),81.15776883626418,99.0
+V520F,II,II,Triple Combination Corrector (ELX/TEZ/IVA),83.14738693681977,100.0
+L997F,II,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+R1066H,IV,IV,Corrector-Potentiator Dual Therapy,55.7163764036624,81.0
+R352Q,IV,IV,Corrector-Potentiator Dual Therapy,55.38847093569732,80.0
+G1244E,III,III,High-Affinity Potentiator (Ivacaftor),76.57224943983854,96.0
+D110H,IV,IV,Corrector-Potentiator Dual Therapy,45.55094984528941,68.0
+1811+1634A->G,V,V,Splicing Modulators / High-Dose Correctors,68.42036180480905,93.0
+CFTRdele2,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.10762851834252,99.0
+G178R,II,II,Triple Combination Corrector (ELX/TEZ/IVA),79.06087676786478,98.0
+3876delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.33684640837885,96.0
+2622+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.37000044892059,99.0
+711+3A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,60.80094984528941,68.0
+I148T,IV,IV,Potentiator Monotherapy (Ivacaftor),81.10731641251168,97.0
+S1251N,III,III,High-Affinity Potentiator (Ivacaftor),71.77881008144693,83.0
+4016insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.43305671141707,95.0
+A559T,II,II,Triple Combination Corrector (ELX/TEZ/IVA),83.60840799384658,100.0
+1525-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.2721388029457,101.0
+R75X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.93897939189378,99.0
+Q220X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.63379558129293,101.0
+3120G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,77.06166599142806,90.0
+4382delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,73.8578787139922,102.0
+S1235R,III,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+P205S,IV,IV,Corrector-Potentiator Dual Therapy,58.495069681045166,85.0
+R709X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.34802973477656,98.0
+P5L,II,II,Triple Combination Corrector (ELX/TEZ/IVA),53.541242794832925,69.0
+3199del6,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.4872604456626,97.0
+S466X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.53744539606484,103.0
+711+5G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.67556321626574,92.0
+5T;TG11,V,,Standard Care / Monitoring,81.10731641251168,97.0
+5T;TG13,V,V,Splicing Modulators / High-Dose Correctors,38.1072893317542,63.0
+V232D,II,II,Triple Combination Corrector (ELX/TEZ/IVA),66.29026496065674,84.0
+L138ins,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,72.99852747046705,90.0
+I336K,II,II,Triple Combination Corrector (ELX/TEZ/IVA),71.01592276887078,101.0
+R75Q,IV,IV,Potentiator Monotherapy (Ivacaftor),81.10731641251168,97.0
+E831X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,66.0144476163403,79.0
+CFTRdele17a-18,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.53160416738655,103.0
+I1027T,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+S4X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.55909664425255,98.0
+W1089X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.21294714406355,94.0
+F508del;I1027T,,,Standard Care / Monitoring,81.10731641251168,97.0
+"CFTRdele22,23",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.7345498776017,95.0
+T338I,IV,IV,Corrector-Potentiator Dual Therapy,47.51188897202413,80.0
+712-1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.51170573812138,94.0
+F1052V,II,II,Triple Combination Corrector (ELX/TEZ/IVA),44.91647577791003,45.0
+D579G,II,II,Triple Combination Corrector (ELX/TEZ/IVA),67.2420516308822,76.0
+K710X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.63224953870608,98.0
+2307insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.78048238627993,103.0
+S489X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.86516610759676,101.0
+1461ins4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.38888574193238,102.0
+1812-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.61162714294768,99.0
+Y122X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.69738235710332,102.0
+A561E,II,II,Triple Combination Corrector (ELX/TEZ/IVA),83.13479465732632,100.0
+L732X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,93.0
+I1234V,IV,IV,Potentiator Monotherapy (Ivacaftor),62.6333692747474,95.0
+R785X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.14238237899627,100.0
+L467P,II,II,Triple Combination Corrector (ELX/TEZ/IVA),84.9448989597505,101.0
+Q890X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.28738693681977,100.0
+Q39X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.52867211372767,102.0
+1248+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.46802973477656,98.0
+E92X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.67830439558911,98.0
+W846X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.99712699802558,104.0
+2347delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.14468379673005,104.0
+G576A,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1898+3A->G,V,V,Splicing Modulators / High-Dose Correctors,60.13912518700237,92.0
+CFTRdele22-24,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.58160416738656,103.0
+406-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.91280338461004,95.0
+Y569D,IV,IV,Potentiator Monotherapy (Ivacaftor),70.94516610759676,101.0
+R1070W,II,II,Triple Combination Corrector (ELX/TEZ/IVA),49.70829803605466,44.0
+R764X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.1518757643249,97.0
+E822X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.76877846128544,106.0
+L1065P,II,II,Triple Combination Corrector (ELX/TEZ/IVA),77.76414189473078,97.0
+Q552X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.44866034582398,94.0
+R1070Q,IV,IV,Potentiator Monotherapy (Ivacaftor),64.7005053008221,86.0
+1716G/A,,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+R851X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.53050304571443,98.0
+S492F,IV,IV,Corrector-Potentiator Dual Therapy,58.01704654174424,80.0
+R668C,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+V456A,IV,IV,Corrector-Potentiator Dual Therapy,46.459522749867766,67.0
+S466X;R1070Q,,,Standard Care / Monitoring,78.28174926502895,100.0
+S1196X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.46079869556318,95.0
+1811+1643G->T,V,V,Splicing Modulators / High-Dose Correctors,72.3025058246686,101.0
+T854T,,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+405+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.37079869556318,95.0
+2711delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.99867211372766,102.0
+457TAT->G,,,Standard Care / Monitoring,72.27890401541086,88.0
+7T,V,V,Splicing Modulators / High-Dose Correctors,81.10731641251168,97.0
+4005+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,70.96081973883963,84.0
+3007delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.43909664425254,98.0
+G1349D,III,III,High-Affinity Potentiator (Ivacaftor),73.38689114815294,108.0
+L558S,II,II,Triple Combination Corrector (ELX/TEZ/IVA),85.08109262237195,100.0
+S1455X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,59.78475249464485,88.0
+574delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.4842541288854,96.0
+1259insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.00867663446316,97.0
+H609R,IV,IV,Corrector-Potentiator Dual Therapy,58.79098752017785,82.0
+L927P,II,II,Triple Combination Corrector (ELX/TEZ/IVA),84.58829734942307,105.0
+L1335P,II,II,Triple Combination Corrector (ELX/TEZ/IVA),78.99914763457195,88.0
+S341P,IV,IV,Potentiator Monotherapy (Ivacaftor),66.8559733111996,100.0
+Q1313X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.93033007367218,95.0
+1609delCA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.65431902760224,104.0
+G1061R,II,II,Triple Combination Corrector (ELX/TEZ/IVA),80.52021514249381,91.0
+Q1291H,III,III,High-Affinity Potentiator (Ivacaftor),51.50694377735781,64.0
+2105-2117del13insAGAAA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.14411638223467,98.0
+CFTRdup6b-10,,,Standard Care / Monitoring,79.91134274897048,103.0
+M1V,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.0866123998351,102.0
+4209TGTT->AA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.22489895975049,101.0
+D1270N,IV,IV,Corrector-Potentiator Dual Therapy,41.47719610674186,57.0
+L218X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.57487884077044,96.0
+"CFTRdele17a,17b",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.62989191144102,104.0
+1717-8G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.4043824233535,99.0
+2055del9->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.90342809649508,95.0
+1949del84,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.2650977049422,103.0
+D614G,IV,IV,Corrector-Potentiator Dual Therapy,39.36652201044825,63.0
+W1204X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.4457400657862,92.0
+Y563N,IV,IV,Potentiator Monotherapy (Ivacaftor),68.17949415943274,96.0
+G1069R,II,II,Triple Combination Corrector (ELX/TEZ/IVA),63.03243463974236,65.0
+L967S,II,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+A1006E,II,II,Triple Combination Corrector (ELX/TEZ/IVA),69.63081973883963,84.0
+T1246I,IV,IV,Corrector-Potentiator Dual Therapy,42.07709973691097,59.0
+H199Y,IV,IV,Potentiator Monotherapy (Ivacaftor),68.74450984924518,95.0
+F312del,II,II,Triple Combination Corrector (ELX/TEZ/IVA),65.67711473582098,88.0
+G551S,III,III,High-Affinity Potentiator (Ivacaftor),61.80432292219631,73.0
+Q98X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.65967799059584,102.0
+Y1032C,IV,IV,Corrector-Potentiator Dual Therapy,36.4540265062125,57.0
+E1104X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.28348575745383,100.0
+S1255X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.03703283761305,91.0
+3600G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,63.8788206268003,74.0
+3121-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.04174926502895,100.0
+663delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.89909664425255,98.0
+3821delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.4441624228397,97.0
+935delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.29614702275475,91.0
+Q98R,IV,IV,Corrector-Potentiator Dual Therapy,52.30887440281407,74.0
+1138insG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.21073865361308,104.0
+1471delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.76897939189378,99.0
+R74W,IV,IV,Corrector-Potentiator Dual Therapy,35.32653372189937,52.0
+G126D,II,II,Triple Combination Corrector (ELX/TEZ/IVA),63.11106034253145,83.0
+1288insTA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.01598585801536,90.0
+1548delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.48231805572307,99.0
+L227R,II,II,Triple Combination Corrector (ELX/TEZ/IVA),83.87348575745384,100.0
+4015delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.94366689333641,107.0
+R31C,IV,IV,Potentiator Monotherapy (Ivacaftor),81.10731641251168,97.0
+R792X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.11786746540565,96.0
+L1254X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.81956705622076,107.0
+3791delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.31487884077043,96.0
+2585delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.85075637252146,98.0
+V754M,II,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q1476X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,52.24379941502844,62.0
+3600+2insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.41000044892058,99.0
+1811+1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.21219470232873,105.0
+4374+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.69338825586445,100.0
+2869insG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.52541936921136,100.0
+P574H,IV,IV,Corrector-Potentiator Dual Therapy,54.466283245055656,78.0
+2118del4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,76.35622597289188,103.0
+S1159F,III,III,High-Affinity Potentiator (Ivacaftor),70.99333398261206,85.0
+E193X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.57283088504937,102.0
+Q359K/T360K,IV,IV,Potentiator Monotherapy (Ivacaftor),68.37809357703547,99.0
+R334L,IV,IV,Corrector-Potentiator Dual Therapy,44.29789694885231,73.0
+4326delTC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.69338825586445,100.0
+CFTRdele4-10,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.31176163258381,95.0
+4005+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.20726608599335,90.0
+4040delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.08422345544753,97.0
+1341+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.67828829939069,99.0
+1161delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,86.5085487745224,103.0
+1367del5,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.98134274897048,103.0
+S912X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.67744539606484,103.0
+G970D,II,II,Triple Combination Corrector (ELX/TEZ/IVA),73.1919498450319,98.0
+W1310X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.43641646166509,88.0
+L165S,II,II,Triple Combination Corrector (ELX/TEZ/IVA),74.79023845917861,89.0
+C276X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.43761368126998,108.0
+CFTRdele14b-17b,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.70238237899629,100.0
+3849G->A,V,V,Splicing Modulators / High-Dose Correctors,65.78396522976976,96.0
+W57G,II,II,Triple Combination Corrector (ELX/TEZ/IVA),79.06957461715061,92.0
+991del5,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.03334172010297,99.0
+182delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.85274755269755,91.0
+3130delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.87985880875138,92.0
+G330X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,86.44213880294572,101.0
+V562I,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+S977F,IV,IV,Corrector-Potentiator Dual Therapy,39.93614476642895,61.0
+H1054D,IV,IV,Potentiator Monotherapy (Ivacaftor),62.592984061979415,89.0
+E1371X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.7997754921852,102.0
+852del22,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.19688906058461,97.0
+2043delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,79.94133771886474,102.0
+W401X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.07134274897048,103.0
+1898+1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.38552958323183,104.0
+S434X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.2864167211303,95.0
+Y913X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.80198812029002,98.0
+306insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.50502350531372,106.0
+D110E,IV,IV,Corrector-Potentiator Dual Therapy,38.71006769983443,69.0
+3500-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,79.679228013271,97.0
+3944delGT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.43239041823111,107.0
+I502T,II,II,Triple Combination Corrector (ELX/TEZ/IVA),73.9369641588971,94.0
+G673X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.85563225876909,103.0
+A613T,IV,IV,Corrector-Potentiator Dual Therapy,50.59619561937065,87.0
+T1036N,IV,IV,Potentiator Monotherapy (Ivacaftor),62.74933099798952,92.0
+CFTRdele19-21,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.36706148539017,109.0
+1525-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.67763668144408,94.0
+875+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,70.7825934339744,85.0
+CFTRdele4-11,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.11574006578618,92.0
+1213delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.84256112346333,96.0
+M1T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.41643398903716,98.0
+621+3A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,44.79270535987428,47.0
+I618T,IV,IV,Corrector-Potentiator Dual Therapy,49.780536372120565,74.0
+I807M,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y849X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,77.11174754515008,88.0
+F1074L,II,II,Triple Combination Corrector (ELX/TEZ/IVA),49.57598938150818,53.0
+Y275X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.16174926502896,100.0
+3667ins4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,78.52047617285618,90.0
+444delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.1520199217882,112.0
+2183delAA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.46610167492798,90.0
+E379X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.39835007342262,88.0
+C524X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.1843824233535,99.0
+R560K,IV,IV,Potentiator Monotherapy (Ivacaftor),67.53249667871188,106.0
+S1159P,III,III,High-Affinity Potentiator (Ivacaftor),62.64579142404115,80.0
+R1162L,II,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+I1269N,IV,IV,Potentiator Monotherapy (Ivacaftor),61.34184409394389,99.0
+R170H,IV,IV,Potentiator Monotherapy (Ivacaftor),81.10731641251168,97.0
+185+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.40054291015664,110.0
+4006-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.68898693096739,83.0
+3878delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.29828829939068,99.0
+3849+4A->G,V,V,Splicing Modulators / High-Dose Correctors,52.06156755269604,79.0
+Q525X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.42829734942308,105.0
+Q1291R,III,III,High-Affinity Potentiator (Ivacaftor),41.00300433526043,49.0
+CFTRdele2-4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.89213202927624,106.0
+3132delTG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.94559398175133,97.0
+Q414X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.74719756885523,108.0
+G628R,II,II,Triple Combination Corrector (ELX/TEZ/IVA),67.30096454834981,93.0
+G970R,II,II,Triple Combination Corrector (ELX/TEZ/IVA),80.16011100120193,103.0
+4010del4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.50144406960908,116.0
+Q1411X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.87283088504937,102.0
+3121-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.72522933231568,97.0
+S1255P,IV,IV,Potentiator Monotherapy (Ivacaftor),63.45939746610191,85.0
+R117L,IV,IV,Corrector-Potentiator Dual Therapy,48.44025574318196,73.0
+365-366insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.95033007367218,95.0
+2942insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.34309532520787,98.0
+CFTRdele16-17b,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.65280338461005,95.0
+1342-2A->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,73.109616952188,85.0
+1497delGG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.03156413903002,103.0
+306delTAGA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.71428845918564,95.0
+1898+5G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,69.55915556152691,96.0
+P750L,II,II,Triple Combination Corrector (ELX/TEZ/IVA),48.6169858800148,43.0
+W1098R,II,II,Triple Combination Corrector (ELX/TEZ/IVA),80.28241031815176,97.0
+3850-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.09967799059584,102.0
+1716+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,75.65924911000116,89.0
+2721del11,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.33139698314818,95.0
+3850-3T->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.95295408430249,93.0
+124del23bp,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.39282810681976,113.0
+F311L,IV,IV,Corrector-Potentiator Dual Therapy,58.599877642456576,82.0
+R334Q,IV,IV,Corrector-Potentiator Dual Therapy,33.31593110663238,49.0
+D836Y,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+A46D,IV,IV,Potentiator Monotherapy (Ivacaftor),69.76567976152631,109.0
+Y1014C,IV,IV,Corrector-Potentiator Dual Therapy,29.57268113649968,58.0
+S1118F,IV,IV,Corrector-Potentiator Dual Therapy,42.14322959559108,68.0
+H1375P,IV,IV,Corrector-Potentiator Dual Therapy,58.54776900298653,87.0
+2991del32,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.90744539606484,103.0
+W57X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.72442237831399,104.0
+2790-1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.7489884261595,87.0
+296+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.77238237899628,100.0
+3849+40A->G,V,V,Splicing Modulators / High-Dose Correctors,54.99417443099173,79.0
+405+3A->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,86.74256946663331,102.0
+3849+5G->A,V,V,Splicing Modulators / High-Dose Correctors,67.61198244399719,101.0
+F508C,II,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+G622D,II,II,Triple Combination Corrector (ELX/TEZ/IVA),58.05747912597411,57.0
+Q1035X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,86.32343438619411,110.0
+CFTRdele19,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,79.21434957024005,90.0
+4374+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.07946937406084,106.0
+1249-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.87039110628,95.0
+V470M,,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+G27X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.41643398903716,98.0
+M1101R,II,II,Triple Combination Corrector (ELX/TEZ/IVA),85.2750235053137,106.0
+R1102X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10072560064906,100.0
+V201M,IV,IV,Corrector-Potentiator Dual Therapy,35.88653372189937,52.0
+4428insGA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,73.91676501459128,104.0
+CFTRdele1,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.49194931161853,110.0
+"CFTRdele19,20",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.75629274813177,93.0
+875+1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,55.18173704859066,86.0
+1717-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,76.60826036615359,95.0
+1898+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.30343438619411,110.0
+557delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.57070962775313,105.0
+2176insC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.96139516582224,91.0
+2957delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.95627973190193,100.0
+125G/C,,IV,Potentiator Monotherapy (Ivacaftor),81.10731641251168,97.0
+D443Y,IV,IV,Corrector-Potentiator Dual Therapy,31.98157537073857,52.0
+W496X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.1670939353048,115.0
+R560S,II,II,Triple Combination Corrector (ELX/TEZ/IVA),82.95745765341707,98.0
+M952T,II,II,Triple Combination Corrector (ELX/TEZ/IVA),57.81502377277696,58.0
+3143del9,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,68.80007671405684,93.0
+T1053I,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3539del16,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.22213880294571,101.0
+W1098X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.38719756885524,108.0
+F1099L,II,II,Triple Combination Corrector (ELX/TEZ/IVA),58.98546731119187,67.0
+Q1382X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.375739203461,96.0
+Q1412X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.90769293419858,101.0
+977insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.52428845918564,95.0
+L88X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.06469772857795,102.0
+1898+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.57815234411623,92.0
+300delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.32109908033706,103.0
+541delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.5717657063461,107.0
+622-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.61404660592707,97.0
+R352W,IV,IV,Corrector-Potentiator Dual Therapy,41.38428979222209,63.0
+G550X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.56573920346099,96.0
+E56K,IV,IV,Corrector-Potentiator Dual Therapy,41.31502332252323,64.0
+E116K,IV,IV,Corrector-Potentiator Dual Therapy,59.54996307489943,86.0
+R117G,IV,IV,Corrector-Potentiator Dual Therapy,28.899925601678675,50.0
+H139R,IV,IV,Corrector-Potentiator Dual Therapy,58.19490987031593,99.0
+E193K,IV,IV,Corrector-Potentiator Dual Therapy,49.98312979911958,71.0
+G194V,IV,IV,Corrector-Potentiator Dual Therapy,47.09546731119187,67.0
+2594delGT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.90769293419858,101.0
+2896insAG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.1764167211303,95.0
+4022insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.01487884077044,96.0
+175insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,76.59094394491157,92.0
+663insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.90769293419858,101.0
+2752-26A->G,V,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q353X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.71089260931656,122.0
+1343delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,77.55974685859607,87.0
+D513G,IV,IV,Corrector-Potentiator Dual Therapy,43.89124279483293,69.0
+S13F,IV,IV,Potentiator Monotherapy (Ivacaftor),63.648462741732125,91.0
+2732insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.56591727469382,112.0
+G1249R,III,III,High-Affinity Potentiator (Ivacaftor),72.2418840917058,87.0
+Q1330X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.375739203461,96.0
+I1366N,IV,IV,Corrector-Potentiator Dual Therapy,50.70585880578913,86.0
+F191V,IV,IV,Corrector-Potentiator Dual Therapy,43.01623234040595,57.0
+D192G,IV,IV,Corrector-Potentiator Dual Therapy,59.01970506636496,76.0
+2185insC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.7633715846529,110.0
+3171insC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.46385928039288,116.0
+CFTRdele11,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.25316246732561,101.0
+CFTRdele9,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.14442237831398,104.0
+CFTRdele4-7,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.14209135161697,105.0
+CFTRdup22,,,Standard Care / Monitoring,58.10923874047592,84.0
+1811+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.90769293419858,101.0
+297-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,74.25138937939647,81.0
+2954delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.95184687938463,93.0
+541del4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.46613071023154,106.0
+3028delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.04627973190193,100.0
+1833delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.0845498776017,95.0
+3359delCT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,79.96025197401507,86.0
+1002-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,74.45685768603309,87.0
+9T,V,V,Splicing Modulators / High-Dose Correctors,81.10731641251168,97.0
+G314E,IV,IV,Corrector-Potentiator Dual Therapy,39.25518634514618,54.0
+L320V,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q359R,IV,IV,Corrector-Potentiator Dual Therapy,48.94844055589731,70.0
+R516G,IV,IV,Potentiator Monotherapy (Ivacaftor),65.48917871319568,99.0
+G646X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.95745765341707,98.0
+R933G,IV,IV,Corrector-Potentiator Dual Therapy,40.23557497036771,41.0
+Q1042X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.33552958323183,104.0
+442delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.48989191144102,104.0
+R258G,IV,IV,Corrector-Potentiator Dual Therapy,43.01623234040595,57.0
+4218insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.98074462360968,92.0
+"CFTRdele3-10,14b-16",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTR50kbdel,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.99401948885759,108.0
+CFTRdele18,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.68236066094894,84.0
+"CFTRdele17b,18",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.62049303844074,106.0
+296+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.43006006044143,90.0
+3601-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,78.55649849822277,92.0
+1524+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.57684766411984,89.0
+3171delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.81627973190191,100.0
+1924del7,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.69699820086194,116.0
+3129del4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.8904011759958,126.0
+3849+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,79.30636571467252,82.0
+175delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.16881004029236,98.0
+c.488delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.01491558733449,112.0
+296+28A->G,V,V,Splicing Modulators / High-Dose Correctors,55.41463974025952,64.0
+L346P,II,II,Triple Combination Corrector (ELX/TEZ/IVA),72.76546463707619,81.0
+A349V,IV,IV,Corrector-Potentiator Dual Therapy,32.52460119379808,37.0
+Q2X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.21911661027087,94.0
+F575Y,IV,IV,Corrector-Potentiator Dual Therapy,45.18448604146612,57.0
+E588V,IV,IV,Potentiator Monotherapy (Ivacaftor),60.95685768603308,87.0
+S912L,IV,IV,Corrector-Potentiator Dual Therapy,50.77452404861403,66.0
+V1240G,IV,IV,Corrector-Potentiator Dual Therapy,32.3,60.0
+W1274X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.10319081269697,94.0
+L1480P,II,II,Triple Combination Corrector (ELX/TEZ/IVA),66.1805659206913,78.0
+A120T,IV,IV,Corrector-Potentiator Dual Therapy,44.34890004874316,51.0
+G149R,IV,IV,Potentiator Monotherapy (Ivacaftor),70.45184687938463,93.0
+G194R,IV,IV,Corrector-Potentiator Dual Therapy,55.67984613862004,84.0
+M265R,II,II,Triple Combination Corrector (ELX/TEZ/IVA),59.2340983481933,49.0
+CFTRdele10,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.99256946663331,102.0
+"CFTRdele13,14a",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.39094930288762,106.0
+CFTRdele18-20,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.95184687938463,93.0
+CFTRdele4-8,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.72385726777061,117.0
+406-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.2750235053137,106.0
+892delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1215delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.38719756885524,108.0
+1782delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.66795429799535,115.0
+Q781X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.99256946663331,102.0
+E60K,IV,IV,Potentiator Monotherapy (Ivacaftor),63.648462741732125,91.0
+W1098C,II,II,Triple Combination Corrector (ELX/TEZ/IVA),74.87745411367271,98.0
+W1145X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,82.87283088504937,102.0
+V1153E,IV,IV,Corrector-Potentiator Dual Therapy,32.86728226170831,41.0
+S1206X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,74.87445647779296,75.0
+R1283M,IV,IV,Potentiator Monotherapy (Ivacaftor),63.10568288275245,76.0
+P99L,IV,IV,Corrector-Potentiator Dual Therapy,55.95259343397439,85.0
+602del14,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.38719756885524,108.0
+CFTRdele15,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,79.2649818878841,97.0
+CFTRdele20,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.81627973190191,100.0
+CFTRdele21,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.99256946663331,102.0
+CFTRdup19,,,Standard Care / Monitoring,62.258978207779336,81.0
+CFTRdup10-12,,,Standard Care / Monitoring,77.44600062187706,96.0
+CFTRdup8-10,,,Standard Care / Monitoring,78.81627973190191,100.0
+Q2X;R3W,,,Standard Care / Monitoring,79.14442237831398,104.0
+W1282X;R1283M,,,Standard Care / Monitoring,79.43716483610191,109.0
+3271delGG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.19815234411624,92.0
+1824delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.99256946663331,102.0
+2522insC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.19815234411624,92.0
+p.S1347PfsX13,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.95184687938463,93.0
+1874insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.33325078092167,107.0
+3154delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.74617638119017,100.0
+297-3C->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,79.06492394533589,91.0
+2603delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.34502350531369,106.0
+c.1084_1088dup,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q290X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y362X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.78963741869183,92.0
+E407X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+V456F,IV,IV,Potentiator Monotherapy (Ivacaftor),68.33758958348682,101.0
+L15P,IV,IV,Corrector-Potentiator Dual Therapy,55.67346243332715,105.0
+Y563D,IV,IV,Potentiator Monotherapy (Ivacaftor),69.51921043611317,88.0
+I601F,II,II,Triple Combination Corrector (ELX/TEZ/IVA),71.05105723505073,70.0
+G27R,IV,IV,Potentiator Monotherapy (Ivacaftor),68.40663573377756,97.0
+E664X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,76.38184409394388,99.0
+R31L,IV,IV,Corrector-Potentiator Dual Therapy,41.00133804025624,51.0
+Q720X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2372del8,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.61424966282301,123.0
+W882X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.77165338549085,119.0
+W79X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q1281X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.49071834730157,117.0
+G91R,IV,IV,Potentiator Monotherapy (Ivacaftor),71.64442237831398,104.0
+L1324P,II,II,Triple Combination Corrector (ELX/TEZ/IVA),81.02444055811964,91.0
+L101X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.90663573377756,97.0
+G103X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,79.14260028299194,96.0
+Y161D,IV,IV,Potentiator Monotherapy (Ivacaftor),68.52050304571443,98.0
+G194X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+C225X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q237E,IV,IV,Corrector-Potentiator Dual Therapy,36.009058055231336,66.0
+W277X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.35995670972969,90.0
+2556insAT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.07134274897048,103.0
+4279insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.14442237831398,104.0
+CFTRdele14a,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdele14b,15",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.375739203461,96.0
+1119delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,86.124422378314,104.0
+1774delCT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3737delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,80.63989305641724,89.0
+2634insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,83.95184687938463,93.0
+3056delGA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,65.82753497350782,57.0
+366insC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,85.2750235053137,106.0
+1601delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,84.49812080835315,97.0
+c.2556dupT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,79.58314081143286,100.0
+183delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,76.16209271532111,97.0
+L453S,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+W19X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+G745X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+F1016S,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+H1085P,II,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y84X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+S1248X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q1291X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L102R,IV,IV,Potentiator Monotherapy (Ivacaftor),81.10731641251168,97.0
+Y109X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+R117P,IV,IV,Potentiator Monotherapy (Ivacaftor),81.10731641251168,97.0
+W202X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele17a,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele22,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele10-14b,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele14a-15,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+296+1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1811+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1898+2T->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3040+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+621+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2790-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1716+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+712-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+297-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2108delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1434delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1366delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1504delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2723delTT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3732delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4259del5,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+675del4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+909delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+712-2A->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2686dupT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+604insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+840delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E292X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1429del7,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E474K,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E514X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y563X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q652X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q685X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q715X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+D924N,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K978X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+W1063X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K68X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K1302X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E1308X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q1309X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q207X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+W216X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3349insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele17b,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdup1-3,,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+F508C;S1251N,,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+406-1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2752-2A->G,V,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+876-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3940delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+630delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1006_1007delGA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+593insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+896delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2075delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+681delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1199delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2634delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3528delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3662delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1112delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1802delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+181_182dup,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4271delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3750delAG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+296+3insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+710_711+5del7,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3271+1delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3883_3884insG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2053_2054insAA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1787delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+D443fs,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+W356X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+W361X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K381X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y577X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K598X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E656X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+W679X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E33X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+S962X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+D979V,IV,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+R1128X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q1144X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E1266X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q1280X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q1390X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q179X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4168delCTAAGCC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele3,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele8,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele1-10,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele1-9,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele16-20,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele2-10,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele4-6ains6,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdele4-8,12-21",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdele8,9",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdelePr-3,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdup2,,,Standard Care / Monitoring,81.10731641251168,97.0
+CFTRdup4-10,,,Standard Care / Monitoring,81.10731641251168,97.0
+"CFTRdup6b,7",,,Standard Care / Monitoring,81.10731641251168,97.0
+3600+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+296+2T->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+621+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1717-1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2751+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1001+1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+296+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+186-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+875+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3497delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1540del10,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2053insTA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1353delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.142_145delAATC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2221insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2261delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3667del4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+733delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+849delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1460delAT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+295ins8,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2335delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2557delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2937_2942delinsTCAGA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2949del5,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3143delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+435insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+556delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.49_50delTT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1601delTC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+464delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3600+5G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+622-1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3271+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3499+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1248+1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1342-1delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1309delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1465_1466insTAAT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1289insTA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2089delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3617delGA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+174delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3477delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y304X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q372X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q378X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E402X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K442X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E528X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L568X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y569X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E588X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+S660X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K688X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q30X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L719X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E730X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q767X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q779X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+R810X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q814X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E815X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E826X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K830X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E56X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+G1003X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L1011X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y1182X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+G85X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+G1247X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+G1287X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y1307X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+W1316X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y1381X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E1401X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q151X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele12,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele7,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele1-24,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele11-18,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele14a-17b,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdele16,17a",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele2-6b,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdele9,10",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdup16,17a",,,Standard Care / Monitoring,81.10731641251168,97.0
+CFTRdup22-24,,,Standard Care / Monitoring,81.10731641251168,97.0
+CFTRdup6b-16,,,Standard Care / Monitoring,81.10731641251168,97.0
+1812-2A->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3272-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1342-1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3271+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3600+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+621+2T->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+185+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+710del4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1341+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+185+2T->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+405+2T->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+982delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1058delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+525delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1375_1385del,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+284delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2113delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3041delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3396delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3521del14,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3622insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+489delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3730A->TCT,,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+680delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1221delCT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1291delTT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1556delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1576insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1813insC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1918delGC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1807delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1978dupA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2189CT->A,,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2148delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2481-2482insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2708del13,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+156insG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2837delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2907delTT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3095insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3293delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3359delCTCTG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3532AC->GTA,,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3747delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4064-4065delinsAATATG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4108delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4177delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4222delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+542del7,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+654del5,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+675del14,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.551_555delTTTCC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+713delGA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.604_605delTG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+840insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2655del26,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4160insG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+M1L,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1812-1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1001+2T->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4095+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4096-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3041-1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3601-1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+711+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1001+2T->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1716+2delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3499+2T->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3041-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4040dupA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1675_1687del13,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3231_3232delGT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3454delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3967delTT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.40_44delAAACT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.4028delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1608delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1708_1712delTTATT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1857delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2357dupA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.324delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3495delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+538insAC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+565delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+624delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1219delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1565delCA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1660delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1845delAG/1846delGA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1853_1863del,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2045delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2406_2407delinsT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2466delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2472_2478del7,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2879_2882delCTAT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3180delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3325delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3426_3427insGTAA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4332delTG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.4delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+954delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1312dupA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1573delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2805_2810delinsTCAGA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3061insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3525_3537del,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3750delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3755delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+690delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L240X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.775delinsGCTGGGAAGAT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+M1I,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L320X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K329X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q376X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q452X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E479X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E504X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y517X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E527X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K14X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K536X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+R555X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L570X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L581X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+S631X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q634X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+R657X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E692X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y38X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q799X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L812X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K52X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E54X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K946X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K951X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q996X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q1012X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+S1037X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q1038X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E1044X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E1046X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L1059X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q1100X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K1165X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+S1178X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q1186X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L1243X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L1253X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K1351X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+C1400X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E1409X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+C1410X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+R104X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K114X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L159X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+L165X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q237X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Y247X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q250X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q270X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+E279X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+R289X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele13,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele14b,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele23,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele6b,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdele1,10",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdele1,11-24",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdele11-15,17a,17b",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdele12,13,16",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele14b-20,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+IVS15+1085_IVS17B+260del7201,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele16-18,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele18-24,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele19-24,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele2-22,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele2-7,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele2-8,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele2-9,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdele2,3,10",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdele20-23,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"FTRdele23,24",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdele5,6a",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+"CFTRdele7,8",I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdelePr-9,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdup1,,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdup14a-19,,,Standard Care / Monitoring,81.10731641251168,97.0
+CFTRdup14b-17b,,,Standard Care / Monitoring,81.10731641251168,97.0
+CFTRdup16-18,,,Standard Care / Monitoring,81.10731641251168,97.0
+CFTRdup16-20,,,Standard Care / Monitoring,81.10731641251168,97.0
+CFTRdup16-22,,,Standard Care / Monitoring,81.10731641251168,97.0
+CFTRdup2-4,,,Standard Care / Monitoring,81.10731641251168,97.0
+"CFTRdup22,23",,,Standard Care / Monitoring,81.10731641251168,97.0
+CFTRdup4-19,,,Standard Care / Monitoring,81.10731641251168,97.0
+CFTRdup4-8,,,Standard Care / Monitoring,81.10731641251168,97.0
+"CFTRdup6a,6b",,,Standard Care / Monitoring,81.10731641251168,97.0
+3413_3499+268del355PBins6PB,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3499+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4095+1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1248insATCAA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1341+1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1341+2T->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1342-1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1524+1delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1898+2delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2751+2T->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2752-1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+406-2A->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3121-2A->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3499+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3500-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4095+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+622-2A->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+186-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2623-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3121-1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3121-2A->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3601-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2104insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2215delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2640delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1157insTA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1249insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+241delAT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1262delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1288insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1294del7,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1380insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1498delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1571delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1749insTA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1806delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1874_1875insTT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1932delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1942del17,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1978delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+317insC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2005delTA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2109-2118del10,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2118del14,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2132delAC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2175insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2409delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2435insC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2456delAC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2512delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2586-2687insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2747delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2732_2733insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2733insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2935del11,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+948delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2951insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+415insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3011delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3015_3018dupGTCA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3029delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3031-3032delinsA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3213-3214insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3238delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3422del16,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3425delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3447delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3516del5,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3556insAGTA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3539_3554del,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3731-3732AA->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3755dupG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3789insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+499dupC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3856delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3886insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3889dupT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3898insC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3905delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3959delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3960-3961delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4089delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4165delGT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4197_4198delCT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4203TAG->AA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+582insG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+605insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+746insC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+905delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1037insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1040del4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.982delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1185delTC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+308insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2222delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2489_2490insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2694delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2777insTG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2909delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3139delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3456delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3629delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3724delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3840delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4006delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+519delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4172delGC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+936delTA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+218insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1491-1500del,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4301delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+749delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.234delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4048insCC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+T388X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+K716X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2787del16,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2982_2988+2delCATCCAGGT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+M1K,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3165dupA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3271+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1248+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1248+2T->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3500-2A->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3040+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1248+2T->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1341+2T->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1342-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1525-1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1525-1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1716+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+296+2T->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1899-1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1898-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2623-1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2751+1G->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2790-1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3120+1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3271+1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3601-1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3601-2A->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4006-2A->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4268+2T->G,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+622-1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+875+2T->A,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1002-2A->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4005+1G->T,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1342-2delAG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2003del8,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2036delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2967delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3893delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3380_3383del,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1200_1219del20,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1204_1205delGT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1212delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1115delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1190dupT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1340delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1244delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1262delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.147_150delATCT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1486delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1547_1548delGA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1581dupA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1759delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1784delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1807delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1725_1727delinsAT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1870delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+305insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1753delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2025dupA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1894_1895del,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1970delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2032_2033delTC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2184del4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2053delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2193ins4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2290del16,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2250delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2429delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2510delAA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2433_2437delinsATA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.243delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2467_2470delGAAA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+379-381insT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2493delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2672delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2573delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2737delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2745_2746delGT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2818_2831del,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2839delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2975delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2909_2924dup16,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3090del4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3126delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3152delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+Q1042TfsX5,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3359delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+458delAT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3453delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3321dup,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3322_3323delGT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3344_3345insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3411_3414delGAAT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3613AGCCGA->GG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3524delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.353delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3695delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3569_3570delTT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3847delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3892delTT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.381_382dup,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3889delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+526_527delAT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4089ins4,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4120delCA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3999delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.4036dupC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4168delCTAAG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.4078delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+4237-4242delinsAGAA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.4163_4167delTAAAA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.43dupC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.450delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+583delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.560delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+708delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.650_659del,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.71_72delTGinsA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+845_846insA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.811delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.865_869delAGACA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.912delCinsGG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.937_938delTC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.942delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.972delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.991_995del,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3678delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.1530_1531delTT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2538delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3089insTC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1474delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1784insATCAT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+2114delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2337delA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2341delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.264_268delATATT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.2789delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3012delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3199delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3635delT,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+547insTA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.4187delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.583delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.88_89delCA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1027delG,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+S531X,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+994del9,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1710del17bp,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+875insTACA,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+M1R,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+405+7982del18652,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+1419delC,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+IVS11-1G->C,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3033dup,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+c.3407_3422del16,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3407_3422del16,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+CFTRdelePr-1,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+3121-977_3499+248del2515,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0
+IVSI-5842_IVS4+401del,I,I,Nonsense-Mediated Decay (NMD) Inhibitors / Gene Therapy,81.10731641251168,97.0

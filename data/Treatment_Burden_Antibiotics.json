@@ -1,0 +1,91 @@
+{
+  "treatments": {
+    "iv_antibiotics": {
+      "overall": {
+        "any_iv": 22.0,
+        "home_iv": 9.6,
+        "hospital_iv": 18.3
+      },
+      "<16": {
+        "any_iv": 16.5,
+        "home_iv": 3.9,
+        "hospital_iv": 15.6
+      },
+      "≥16": {
+        "any_iv": 25.0,
+        "home_iv": 12.9,
+        "hospital_iv": 19.9
+      },
+      "median_days": {
+        "home": 14,
+        "hospital": 14,
+        "overall": 14
+      }
+    },
+    "inhaled_therapies": {
+      "dnase": {
+        "overall": 61.4,
+        "<16": 60.4,
+        "≥16": 62.0
+      },
+      "hypertonic_saline": {
+        "overall": 30.7,
+        "<16": 33.7,
+        "≥16": 28.9
+      },
+      "mannitol": {
+        "overall": "data redacted",
+        "≥16": 3.4
+      },
+      "combined_use": {
+        "dnase_and_hypertonic_saline_or_mannitol": 14.9,
+        "none_of_these": 24.6
+      }
+    },
+    "cftr_modulators": {
+      "total_on_modulator": 8212,
+      "use_by_drug": {
+        "elexacaftor_tezacaftor_ivacaftor": 7288,
+        "tezacaftor_ivacaftor": 334,
+        "lumacaftor_ivacaftor": 165,
+        "ivacaftor": 392
+      },
+      "use_by_age_6+": {
+        "total": 9316,
+        "no_record_of_use": 13.5,
+        "elexacaftor_tezacaftor_ivacaftor": 80.2,
+        "tezacaftor_ivacaftor": 3.1,
+        "lumacaftor_ivacaftor": 1.1,
+        "ivacaftor": 2.1
+      },
+      "use_by_genotype_group": {
+        "group_1_f508del_homozygous": {
+          "eti": 92.4,
+          "lumacaftor_ivacaftor": 2.2,
+          "tezacaftor_ivacaftor": "data redacted",
+          "ivacaftor": "<5",
+          "never_used": 3.9
+        },
+        "group_2_f508del_heterozygous": {
+          "eti": 80.3,
+          "tezacaftor_ivacaftor": 1.8,
+          "ivacaftor": 4.5,
+          "never_used": 13.4
+        },
+        "group_3_eti_responsive_non_f508del": {
+          "eti": 45.9,
+          "ivacaftor": 23.2,
+          "never_used": 28.0
+        },
+        "group_4_other_responsive": {
+          "tezacaftor_ivacaftor": 63.2,
+          "never_used": 19.7
+        },
+        "group_5_non_responsive": {
+          "eti": 3.9,
+          "never_used": 95.1
+        }
+      }
+    }
+  }
+}
